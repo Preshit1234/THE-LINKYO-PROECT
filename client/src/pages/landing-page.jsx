@@ -24,7 +24,7 @@ export default function LandingPage() {
                     <span className="tagline-2-gradient-2">Witness the change, the no nonsense way.</span>
                 </p>
                 <img src={svgs["globe-1.svg"]} alt="Globe" className="inline globe" />
-                <div className="inline-flex companies">
+                <div className="inline-flex companies" style={{display: "none"}}>
                     <p>Trusted by the world's leading organizations ↘</p><br />
                     <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
                         <div className="companies-2">

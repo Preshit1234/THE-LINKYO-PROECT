@@ -18,7 +18,7 @@ const faqs = [
         id: "2",
         questionNumber: 2,
         question: "What types of digital products can I promote?",
-        answer: "Affiliate marketing involves promoting products or services and earning a commission for each sale or action generated through your unique affiliate link.",
+        answer: "You can promote a variety of digital products, including software, e-books, online courses, digital downloads, subscriptions, and more.",
     },
     {
         id: "3",

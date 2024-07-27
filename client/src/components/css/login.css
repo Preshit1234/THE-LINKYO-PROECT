@@ -68,12 +68,21 @@ hr {
     align-self: center;
 }
 
+#login-form-input-container {
+    width: 100%;
+    position: relative;
+    height: 42px;
+}
+
 .login-form-input {
     height: 42px;
     padding-top: 10px;
     padding-bottom: 10px;
     box-sizing: border-box;
     color: white;
+    width: 328px;
+    position: absolute;
+    right: 0px;
 
     text-align: center;
 
@@ -105,8 +114,13 @@ hr {
   -moz-appearance: textfield;
 }
 
+#login-form-input-email {
+    z-index: 2;
+}
+
 #login-form-input-login-code {
-    display: none;
+    /* display: none; */
+    z-index: 1;
 }
 
 .login-form-submit-button {
@@ -116,6 +130,7 @@ hr {
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    z-index: 3;
 
     box-sizing: border-box;
     padding-top: 10px;

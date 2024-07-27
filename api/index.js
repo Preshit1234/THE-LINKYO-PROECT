@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const dropRoute = require("./routes/drops");
+const cors = require("cors");
 
 
 dotenv.config();
@@ -20,10 +21,15 @@ mongoose.connect(process.env.MONGO_URL,{
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users/", userRoute);
 app.use("/api/drops/", dropRoute);
+
+app.get("/api/test", (req, res) => {
+    res.json({ success: "Hello World"});
+});
 
 app.listen(8800, () => {
     console.log("Backend Server is running");
