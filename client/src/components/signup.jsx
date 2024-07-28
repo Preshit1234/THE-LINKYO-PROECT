@@ -57,9 +57,7 @@ export default function Signup() {
             axios.get(
                 'https://www.googleapis.com/oauth2/v3/userinfo',
                 { 
-                    headers: { 
-                        Authorization: 'Bearer ' + tokenResponse.access_token 
-                    } 
+                    headers: { Authorization: 'Bearer ' + tokenResponse.access_token } 
                 }
             )
             .then( (res) => {
@@ -164,6 +162,7 @@ export default function Signup() {
         });
     }
 
+    // Get the email inputted by user
     const getEmailUserData = () => {
         let email = document.getElementById("signup-form-input-email").value;
         return ({email: email});
