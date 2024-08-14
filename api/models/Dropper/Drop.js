@@ -13,6 +13,8 @@ const DropSchema = new mongoose.Schema({
     tags: { type : Array, default:[] },
     owners_name : { type : String, default: "" },
     org_email : { type : String, default : "" },
+    value : { type : String, default : ""},
+    discount : { type : String, default : ""},
 },
     { timestamps: true },
 );
