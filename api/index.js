@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const dropRoute = require("./routes/drops");
+const testRoute = require("./routes/test");
 
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(morgan("common"));
 app.use("/api/auth", authRoute);
 app.use("/api/users/", userRoute);
 app.use("/api/drops/", dropRoute);
+app.use("/api/test", testRoute)
 
 app.listen(8800, () => {
     console.log("Backend Server is running");
