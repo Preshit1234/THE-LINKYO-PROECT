@@ -2,7 +2,7 @@
 import {importAll} from './js/import-data';
 import './css/header.css';
 import {Link} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 /**
  * A react component that renders the website header
@@ -12,12 +12,20 @@ export default function Header (props) {
     // Environment Variables
     const APP_NAME = process.env.REACT_APP_NAME;
 
+    // States
+    const [createDropButtonRedirectUrl, setCreateDropButtonRedirectUrl] = useState("/drop/create");
+
     /**
      * A state variable to store the current type of the Header component
      * Values: logout, signingIn, loggingIn, login
      */
-    const [type, setType] = useState(props.type);
-    console.log(props);
+    const [type, setType] = useState();
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        setType(props.type);
+        setUserData(props.userData);
+    }, [props.type]);
 
     const svgs= importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
 
@@ -39,9 +47,18 @@ export default function Header (props) {
                 </form>
 
                 {/* Right Hand Side */}
-                <Link to="" className="header-inline" id="header-create-drop-button">Drop</Link>
+                <Link to="" className="header-inline login" id="header-create-drop-button">Drop</Link>
                 <img src={ svgs['notification-icon-active.svg'] } alt="active notification icon" className="header-inline" id="header-notification-button" />
-                <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="user profile picture" className="header-inline" id="header-user-profile-pic" />
+                <img 
+                    src={ 
+                        userData !== undefined && 'profilepic' in userData 
+                        ? userData.profilepic 
+                        : "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
+                    } 
+                    alt="user profile picture" 
+                    className="header-inline" 
+                    id="header-user-profile-pic" 
+                />
                 
             </div>
         );
@@ -56,12 +73,26 @@ export default function Header (props) {
                 {/* Center */}
 
                 {/* Right Hand Side */}
-                <Link to="/browse/drops" className="header-inline" id="header-promote-drop-button">Promote Dropped Products</Link>
-                <Link to="" className="header-inline" id="header-create-drop-button">Drop Product</Link>
+                {/* <Link to="/browse/drops" className="header-inline" id="header-promote-drop-button">Promote Dropped Products</Link>
+                <Link to="/login" state={{ loginRedirectUrl: createDropButtonRedirectUrl }} className="header-inline" id="header-create-drop-button">Drop Product</Link> */}
                 
             </div>
         );
-    } else {
+    } else if (type === 'loggingin') {
+            return (
+                <div className="header-container">
+
+                    {/* Left Hand Side */}
+                    <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
+                    <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
+                    
+                    {/* Center */}
+
+                    {/* Right Hand Side */}
+                    
+                </div>
+            );
+    } else{
         return (
             <div className="header-container">
 

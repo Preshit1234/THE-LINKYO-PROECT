@@ -8,7 +8,7 @@ const LoginPage = () => {
 
     return (
         <>
-            <Header />
+            <Header type="loggingin" />
             <div id="login-page-container">
                 <p id="login-page-heading">Create your <span>Affable</span> Account. It's freee.</p>
                 <p id="login-page-tagline">Join forces with us and tap into a dynamic network of Top <span>Tech Affiliates</span> & <span>Digital</span> products. No Credit card required.</p>

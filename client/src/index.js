@@ -12,6 +12,7 @@ import Test from './components/test';
 import BrowseDrops from './pages/browse-drops';
 import CreateDrop from './pages/create-drop';
 import LoginPage from './pages/login-page';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/header",
-    element: <Header />
+    element: <Header type="login" />
   },
   {
     path: "/browse/drops",
@@ -44,7 +45,8 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />
-  },
+  }
+  ,
   {
     path: "/test",
     element: <Test />
@@ -53,7 +55,9 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GoogleOAuthProvider clientId="97663924465-f6ec3ebk4ubcha1h67qmqcm40fhtchsv.apps.googleusercontent.com">
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
 

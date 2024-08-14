@@ -14,14 +14,14 @@ body {
     width: 390px;
     font-size: 24px;
     line-height: 33px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #create-drop-tagline-2 {
     width: 1042px;
     font-size: 16px;
     line-height: 23px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #create-drop-subform-1 {
@@ -34,15 +34,15 @@ body {
     width: 699px;
     height: 48px;
     padding-left: 38px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border: 1px solid rgba(96, 96, 96, 50%);
     border-radius: 8px;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #create-drop-subform-1-input::placeholder {
-    color: #3C3E5E;
+    color: #3c3e5e;
 }
 
 #create-drop-subform-1-get-started-button {
@@ -54,8 +54,13 @@ body {
     height: 50px;
     border: 1px solid #909090;
     border-radius: 6px;
-    background-image: linear-gradient(110deg, rgba(9, 105, 218, 100%), #105050, #010409);
-    color: #FFFFFF;
+    background-image: linear-gradient(
+        110deg,
+        rgba(9, 105, 218, 100%),
+        #105050,
+        #010409
+    );
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -74,7 +79,11 @@ body {
     flex-direction: column;
     gap: 0;
     padding: 1px;
-    background-image: linear-gradient(180deg, rgba(9, 105, 218, 79%), rgba(23, 2, 12, 79%));
+    background-image: linear-gradient(
+        180deg,
+        rgba(9, 105, 218, 79%),
+        rgba(23, 2, 12, 79%)
+    );
     border-radius: 12px;
     width: 878px;
 }
@@ -85,7 +94,7 @@ body {
     align-content: center;
     align-items: center;
     padding: 32px 30px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border-radius: 12px 12px 0 0;
     border: 1px solid transparent;
 }
@@ -94,14 +103,14 @@ body {
     font-size: 20px;
     font-weight: 500;
     line-height: 150%;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #create-drop-form-main-form-display-body {
     display: flex;
     flex-direction: column;
-    gap: 29px;
-    background-color: #0D0D0D;
+    gap: 70px;
+    background-color: #0d0d0d;
     padding: 35px 90px;
 }
 
@@ -121,17 +130,83 @@ body {
     color: rgba(255, 255, 255, 100%);
 }
 
-#create-drop-form-main-form-display-body-sections span {
+/* #create-drop-form-main-form-display-body-sections span {
     display: flex;
     align-items: center;
     align-content: center;
     gap: 9px;
+} */
+
+.breadcrumbs-navigation {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.breadcrumbs-connector {
+    height: 0px;
+    border: 1px solid #9ca3af;
+    flex-grow: 1;
+}
+
+.breadcrumbs-navigation-node {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    /* display: inline-block; */
+}
+
+.breadcrumbs-navigation-node-label-container {
+    position: absolute;
+    top: -45px;
+    display: flex;
+    width: fit-content;
+    flex-grow: 0;
+    z-index: 1;
+    justify-content: center;
+}
+
+.breadcrumbs-navigation-node-label {
+    position: relative;
+    flex-shrink: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 150%;
+    color: #ffffff;
+}
+
+.breadcrumb-outer-circle {
+    height: 32px;
+    width: 32px;
+    border: 2px solid #9ca3af;
+    border-radius: 999px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background-color: #0d0d0d;
+}
+
+.breadcrumb-inner-circle {
+    height: 10px;
+    width: 10px;
+    background-color: #9ca3af;
+    border-radius: 999px;
 }
 
 #create-drop-form-main-form-display-body-text {
     font-size: 11px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
     width: 699px;
 }
 
@@ -139,6 +214,31 @@ body {
     display: flex;
     flex-direction: column;
     gap: 52px;
+}
+
+.create-drop-form-subform-2-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.subform-title {
+    font-size: 20px;
+    line-height: 16px;
+}
+
+.subform-description {
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.create-drop-form-subform-2-inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .create-drop-form-input-fields-container {
@@ -151,7 +251,7 @@ body {
 .create-drop-form-input-field-labels {
     font-size: 16px;
     font-weight: 500;
-    color: #BBD1F6;
+    color: #bbd1f6;
 }
 
 .create-drop-form-text-inputs {
@@ -159,15 +259,15 @@ body {
     width: 699px;
     height: 48px;
     padding-left: 38px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border: 1px solid rgba(96, 96, 96, 50%);
     border-radius: 8px;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .create-drop-form-text-inputs::placeholder {
-    color: #3C3E5E;
+    color: #3c3e5e;
 }
 
 .create-drop-form-textarea-inputs {
@@ -176,16 +276,16 @@ body {
     padding-left: 38px;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border: 1px solid rgba(96, 96, 96, 50%);
     border-radius: 8px;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #ffffff;
     resize: none;
 }
 
 .create-drop-form-textarea-inputs::placeholder {
-    color: #3C3E5E;
+    color: #3c3e5e;
 }
 
 .create-drop-form-file-input-containers {
@@ -193,11 +293,11 @@ body {
     width: 699px;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border: 1px solid rgba(96, 96, 96, 50%);
     border-radius: 8px;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -216,7 +316,7 @@ body {
 
 .create-drop-form-file-input-containers span {
     font-size: 12px;
-    color: #3C3E5E;
+    color: #3c3e5e;
 }
 
 .create-drop-form-navigation-buttons-container {
@@ -236,11 +336,20 @@ body {
     height: 50px;
     border: 1px solid #363636;
     border-radius: 6px;
-    background-image: linear-gradient(110deg, rgba(9, 105, 218, 100%), #105050, #010409);
-    color: #FFFFFF;
+    background-image: linear-gradient(
+        110deg,
+        rgba(9, 105, 218, 100%),
+        #105050,
+        #010409
+    );
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
+}
+
+.create-drop-form-navigation-next-subform-buttons.next {
+    flex-grow: 1;
 }
 
 #create-drop-form-preview-display-container {
@@ -248,7 +357,11 @@ body {
     flex-direction: column;
     gap: 0;
     padding: 1px;
-    background-image: linear-gradient(180deg, rgba(9, 105, 218, 79%), rgba(23, 2, 12, 79%));
+    background-image: linear-gradient(
+        180deg,
+        rgba(9, 105, 218, 79%),
+        rgba(23, 2, 12, 79%)
+    );
     border-radius: 12px;
     flex-basis: auto;
     height: 100%;
@@ -260,7 +373,7 @@ body {
     align-content: center;
     align-items: center;
     padding: 32px 30px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border-radius: 12px 12px 0 0;
     border: 1px solid transparent;
     justify-content: space-between;
@@ -270,7 +383,7 @@ body {
     font-size: 20px;
     font-weight: 500;
     line-height: 150%;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #create-drop-form-submit-button {
@@ -283,22 +396,27 @@ body {
     height: 32px;
     border: 1px solid #363636;
     border-radius: 6px;
-    background-image: linear-gradient(110deg, rgba(9, 105, 218, 100%), #105050, #010409);
-    color: #FFFFFF;
+    background-image: linear-gradient(
+        110deg,
+        rgba(9, 105, 218, 100%),
+        #105050,
+        #010409
+    );
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
 }
 
 #create-drop-form-preview-body {
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     /* flex: 1; */
     display: flex;
     justify-content: center;
     padding: 289px 51px;
 }
 
-hr {
+hr.createDrop {
     padding: 0;
     margin: 0;
     border-color: transparent;
