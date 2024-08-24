@@ -186,10 +186,11 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
+                    backgroundColor: "#34A853"
                 },
                 {
-                    height: "32px",
-                    width: "32px",
+                    height: "30px",
+                    width: "30px",
                     duration: 0.2,
                 }
             )
@@ -257,10 +258,11 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
+                    backgroundColor: "#34A853"
                 },
                 {
-                    height: "32px",
-                    width: "32px",
+                    height: "30px",
+                    width: "30px",
                     duration: 0.2,
                 }
             )
@@ -328,10 +330,11 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
+                    backgroundColor: "#34A853"
                 },
                 {
-                    height: "32px",
-                    width: "32px",
+                    height: "30px",
+                    width: "30px",
                     duration: 0.2,
                 }
             )
@@ -399,10 +402,11 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
+                    backgroundColor: "#34A853"
                 },
                 {
-                    height: "32px",
-                    width: "32px",
+                    height: "30px",
+                    width: "30px",
                     duration: 0.2,
                 }
             )
