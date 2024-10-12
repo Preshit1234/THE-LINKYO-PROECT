@@ -67,7 +67,8 @@ body {
 }
 
 #create-drop-form-main-display-container {
-    display: flex;
+    display: none;
+    opacity: 0;
     flex-direction: row;
     flex-wrap: wrap;
     /* justify-content: space-between; */
@@ -86,6 +87,7 @@ body {
     );
     border-radius: 12px;
     width: 878px;
+    height: 1258px;
 }
 
 #create-drop-form-main-form-display-header {
@@ -112,6 +114,7 @@ body {
     gap: 70px;
     background-color: #0d0d0d;
     padding: 35px 90px;
+    flex-grow: 1;
 }
 
 #create-drop-form-main-form-display-body-sections {
@@ -146,8 +149,8 @@ body {
 }
 
 .breadcrumbs-connector {
-    height: 0px;
-    border: 1px solid #9ca3af;
+    height: 2px;
+    background: #9CA3AF;
     flex-grow: 1;
 }
 
@@ -255,6 +258,18 @@ body {
 }
 
 .create-drop-form-text-inputs {
+    box-sizing: border-box;
+    width: 699px;
+    height: 48px;
+    padding-left: 38px;
+    background-color: #0d0d0d;
+    border: 1px solid rgba(96, 96, 96, 50%);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.create-drop-form-select-inputs {
     box-sizing: border-box;
     width: 699px;
     height: 48px;
@@ -420,4 +435,97 @@ hr.createDrop {
     padding: 0;
     margin: 0;
     border-color: transparent;
+}
+
+#create-drop-form-verify-email-button {
+    display: block;
+    background-color: #0F6EFF;
+    border: 1px solid #909090;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.create-drop-form-pin-inputs-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.create-drop-form-pin-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    background-color: #0D0D0D;
+    border: 1px solid #606060;
+    border-radius: 8px;
+}
+
+#create-drop-form-subform-2 {
+    position: relative;
+}
+
+.create-drop-form-subform-2-fieldset {
+    position: absolute;
+}
+
+#create-drop-form-subform-2-fieldset-1 {
+    display: none;
+    opacity: 0;
+}
+
+#create-drop-form-subform-2-fieldset-2 {
+    display: none;
+    opacity: 0;
+}
+
+#create-drop-form-subform-2-fieldset-3 {
+    display: none;
+    opacity: 0;
+}
+
+#create-drop-form-subform-2-fieldset-4 {
+    display: none;
+    opacity: 0;
+}
+
+#create-drop-form-subform-2-fieldset-5 {
+    display: none;
+    opacity: 0;
+}
+
+#create-drop-subform-1-container {
+    display: none;
+    opacity: 0;
+}
+
+.breadcrumb-check {
+    height: 18px;
+    width: 18px;
+    fill: #ffffff;
+}
+
+.breadcrumb-check-container {
+    display: flex;
+    border-radius: 999px;
+    background-color: #0969da;
+    height: 32px;
+    width: 32px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    overflow: hidden;
 }
