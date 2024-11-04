@@ -1,0 +1,94 @@
+[debug] [2024-09-28T16:23:08.106Z] ----------------------------------------------------------------------
+[debug] [2024-09-28T16:23:08.110Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mohit bhange\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-09-28T16:23:08.110Z] CLI Version:   13.20.1
+[debug] [2024-09-28T16:23:08.111Z] Platform:      win32
+[debug] [2024-09-28T16:23:08.111Z] Node Version:  v20.11.1
+[debug] [2024-09-28T16:23:08.111Z] Time:          Sat Sep 28 2024 21:53:08 GMT+0530 (India Standard Time)
+[debug] [2024-09-28T16:23:08.111Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-28T16:23:08.120Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-28T16:23:08.121Z] > authorizing via signed-in user (linkyo.office@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Preshit\THE LINKYO PROECT
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-09-28T16:24:17.319Z] Checked if tokens are valid: true, expires at: 1727543376013
+[debug] [2024-09-28T16:24:17.320Z] Checked if tokens are valid: true, expires at: 1727543376013
+[debug] [2024-09-28T16:24:17.322Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-09-28T16:24:17.322Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"linkyo.io","name":"thelinkyoproject"}
+[debug] [2024-09-28T16:24:20.345Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2024-09-28T16:24:20.345Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id contains invalid characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2024-09-28T16:24:20.503Z] FirebaseError: HTTP Error: 400, field [project_id] has issue [project_id contains invalid characters]
+    at responseToError (C:\Users\mohit bhange\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\mohit bhange\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2024-09-28T16:25:58.360Z] ----------------------------------------------------------------------
+[debug] [2024-09-28T16:25:58.364Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mohit bhange\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-09-28T16:25:58.364Z] CLI Version:   13.20.1
+[debug] [2024-09-28T16:25:58.364Z] Platform:      win32
+[debug] [2024-09-28T16:25:58.365Z] Node Version:  v20.11.1
+[debug] [2024-09-28T16:25:58.365Z] Time:          Sat Sep 28 2024 21:55:58 GMT+0530 (India Standard Time)
+[debug] [2024-09-28T16:25:58.365Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-28T16:25:58.372Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-28T16:25:58.372Z] > authorizing via signed-in user (linkyo.office@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Preshit\THE LINKYO PROECT
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] 
+=== Dataconnect Setup
+[info] i  Setting placeholder values in dataconnect.yaml. You can edit these before you deploy to specify different IDs or regions. 
+[info] +  Wrote dataconnect\dataconnect.yaml 
+[info] +  Wrote dataconnect\schema\schema.gql 
+[info] +  Wrote dataconnect\connector\connector.yaml 
+[info] +  Wrote dataconnect\connector\queries.gql 
+[info] +  Wrote dataconnect\connector\mutations.gql 
+[info] +  Detected WEB app in directory D:\Preshit\THE LINKYO PROECT 
+[info] i  Wrote new config to D:\Preshit\THE LINKYO PROECT\dataconnect\connector/connector.yaml 
+[info] +  If you'd like to generate additional SDKs later, run firebase init dataconnect:sdk 
+[info] 
+[info] 
+=== Firestore Setup
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 

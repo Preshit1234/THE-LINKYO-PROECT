@@ -5,20 +5,43 @@ const verify = require("../verifyToken");
 
 //CREATE A DROP
 
-router.post("/dropcreate", async (req,res)=>{
+router.post("/", async (req,res)=>{
     const newDrop = new Drop(req.body)
     try{
         const savedDrop = await newDrop.save();
-        res.status(200).json(newDrop);
+        res.status(200).json(savedDrop);
     }catch(err){
-        res.status(500).json("err")
+        res.status(500).json(err);
+    }
+});
+
+
+//Get random DROPS
+router.get("/random", async (req,res) => {
+    const type = req.query.type;
+    let drop;
+    try{
+        if ( type === "paid" ){
+            drop = await Drop.aggregate([
+                { $match : { isPaid : true } },
+                { $sample : { size : 1 } },
+            ]);
+        } else {
+            drop = await Drop.aggregate([
+                { $match : { isPaid : false } },
+                { $sample : { size : 1 } },
+            ]);
+        } 
+        res.status(200).json(drop);
+    }catch (err) {
+        res.status(200).send(err);
     }
 });
 
 
 //GET ALL DROPS
 
-router.get("/", async(req,res)=>{
+router.get("/getall", async(req,res)=>{
     const query = req.query.new;
     let drops;
     try{ 
@@ -115,5 +138,7 @@ router.get("/timeline/all", async (req,res)=>{
         res.status(500).json(err);
     }
 });
+
+
 
 module.exports = router;
