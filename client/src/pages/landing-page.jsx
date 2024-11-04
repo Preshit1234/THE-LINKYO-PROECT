@@ -3,6 +3,7 @@ import Header from '../components/header.jsx';
 import {importAll} from '../components/js/import-data.js';
 import Signup from '../components/signup.jsx';
 import './css/landing-page.css';
+import SEO from '../components/seo.jsx';
 
 export default function LandingPage() {
     
@@ -12,18 +13,63 @@ export default function LandingPage() {
 
     return (
         <>
+            <SEO
+                title="Linkyo | 10x growth for SaaS"
+                description=""
+                name="Linkyo"
+                type="article"
+            />
             <Header type="logout" />
             <div className="landing-page-container">
                 <p className="inline tagline-1">
                     Join forces with us and tap into a dynamic network of top<br />
-                    <span className="tagline-1-gradient-1">Tech Affiliates</span> & <span className="tagline-1-gradient-2">Digital</span> products.
+                    <span className="tagline-1-gradient-1">Tech Partners</span> & <span className="tagline-1-gradient-2">SaaS/Digital</span> products.
                 </p>
+                <Signup />
+                <p className="inline about-1">
+                    <span className="about-1-1">{APP_NAME}</span><br />
+                    <span className="about-1-2">
+                        A next-gen digital partner marketing platform powered by <span className="about-1-3">AI.</span>
+                    </span>
+                </p>
+                <p className="inline about-2">
+                    <span className="about-2-1">10X</span><br />
+                    <span className="about-2-2">Engagement</span><br />
+                    <img src={images["drop-zywa.png"]} alt="Zywa Drop Card" className="about-2-img-1" />
+                    <img src={images["drop-grammarly.png"]} alt="Grammarly Drop Card" className="about-2-img-2" />
+                </p>
+                <div className="inline about-4">
+                    <p className="about-4-1">How it Works?</p>
+                    <div className="about-4-3">
+                        <div className="about-4-3-1 card">
+                            <div className="icon-containers">
+                                <img src={svgs["user-check.svg"]} alt="Join" className="inline about-4-3-icons" />
+                            </div>
+                            <p className="about-4-3-1-title title">Join Linkyo</p>
+                            <p className="about-4-3-1-description description">Sign up and create your profile. Whether you're a tech partner or a SaaS / digital product company, we have a place for you.</p>
+                        </div>
+                        <div className="about-4-3-2 card">
+                            <div className="icon-containers">
+                                <img src={svgs["share-2.svg"]} alt="Share" className="inline about-4-3-icons" />
+                            </div>
+                            <p className="about-4-3-2-title title">Collaborate</p>
+                            <p className="about-4-3-2-description description">Find and connect with the best affiliates or digital product companies that match your goals.</p>
+                        </div>
+                        <div className="about-4-3-3 card">
+                            <div className="icon-containers">
+                                <img src={svgs["lightning-bolt.svg"]} alt="Launch" className="inline about-4-3-icons" />
+                            </div>
+                            <p className="about-4-3-3-title title">Launch & Track</p>
+                            <p className="about-4-3-3-description description">Launch your Partner marketing campaigns and track their success with our advanced analytics dashboard.</p>
+                        </div>
+                    </div>
+                </div>
                 <Signup />
                 <p className="inline tagline-2">
                     The greatest <span className="tagline-2-gradient-1">Creative</span> boom of our generation is just getting started<br />
                     <span className="tagline-2-gradient-2">Witness the change, the no nonsense way.</span>
                 </p>
-                <img src={svgs["globe-1.svg"]} alt="Globe" className="inline globe" />
+                {/* <img src={svgs["globe-1.svg"]} alt="Globe" className="inline globe" /> */}
                 <div className="inline-flex companies" style={{display: "none"}}>
                     <p>Trusted by the world's leading organizations ↘</p><br />
                     <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
@@ -55,24 +101,12 @@ export default function LandingPage() {
                         </p>
                     </div>
                 </div>
-                <p className="inline about-1">
-                    <span className="about-1-1">{APP_NAME}</span><br />
-                    <span className="about-1-2">
-                        A next-gen digital affiliate marketing platform powered by <span className="about-1-3">AI.</span>
-                    </span>
-                </p>
-                <p className="inline about-2">
-                    <span className="about-2-1">10X</span><br />
-                    <span className="about-2-2">Engagement</span><br />
-                    <img src={images["drop-zywa.png"]} alt="Zywa Drop Card" className="about-2-img-1" />
-                    <img src={images["drop-grammarly.png"]} alt="Grammarly Drop Card" className="about-2-img-2" />
-                </p>
                 <div className="inline about-3">
                     <p className="about-3-1">Why Join <span className="about-3-2">{APP_NAME}?</span></p>
                     <div className="about-3-3">
                         <div className="about-3-3-1 card">
                             <p className="about-3-3-1-title title">Be the first to know</p>
-                            <p className="about-3-3-1-description description">Get exclusive updates and early access to our affiliate marketing program launch.</p>
+                            <p className="about-3-3-1-description description">Get exclusive updates and early access to our partner marketing program launch.</p>
                         </div>
                         <div className="about-3-3-2 card">
                             <p className="about-3-3-2-title title">Maximize Earnings</p>
@@ -84,7 +118,6 @@ export default function LandingPage() {
                         </div>
                     </div>
                 </div>
-                <Signup />
                 <div className="faq">
                     <p className="faq-title">Learn More in FAQ's</p>
                     <FaqAccordion />

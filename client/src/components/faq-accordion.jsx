@@ -11,8 +11,8 @@ const faqs = [
     {
         id: "1",
         questionNumber: 1,
-        question: "How does " + APP_NAME + " affiliate marketing work?",
-        answer: "Affiliate marketing involves promoting products or services and earning a commission for each sale or action generated through your unique affiliate link.",
+        question: "How does " + APP_NAME + " partner marketing work?",
+        answer: "Partner marketing involves promoting products or services and earning a commission for each sale or action generated through your unique partner link.",
     },
     {
         id: "2",
@@ -24,18 +24,18 @@ const faqs = [
         id: "3",
         questionNumber: 3,
         question: "How do I earn commissions?",
-        answer: "You earn commissions by driving sales or other desired actions, such as sign-ups or leads, through your affiliate link. The commission structure varies depending on the affiliate program.",
+        answer: "You earn commissions by driving sales or other desired actions, such as sign-ups or leads, through your partner link. The commission structure varies depending on the partner program.",
     },
     {
         id: "4",
         questionNumber: 4,
-        question: "Is affiliate marketing suitable for me?",
-        answer: "Affiliate marketing is suitable for anyone with an online presence, including bloggers, social media influencers, content creators, and website owners.",
+        question: "Is partner marketing suitable for me?",
+        answer: "Partner marketing is suitable for anyone with an online presence, including bloggers, social media influencers, content creators, and website owners.",
     },
     {
         id: "5",
         questionNumber: 5,
-        question: "How do I track my affiliate earnings?",
+        question: "How do I track my partner earnings?",
         answer: APP_NAME + " provide tracking tools and dashboards where you can monitor clicks, conversions, and earnings in real-time.",
     }
 ];

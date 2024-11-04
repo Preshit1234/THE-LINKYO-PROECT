@@ -55,3 +55,21 @@ export function isEmailValid(email) {
         return false;
     }
 }
+
+/**
+ * Generates a random string of given length
+ * Credits: Code posted in 'https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript' post by the user 'csharptest.net'
+ * @param {Integer} length Length of the generated random string
+ * @returns {String} A random string of given length
+ */
+export function createRandomString(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}

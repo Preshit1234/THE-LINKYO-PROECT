@@ -73,8 +73,11 @@ export default function Header (props) {
                 {/* Center */}
 
                 {/* Right Hand Side */}
-                {/* <Link to="/browse/drops" className="header-inline" id="header-promote-drop-button">Promote Dropped Products</Link>
-                <Link to="/login" state={{ loginRedirectUrl: createDropButtonRedirectUrl }} className="header-inline" id="header-create-drop-button">Drop Product</Link> */}
+                <div className="right-hand-side">
+                    <Link to="" className="" id="header-login-link">Login</Link>
+                    <Link to={"/browse/drops"} className="" id="header-promote-drop-button">Become a partner</Link>
+                    <Link to={"/login"} state={{ loginRedirectUrl: createDropButtonRedirectUrl }} className="" id="header-create-drop-button">Drop Product</Link>
+                </div>
                 
             </div>
         );
@@ -92,27 +95,28 @@ export default function Header (props) {
                     
                 </div>
             );
-    } else{
-        return (
-            <div className="header-container">
+    } 
+    // else{
+    //     return (
+    //         <div className="header-container">
 
-                {/* Left Hand Side */}
-                <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
-                <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
-                <Link to="" className="header-navigation-links header-inline" id="header-products-link">Products</Link>
-                <Link to="" className="header-navigation-links header-inline" id="header-categories-link">Categories</Link>
-                <Link to="" className="header-navigation-links header-inline" id="header-about-link">About</Link>
-                <Link to="" className="header-navigation-links header-inline" id="header-analytics-link">Analytics</Link>
+    //             {/* Left Hand Side */}
+    //             <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
+    //             <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
+    //             <Link to="" className="header-navigation-links header-inline" id="header-products-link">Products</Link>
+    //             <Link to="" className="header-navigation-links header-inline" id="header-categories-link">Categories</Link>
+    //             <Link to="" className="header-navigation-links header-inline" id="header-about-link">About</Link>
+    //             <Link to="" className="header-navigation-links header-inline" id="header-analytics-link">Analytics</Link>
                 
-                {/* Center */}
-                <form action="" className="header-inline" id="header-searchbar-form">
-                    <input type="text" placeholder="Search Product, Category, genre, etc.." id="header-searchbar-input" />
-                </form>
+    //             {/* Center */}
+    //             <form action="" className="header-inline" id="header-searchbar-form">
+    //                 <input type="text" placeholder="Search Product, Category, genre, etc.." id="header-searchbar-input" />
+    //             </form>
 
-                {/* Right Hand Side */}
-                <Link to="" className="header-inline" id="header-create-drop-button">Drop</Link>
+    //             {/* Right Hand Side */}
+    //             <Link to="" className="header-inline" id="header-create-drop-button">Drop</Link>
                 
-            </div>
-        );
-    }
+    //         </div>
+    //     );
+    // }
 }

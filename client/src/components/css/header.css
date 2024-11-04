@@ -9,8 +9,21 @@
     background-color: #000000;
 }
 
+.header-container .right-hand-side {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end;
+    
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 40px;
+}
+
 .header-inline {
-    display: inline-block;
+    /* display: inline-block; */
     text-decoration: none;
     position: absolute;
     transform: translateY(-50%);
@@ -107,8 +120,16 @@
     right: 116px;
 }
 
+#header-login-link {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 #header-promote-drop-button {
-    right: 220px;
+    /* right: 220px; */
     display: inline-flex;
     align-content: center;
     justify-content: center;
