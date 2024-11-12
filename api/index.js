@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL,{
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(cors({ origin : "https://linkyo.io"}));
+app.use(cors());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users/", userRoute);

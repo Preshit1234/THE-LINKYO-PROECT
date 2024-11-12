@@ -57,7 +57,12 @@ export default function Signup() {
             axios.get(
                 'https://www.googleapis.com/oauth2/v3/userinfo',
                 { 
-                    headers: { Authorization: 'Bearer ' + tokenResponse.access_token } 
+                    headers: { 
+                        Authorization: 'Bearer ' + tokenResponse.access_token,
+                        'Cross-Origin-Opener-Policy': 'unsafe-none',
+                        'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+                        'Cross-Origin-Opener-Policy': 'same-origin'
+                    } 
                 }
             )
             .then( (res) => {

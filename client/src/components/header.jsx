@@ -29,17 +29,27 @@ export default function Header (props) {
 
     const svgs= importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
 
-    if(type === 'login') {
+    if (type === 'loggingin') {
         return (
             <div className="header-container">
 
                 {/* Left Hand Side */}
                 <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
                 <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
-                <Link to="" className="header-navigation-links header-inline" id="header-products-link">Products</Link>
-                <Link to="" className="header-navigation-links header-inline" id="header-categories-link">Categories</Link>
-                <Link to="" className="header-navigation-links header-inline" id="header-about-link">About</Link>
-                <Link to="" className="header-navigation-links header-inline" id="header-analytics-link">Analytics</Link>
+                
+                {/* Center */}
+
+                {/* Right Hand Side */}
+                
+            </div>
+        );
+    } else if (type === 'login') {
+        return (
+            <div className="header-container login-header">
+
+                {/* Left Hand Side */}
+                <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
+                <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
                 
                 {/* Center */}
                 <form action="" className="header-inline" id="header-searchbar-form">
@@ -47,7 +57,7 @@ export default function Header (props) {
                 </form>
 
                 {/* Right Hand Side */}
-                <Link to="" className="header-inline login" id="header-create-drop-button">Drop</Link>
+                <Link to="" className="header-inline login" id="header-create-drop-button">Drop Product</Link>
                 <img src={ svgs['notification-icon-active.svg'] } alt="active notification icon" className="header-inline" id="header-notification-button" />
                 <img 
                     src={ 
@@ -62,7 +72,7 @@ export default function Header (props) {
                 
             </div>
         );
-    } else if (type === 'logout') {
+    } else {
         return (
             <div className="header-container">
 
@@ -81,42 +91,5 @@ export default function Header (props) {
                 
             </div>
         );
-    } else if (type === 'loggingin') {
-            return (
-                <div className="header-container">
-
-                    {/* Left Hand Side */}
-                    <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
-                    <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
-                    
-                    {/* Center */}
-
-                    {/* Right Hand Side */}
-                    
-                </div>
-            );
-    } 
-    // else{
-    //     return (
-    //         <div className="header-container">
-
-    //             {/* Left Hand Side */}
-    //             <img src={ svgs['app-logo.svg'] } alt="App Logo" className="header-inline" id="app-logo-img" />
-    //             <span className="header-inline" id="app-logo-text">{APP_NAME}</span>
-    //             <Link to="" className="header-navigation-links header-inline" id="header-products-link">Products</Link>
-    //             <Link to="" className="header-navigation-links header-inline" id="header-categories-link">Categories</Link>
-    //             <Link to="" className="header-navigation-links header-inline" id="header-about-link">About</Link>
-    //             <Link to="" className="header-navigation-links header-inline" id="header-analytics-link">Analytics</Link>
-                
-    //             {/* Center */}
-    //             <form action="" className="header-inline" id="header-searchbar-form">
-    //                 <input type="text" placeholder="Search Product, Category, genre, etc.." id="header-searchbar-input" />
-    //             </form>
-
-    //             {/* Right Hand Side */}
-    //             <Link to="" className="header-inline" id="header-create-drop-button">Drop</Link>
-                
-    //         </div>
-    //     );
-    // }
+    }
 }

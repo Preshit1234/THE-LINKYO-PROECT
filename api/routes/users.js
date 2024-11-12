@@ -9,7 +9,7 @@ router.put("/:id", verify, async (req,res)=>{
     if(req.user.id === req.params.id || req.user.isAdmin){
         if(req.body.password){
             req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString()
-        };
+        }
     
         try{
             const updatedUser = await User.findByIdAndUpdate(req.params.id, {
@@ -19,7 +19,7 @@ router.put("/:id", verify, async (req,res)=>{
             });
             res.status(200).json(updatedUser);
 
-        }catch{
+        }catch (err){
             req.status(500).json(err);
         }
     } else{
@@ -36,7 +36,7 @@ router.delete("/:id", verify, async (req,res)=>{
             await User.findByIdAndDelete(req.params.id);
             res.status(200).json("User has been deleted");
 
-        }catch{
+        }catch (err) {
             req.status(500).json(err);
         }
     } else{
@@ -51,7 +51,7 @@ router.get("/find/:id", async (req,res)=>{
             const user = await User.findById(req.params.id);
             const { password, ...info } = user._doc;
             res.status(200).json(info);
-        }catch{
+        }catch (err) {
             req.status(500).json(err);
         }
 });
@@ -65,7 +65,7 @@ router.get("/", verify, async (req,res)=>{
             const user = query ? await User.find().sort({_id:-1}).limit(10) : await User.find()
             res.status(200).json(user);
 
-        }catch{
+        }catch (err) {
             res.status(500).json(err);
         }
     } else{
@@ -77,7 +77,7 @@ router.get("/", verify, async (req,res)=>{
 
 router.get("/stats", async ( req, res ) => {
     const today = new Date();
-    const lastYear = today.setFullYear(today.setFullYear() - 1);
+    const lastYear = today.setFullYear(today.getFullYear() - 1);
     const monthsArray = [
         "January", "February", "March",
         "April", "May", "June",
@@ -116,7 +116,7 @@ router.put("/:id/follow", async (req,res)=>{
                 await currentUser.updateOne({ $push: { followings: req.params.id } });
                 res.status(200).json("user has been followed");
             } else {
-                res.status(403).json("you alreay follow this user");
+                res.status(403).json("you already follow this user");
             }
         }catch(err){
             res.status(500).json(err);
