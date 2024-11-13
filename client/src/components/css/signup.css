@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    gap: 10px;
+    gap: 20px;
     font-size: 16px;
     font-weight: 500;
     line-height: 22px;
@@ -22,11 +22,13 @@
     box-sizing: border-box;
 
     color: black;
-    width: 328px;
-    height: 42px;
+    width: 400px;
+    height: 52px;
     align-self: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 16px;
+    line-height: 22px;
 
     /* Gradient Color Borders */
     background: 
@@ -63,19 +65,20 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 328px;
-    gap: 10px;
+    width: 400px;
+    gap: 15px;
     align-self: center;
 }
 
 .signup-form-input {
-    height: 42px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 52px;
     box-sizing: border-box;
     color: white;
+    justify-content: baseline;
 
-    text-align: center;
+    /* text-align: center; */
 
     /* Gradient Color Borders */
     background: 
@@ -87,14 +90,42 @@ hr {
     border-radius: 9px;
 }
 
-.signup-form-input > ::placeholder {
-    font-size: 12px;
+.signup-form-input input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: #958B8B;
+}
+
+.signup-form-input input:focus {
+    outline: none;
+}
+
+.signup-form-input div {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 121px;
+    flex-shrink: 0;
+    border-right: 1px solid #606060;
+    font-size: 20px;
+}
+
+.signup-form-input input {
+    display: flex;
+    padding-left: 33px;
+    padding-right: 10px;
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    /* width: 100%; */
+    font-size: 16px;
     font-weight: 400;
     color: #958B8B;
 }
 
 .signup-form-submit-button {
-    height: 42px;
+    height: 52px;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -105,6 +136,8 @@ hr {
     padding-top: 10px;
     padding-bottom: 10px;
     color: white;
+    font-size: 16px;
+    line-height: 22px;
 
     /* Gradient Color Borders */
     background: 

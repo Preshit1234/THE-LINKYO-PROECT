@@ -189,9 +189,12 @@ export default function Signup() {
                 <hr />
             </span>
             <form action="#" method="" className="signup-form">
-                <input type="email" className="signup-form-input" id="signup-form-input-email" placeholder="Enter Your Email Address" />
+                <div className="signup-form-input">
+                    <div>linkyo.io/</div>
+                    <input type="email" className="" id="signup-form-input-email" placeholder="Enter Username" /> 
+                </div>
                 <button type="button" className="signup-form-submit-button" onClick={emailSignup}>
-                    Continue
+                    Sign Up
                     {/* <img src={svgs["arrow.svg"]} alt="Arrow" className="signup-form-arrow" /> */}
                     <svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="signup-form-arrow">
                         <path d="M1.57544 1L9.28772 7L17 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

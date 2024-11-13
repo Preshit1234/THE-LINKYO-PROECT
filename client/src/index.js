@@ -14,6 +14,10 @@ import CreateDrop from './pages/create-drop';
 import LoginPage from './pages/login-page';
 import CheckEmail from './pages/check-yo-email'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import CreateAffiliateLink from './prototype/create-affiliate-link';
+import FakeProduct from './prototype/fake-product';
+import { HelmetProvider } from 'react-helmet-async';
+import SignupPage from './pages/signup-page';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <LandingPage />,
+    element: <LandingPage title="Linkyo | 10x growth for SaaS" />,
   },
   {
     path: "/accordion",
@@ -55,13 +59,27 @@ const router = createBrowserRouter([
   {
     path : "/confirmemail",
     element : <CheckEmail />
+  },
+  {
+    path: "/prototype/affiliateLink",
+    element: <CreateAffiliateLink />
+  },
+  {
+    path: "/prototype/fakeURL/fakeProduct",
+    element: <FakeProduct />
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />
   }
 ]);
 
 root.render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId="97663924465-f6ec3ebk4ubcha1h67qmqcm40fhtchsv.apps.googleusercontent.com">
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </GoogleOAuthProvider>
   </React.StrictMode>
 );
