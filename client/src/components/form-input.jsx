@@ -22,6 +22,15 @@ export default function FormInput (props) {
         );
     }
 
+    if (type === "fullName") {
+        return (
+            <div className="form-input-container">
+                <label htmlFor="input-email" className="input-label">Full Name</label>
+                <input type="text" className="form-input-wrap input-email" placeholder='John Doe'/>
+            </div>
+        );
+    }
+
     if (type === "email") {
         return (
             <div className="form-input-container">

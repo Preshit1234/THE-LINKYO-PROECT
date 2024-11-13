@@ -12,13 +12,13 @@ import Test from './components/test';
 import BrowseDrops from './pages/browse-drops';
 import CreateDrop from './pages/create-drop';
 import LoginPage from './pages/login-page';
-import CheckEmail from './pages/check-yo-email'
+import CheckEmail from './pages/check-yo-email';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import CreateAffiliateLink from './prototype/create-affiliate-link';
 import FakeProduct from './prototype/fake-product';
 import { HelmetProvider } from 'react-helmet-async';
 import SignupPage from './pages/signup-page';
-
+import Finalise from './pages/final-form'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -71,7 +71,11 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage />
-  }
+  },
+  {
+    path : "/welcomepage",
+    element : <Finalise />
+  },
 ]);
 
 root.render(
