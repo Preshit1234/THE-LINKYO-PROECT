@@ -1,18 +1,18 @@
+
 #browse-drops-container {
-    padding: 106px 100px;
     background-color: #010409;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
+    align-items: stretch;
     gap: 40px;
+    flex-grow: 1;
+    padding-left: 260px;
+    padding-top: 68px;
 }
 
-#category-tags-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
+/* Hide Scrollbar */
+#category-tags-container::-webkit-scrollbar {
+    display: none;
 }
 
 .category-tags {
@@ -21,7 +21,7 @@
     align-items: center;
     align-content: center;
     flex-shrink: 0;
-    padding: 11px 26px;
+    padding: 10px 26px;
     border: 1px solid #0969DA;
     border-radius: 42px;
     background-color: rgba(88, 88, 88, 25%);
@@ -90,13 +90,16 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    padding: 76px 40px;
 }
 
 .drops-types {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 20px;
     flex-shrink: 0;
+    right: 0;
 }
 
 .drops-type-text {

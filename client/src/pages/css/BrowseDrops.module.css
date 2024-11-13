@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.categoryWrapper {
+    background-color: #010409;
+    display: block;
+    overflow: auto;
+    position: fixed;
+    box-sizing: border-box;
+    top: 68px;
+    right: 0;
+    overflow: auto;
+    left: 300px;
+    /* right: 40px; */
+    padding-right: 40px;
+    padding: 16px 0px;
+    /* Hide Scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.categoryContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 12px;
+}
+
+.activeTag {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: #475569;
+}

@@ -79,6 +79,10 @@ router.post("/register", async (req, res) => {
     }
 });
 
+router.get('/register/google', async (req, res) => {
+    console.log(req.body);
+});
+
 //LOGIN
 router.post("/login", async (req, res) => {
     // try{

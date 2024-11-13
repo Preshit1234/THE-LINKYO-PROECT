@@ -92,6 +92,141 @@ const drops = [
             "Platform",
             "E-Sports"
         ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
+    },
+    {
+        "id" : 6,
+        "name" : "Super Mario wonder",
+        "publisher" : "Alok",
+        "is_publisher_verified" : "y",
+        "description" : "2D platform game for nintendo switch",
+        "thumbnail_url" : "Framethumbnail-superMarioWonder.png",
+        "product_url" : "",
+        "score" : "130",
+        "tags" : [
+            "Games",
+            "Platform",
+            "E-Sports"
+        ]
     }
 ];
 
