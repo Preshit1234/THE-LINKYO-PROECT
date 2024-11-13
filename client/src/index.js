@@ -12,6 +12,7 @@ import Test from './components/test';
 import BrowseDrops from './pages/browse-drops';
 import CreateDrop from './pages/create-drop';
 import LoginPage from './pages/login-page';
+import CheckEmail from './pages/check-yo-email'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import CreateAffiliateLink from './prototype/create-affiliate-link';
 import FakeProduct from './prototype/fake-product';
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/test",
     element: <Test />
+  },
+  {
+    path : "/confirmemail",
+    element : <CheckEmail />
   },
   {
     path: "/prototype/affiliateLink",
