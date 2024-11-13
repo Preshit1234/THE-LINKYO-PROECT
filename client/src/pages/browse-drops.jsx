@@ -1,11 +1,13 @@
 // Begin
 import './css/browse-drops.css';
+import styles from './css/BrowseDrops.module.css';
 import MultipleDropCards from '../components/multiple-drop-cards.jsx';
 import {useEffect, useState} from "react";
 import Header from '../components/header.jsx';
 import {importAll} from '../components/js/import-data.js';
 import { useLocation } from 'react-router-dom';
 import { isObjectEmpty, isStringEmpty, isDataFromOurDatabase } from '../helper';
+import Sidebar from '../components/sidebar.jsx';
 
 const APP_NAME = process.env.REACT_APP_NAME;
 
@@ -57,33 +59,30 @@ export default function BrowseDrops () {
     let svgs= importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
 
     return (
-        <div>
-            <Header 
+        <div className={styles.container}>
+            {/* <Header 
                 type={ !isObjectEmpty(loginType) && !isObjectEmpty(userData) ? "login" : "" } 
                 userData={ !isObjectEmpty(loginType) && !isObjectEmpty(userData) ? userData : "" } 
-            />
+            /> */}
+            <Header type="login" />
+            <Sidebar />
             <div id="browse-drops-container">
-                <div id="category-tags-container">
-                    { cpyCategoryTags.map((ct, index) => (<div className="category-tags" key={index}>{ct}</div>)) }
-                </div>
-                <div id="welcome-message-container">
-                    <div id="welcome-textbox-1" className="welcome-textbox">
-                        <span id="welcome-text-1">Welcome to {APP_NAME}</span>
-                        <span id="welcome-text-2">, { isLoggedIn ? userData.firstName : "Guest"}</span> &nbsp;
-                        <img src={svgs["smiling-ghost-icon.svg"]} alt="smiling ghost icon" id="welcome-text-3" />
+                <div className={styles.categoryWrapper}>
+                    <div id="category-tags-container" className={styles.categoryContainer}>
+                        <div className={"category-tags " + styles.activeTag}>All</div>
+                        { cpyCategoryTags.map((ct, index) => (<div className="category-tags" key={index}>{ct}</div>)) }
                     </div>
-                    
-                    <div id="welcome-textbox-2" className="welcome-textbox">
-                        <span id="welcome-text-4">The place to promote high growth digital products.</span>
-                    </div>    
                 </div>
                 <div id="drops-container">
-                    <div id="drops-type-1" className="drops-types">
+                    {/* <div id="drops-type-1" className="drops-types">
                         <p className="drops-type-text">Top products dropped recently</p>
                         <MultipleDropCards />
                     </div>
                     <div id="drops-type-2" className="drops-types">
                         <p className="drops-type-text">Products with high {APP_NAME} Score</p>
+                        <MultipleDropCards />
+                    </div> */}
+                    <div id="drops-type-2" className="drops-types">
                         <MultipleDropCards />
                     </div>
                 </div>
