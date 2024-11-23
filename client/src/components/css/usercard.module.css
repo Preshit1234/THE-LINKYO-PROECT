@@ -1,0 +1,153 @@
+.wholeUserCard{
+    display : flex;
+    flex-direction: column;
+    width : 290px;
+    box-shadow: inset;
+}
+
+.ParentCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 24px;
+    border-radius: 6px;
+    background-image: 
+    linear-gradient(
+        135deg, 
+        rgba(27, 27, 27, 1), 
+        rgba(67, 153, 255, 0.2), 
+        rgba(67, 153, 255, 0.3), 
+        rgba(67, 153, 255, 0.2), 
+        rgba(67, 153, 255, 0)
+    );
+}
+
+#profilePicId{
+    height: 84px;
+    width: 84px;
+    display: flex;
+    border-radius: 45px;
+}
+
+.TitleClass{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Title{
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.Role{
+    padding-top: 10px;
+    padding-bottom: 7px;
+    font-weight: 500;
+    font-size: 12px;
+    color : #727a85;
+}
+
+.TagDiv{
+    padding-top: 10px;
+    padding-bottom: 12px;
+}
+
+.HrTag{
+    border-top: 0px solid #6E7681;
+    opacity: 70%;
+    width: 180px;
+}
+
+.subTitle{
+    font-weight: medium;
+    font-size: 10px;
+    color : #C3C5C7;
+}
+
+.promotionPicClass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.promotionpic{
+    height: 36px;
+    width: 36px;
+    border-radius: 45px;
+}
+
+.socialsCountComponent{
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 30px;
+}
+
+.socials{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.socialsImg{
+    height: 24px;
+    width: 24px;
+}
+
+.followersCount{
+    font-weight: medium;
+    font-size: 14px;
+}
+
+.CTAs{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    gap : 15px;
+}
+
+.ReqPartnershipBtn{
+    width: 140px;
+    color: white;
+    font-weight: medium;
+    font-size: 13px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6.5px;
+    padding-right: 6.5px;
+    background: 
+        linear-gradient(to right, rgba(9, 105, 218, 100%), #053874), 
+        linear-gradient(to bottom right, #30363D, #57606A); 
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border: 1px solid transparent;
+    border-radius: 6px;
+}
+
+.ViewProfileBtn{
+    width: 140px;
+    color : #AFAFAF;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: none;
+    border : 1px solid #0969DA;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: medium;
+}
