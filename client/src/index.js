@@ -19,6 +19,7 @@ import FakeProduct from './prototype/fake-product';
 import { HelmetProvider } from 'react-helmet-async';
 import SignupPage from './pages/signup-page';
 import Finalise from './pages/final-form'
+import ViewDrop from './pages/view-drop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
   {
     path : "/welcomepage",
     element : <Finalise />
+  },
+  {
+    path: "/view/drop",
+    element: <ViewDrop />
   },
 ]);
 
