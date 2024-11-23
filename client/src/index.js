@@ -18,7 +18,7 @@ import CreateAffiliateLink from './prototype/create-affiliate-link';
 import FakeProduct from './prototype/fake-product';
 import { HelmetProvider } from 'react-helmet-async';
 import SignupPage from './pages/signup-page';
-import Finalise from './pages/final-form'
+import Finalise from './pages/final-form';
 import EmailConfirmation from './components/email-confirmation';
 import UserCard from './components/usercards'
 import ViewDrop from './pages/view-drop';
