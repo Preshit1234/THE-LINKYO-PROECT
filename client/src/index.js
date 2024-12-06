@@ -27,6 +27,7 @@ import FundAndEarn from './components/funds-and-earnings';
 import OrderAnalytics from './components/recent-orders';
 import OrdersPaidOrPending from './components/recent-orders-paid';
 import ViewDrop from './pages/view-drop';
+import GraphSet1 from './components/graph-set-1';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -58,8 +59,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />
-  }
-  ,
+  },
   {
     path: "/test",
     element: <Test />
@@ -93,7 +93,15 @@ const router = createBrowserRouter([
     //This is component, I'm using this only for testing purpose
     path : "/usercardtest",
     element : <UserCard />
-  }
+  },
+  {
+    path: "/view/drop",
+    element: <ViewDrop />
+  },
+  {
+    path: "/graphset1",
+    element: <GraphSet1 />
+  },
 ]);
 
 root.render(
