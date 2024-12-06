@@ -195,7 +195,7 @@ export default function Signup() {
             </span>
             <form action="#" method="" className="signup-form">
                 <div className="signup-form-input">
-                    <div>linkyo.io/</div>
+                    <div className="signup-form-linkyo-title">linkyo.io/</div>
                     <input type="email" className="" id="signup-form-input-email" placeholder="Enter Username" /> 
                 </div>
                 <button type="button" className="signup-form-submit-button" onClick={emailSignup}>
