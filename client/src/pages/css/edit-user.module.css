@@ -1,0 +1,190 @@
+.wholePageDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vh;
+    padding-top: 94px;
+    padding-bottom: 94px;
+}
+
+.parentClass{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 870px;
+}
+
+.profileClass{
+    background-color: black;
+    border: 1px solid;
+    border-radius: 12px;
+    border-image: linear-gradient(
+        to bottom, 
+        #0969DA, 
+        rgba(0, 0, 0, 0)
+      ) 0.5 100%;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-bottom: 0;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+.hrTag{
+    border : 0.1px solid #0969DA;
+    opacity: 70%;
+}
+
+.titleDiv{
+    display: flex;
+    flex-direction: column;
+    padding-top: 35px;
+    padding-left: 35px;
+    padding-bottom: 30px;
+    gap : 12px
+}
+
+.title{
+    font-weight: medium;
+    font-size: 20px;
+}
+
+.titleDesc{
+    font-weight: 400;
+    font-size: 14px;
+    color: #B7BFC7;
+}
+
+.profileFormClass{
+    padding-top: 30px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 30px;
+}
+
+.profileImgClass{
+    display: flex;
+    gap: 12px;
+}
+
+.profilePic{
+    height: 58px;
+    width: 58px;
+}
+
+.pfpTitleClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap : 8px;
+}
+
+.pfpTitle{
+    font-weight: 400;
+    font-size: 14;
+}
+
+.pfpBtnClass{
+    display: flex;
+    gap: 13px;
+}
+
+.pfpBtn{
+    background: none;
+    color : white;
+    border : 0.5px solid #6B767F;
+    stroke: none;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.formClass{
+    display: flex;
+    flex-direction: column;
+    gap : 20px;
+    padding-top: 30px;
+}
+
+.updateBtnClass{
+    display: flex;
+    padding-top: 30px;
+    justify-content: flex-end;
+}
+
+.updateBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top : 6px;
+    padding-bottom : 6px;
+    padding-left: 40px;
+    padding-right: 40px;
+    stroke : none;
+    border: none;
+    background: #0969DA;
+    color: white;
+    border-radius: 6px;
+    font-weight : 500;
+    font-size: 12px;
+}
+
+.deleteAccClass{
+    background: black;
+    padding-top : 32px;
+    padding-left : 32px;
+    padding-right: 35px;
+    padding-bottom: 28px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 6px;
+    border: 1px solid;
+    border-image: linear-gradient(
+        to bottom, 
+        red, 
+        rgba(0, 0, 0, 0)
+      ) 0.5 100%;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-bottom: 0;
+}
+
+.deleteTitleClass{
+    display: flex;
+    flex-direction: column;
+    gap : 12px;
+}
+
+.deleteTitle{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.deleteDesc{
+    font-weight: 400;
+    font-size: 14px;
+    color: #B7BFC7;
+}
+
+.deleteBtnClass{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 18px;
+}
+
+.deleteBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top : 6px;
+    padding-bottom : 6px;
+    padding-left: 31px;
+    padding-right: 31px;
+    stroke : none;
+    border: none;
+    background: #920A0A;
+    color: white;
+    border-radius: 6px;
+    font-weight : 500;
+    font-size: 12px;
+}

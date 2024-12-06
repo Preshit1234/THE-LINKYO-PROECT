@@ -16,7 +16,7 @@ export default function FormInput (props) {
                 <label htmlFor="input-username" className="input-label">User Name</label>
                 <div className="form-input-wrap input-username-wrap">
                     <span>linkyo.io</span>
-                    <input type="text" className="input-username" placeholder="john_smith" />
+                    <input type="text" className="input-username" placeholder="john_doe" />
                 </div>
             </div>
         );
@@ -35,7 +35,7 @@ export default function FormInput (props) {
         return (
             <div className="form-input-container">
                 <label htmlFor="input-email" className="input-label">Email Address</label>
-                <input type="email" className="form-input-wrap input-email" />
+                <input type="email" className="form-input-wrap input-email" placeholder='johndoe@email.com'/>
             </div>
         );
     }

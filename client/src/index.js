@@ -21,6 +21,11 @@ import SignupPage from './pages/signup-page';
 import Finalise from './pages/final-form'
 import EmailConfirmation from './components/email-confirmation';
 import UserCard from './components/usercards'
+import UserList from './components/userlist'
+import EditUser from './pages/edit-user'
+import FundAndEarn from './components/funds-and-earnings';
+import OrderAnalytics from './components/recent-orders';
+import OrdersPaidOrPending from './components/recent-orders-paid';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -87,6 +92,26 @@ const router = createBrowserRouter([
     //This is component, I'm using this only for testing purpose
     path : "/usercardtest",
     element : <UserCard />
+  },
+  {
+    path : "/userlisttest",
+    element : <UserList />
+  },
+  {
+    path : "/edituser",
+    element : <EditUser />
+  },
+  {
+    path : "/fundtest",
+    element : <FundAndEarn type="earnings" />
+  },
+  {
+    path : "/ordercomponent",
+    element : <OrderAnalytics />
+  },
+  {
+    path : "/paidorpendingcomponent",
+    element : <OrdersPaidOrPending type="pendingTableOrders" />
   }
 ]);
 
