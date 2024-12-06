@@ -163,3 +163,21 @@
     object-fit: cover;
     border-radius: 50%;
 }
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .right-hand-side {
+        position: static;
+        display: none;
+        width: 0;
+        overflow: hidden;
+    }
+
+    #app-logo-img {
+        left: 16px; 
+    }
+
+    #app-logo-text {
+        left: 60px;
+    }
+}

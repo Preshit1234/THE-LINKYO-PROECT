@@ -48,3 +48,30 @@
     padding-left: 4px;
     padding-bottom: 20px;
 }
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .faq-number {
+        align-self: flex-start;
+    }
+
+    .question-body {
+        font-size: 13px;
+        line-height: auto;
+        font-weight: 400;
+        padding-top: 18px;
+        margin-bottom: 18px;
+    }
+
+    .answer-body {
+        font-size: 12px;
+        line-height: 150%;
+        font-weight: 300;
+        /* padding-left: 20px; */
+    }
+
+    .question-body svg {
+        /* height: 6px; */
+        width: 12px;
+    }
+}

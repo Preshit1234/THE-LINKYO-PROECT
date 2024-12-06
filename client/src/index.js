@@ -22,6 +22,7 @@ import Finalise from './pages/final-form';
 import EmailConfirmation from './components/email-confirmation';
 import UserCard from './components/usercards'
 import ViewDrop from './pages/view-drop';
+import GraphSet1 from './components/graph-set-1';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -53,8 +54,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />
-  }
-  ,
+  },
   {
     path: "/test",
     element: <Test />
@@ -92,6 +92,10 @@ const router = createBrowserRouter([
   {
     path: "/view/drop",
     element: <ViewDrop />
+  },
+  {
+    path: "/graphset1",
+    element: <GraphSet1 />
   },
 ]);
 

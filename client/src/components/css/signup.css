@@ -11,7 +11,7 @@
     line-height: 22px;
     width: 100%;
     max-width: 591px;
-    min-width: 328px;
+    min-width: 200px;
 }
 
 .signup-google-link {
@@ -22,7 +22,7 @@
     box-sizing: border-box;
 
     color: black;
-    width: 400px;
+    /* width: 400px; */
     height: 52px;
     align-self: center;
     padding-top: 10px;
@@ -65,7 +65,7 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 400px;
+    /* width: 400px; */
     gap: 15px;
     align-self: center;
 }
@@ -154,4 +154,11 @@ hr {
     width: 10px;
     height: 5px;
     rotate: -90deg;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .signup-google-link, .signup-form {
+        width: 100%;
+    }
 }
