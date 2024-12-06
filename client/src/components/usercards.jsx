@@ -9,7 +9,7 @@ export default function userCard() {
         <>
         <div className={ thiscss.wholeUserCard }>
         <div className = { thiscss.ParentCard }>
-            <img id={ thiscss.profilePicId } src={images["dummyprofilepic.png"]} />
+            <img id={ thiscss.profilePicId } src={images["dummyprofilepic.png"]} alt="" />
             <div className={ thiscss.TitleClass }>
                 <div className={ thiscss.Title }> Patrick Batemen </div>
                 <div className={ thiscss.Role }> Vice President, Pierce & Pierce</div>

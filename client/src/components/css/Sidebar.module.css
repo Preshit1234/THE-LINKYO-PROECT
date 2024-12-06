@@ -1,7 +1,7 @@
 .container {
     width: 260px;
     flex-shrink: 0;
-    margin-top: 68px;
+    top: 68px;
     padding-top: 16px;
     padding-left: 16px;
     padding-right: 16px;
