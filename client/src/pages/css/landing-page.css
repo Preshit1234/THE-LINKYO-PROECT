@@ -13,6 +13,7 @@
     background-color: #0D1118;
     gap: 100px;
     padding: 100px 100px;
+    overflow: visible;
 }
 
 .inline {
@@ -391,7 +392,8 @@
         padding: 100px 16px; 
         padding-bottom: 0;
         gap: 75px;
-        width: 100vw;
+        width: 100%;
+        /* width: 100vw; */
         /* align-items: stretch; */
     }
 

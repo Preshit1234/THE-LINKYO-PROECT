@@ -1,12 +1,7 @@
 import styles from './css/GraphSet1.module.css';
-import StackedAreaChart from './stacked-area-chart';
+import LineChart from './line-chart';
 
 export default function GraphSet1() {
-
-    const graph1 = {
-        width: 594,
-        height: 394
-    }
 
     return (
         <div className={styles.container}>
@@ -44,7 +39,7 @@ export default function GraphSet1() {
                     </div>
                 </div>
                 <div className={styles.graph1Row2}>
-                    <StackedAreaChart height={graph1.height} width={graph1.width} />
+                    <LineChart />
                 </div>
             </div>
             <div className={styles.containerCol2}>
