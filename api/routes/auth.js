@@ -5,6 +5,7 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const helper = require("../helper");
+const passport = require("passport");
 
 // Functions
 
@@ -25,6 +26,96 @@ router.post("/register/test", async (req, res) => {
 
     res.status(200).json(record);
 });
+
+router.post("/google", async (req, res) => {
+    const googleUserData = req.body.googleUserData;
+
+    if(!googleUserData) {
+        res.status(403).json({
+            error: true,
+            message: "Data not found",
+        });
+    } else {
+        // get the user that exists in the database
+        let user = await User.findOne({googleSubId: googleUserData.sub});
+        console.log(user);
+
+        // if user record does not exixts then create new user and redirect to profile creation page
+        if(!user) {
+            const newUser = new User({
+                googleSubId: googleUserData.sub,
+                firstName: googleUserData.given_name,
+                lastName: googleUserData.family_name,
+                email: googleUserData.email,
+                isEmailVerified: googleUserData.email_verified,
+                profilepic: googleUserData.picture,
+            });
+            try{
+                let thisNewUser = await newUser.save();
+                console.log("Attempted new google user registration");
+                console.log(thisNewUser);
+                res.status(201).json({
+                    error: false,
+                    message: "Attempted new google user registration",
+                    data: thisNewUser,
+                });
+            } catch (err) {
+                console.log(err);
+                if(err.keyValue.email) {
+                    res.status(500).json({
+                        error: true,
+                        message: "Email already exists",
+                    });
+                } else {
+                    res.status(500).json(err);
+                }
+            } 
+        }
+        // if user record exixts then login
+        else {
+            console.log("Google user exists");
+            res.status(200).json({
+                error: false,
+                message: "Google user exists",
+                data: user,
+            });
+        }
+    }
+});
+
+// successRedirect: process.env.CLIENT_URL
+// GOOGLE CALLBACK
+// router.get(
+//     "/google/callback",
+//     passport.authenticate("google", {
+//         successRedirect: process.env.CLIENT_URL,
+//         failureRedirect: "/login/failed",
+//     })
+// );
+
+// router.get("/login/failed", (req, res) => {
+//     res.status(401).json({
+//         error: true,
+//         message: "Log in failure",
+//     });
+// });
+
+// router.get("/login/success", (req, res) => {
+//     if(req.user) {
+//         res.status(200).json({
+//             error: false,
+//             message: "Successfully logged in",
+//             user: req.user,
+//         });
+//     } else {
+//         res.status(403).json({
+//             error: true,
+//             message: "Not authorized",
+//         });
+//     }
+// });
+
+// router.get("/google", passport.authenticate("google", ["profile", "email"]));
 
 // REGISTER
 router.post("/register", async (req, res) => {

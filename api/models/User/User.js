@@ -12,6 +12,9 @@ const UserSchema = new mongoose.Schema({
     isDropper: {  type: Boolean, default: false },
     followers: { type: Array, default:[] },
     followings: { type: Array, default:[] },
+    googleSubId: { type: String, default: null },
+    about: { type: String, default: "" },
+    isWelcomed: { type: Boolean, default: false}, // Tracks whether the user has submitted the welcome page form
 },
     { timestamps: true },
 );
