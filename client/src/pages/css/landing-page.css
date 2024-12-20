@@ -31,7 +31,7 @@
     font-size: 53px;
     line-height: 72px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .tagline-1-gradient-1 {
@@ -39,6 +39,7 @@
     background: linear-gradient(to right, #0969DA, #09DA8F);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
 .tagline-1-gradient-2 {
@@ -46,6 +47,7 @@
     background: linear-gradient(to right, #0969DA, #BD09DA);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
 .globe {
@@ -387,13 +389,14 @@
 
 
 /* For mobile screens */
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 460px) {
     .landing-page-container {
         padding: 100px 16px; 
         padding-bottom: 0;
         gap: 75px;
         width: 100%;
         /* width: 100vw; */
+        align-items: center;
         /* align-items: stretch; */
     }
 
@@ -459,7 +462,7 @@
     }
 
     .about-2 {
-        width: 100%;
+        width: 100vw;
         height: 182px;
         margin: 48px 0;
         display: flex;

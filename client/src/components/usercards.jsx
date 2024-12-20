@@ -11,8 +11,8 @@ export default function userCard() {
         <div className = { thiscss.ParentCard }>
             <img id={ thiscss.profilePicId } src={images["dummyprofilepic.png"]} alt="" />
             <div className={ thiscss.TitleClass }>
-            <div className={ thiscss.Title }> Patrick Batemen </div>
-            <div className={ thiscss.Role }> Vice President, Pierce & Pierce</div>
+                <div className={ thiscss.Title }> Patrick Batemen </div>
+                <div className={ thiscss.Role }> Vice President, Pierce & Pierce</div>
             </div>
             <div className={ thiscss.TagDiv }>
                 <span className={ styles.pTags }>Writing</span>
@@ -22,43 +22,43 @@ export default function userCard() {
             </div>
             <hr className={ thiscss.HrTag }/>
             <div className={ thiscss.subTitle }>Successful promotions</div>
-            <div className={ thiscss.promotionPicClass}>
-                <img className={ thiscss.promotionpic } src={images["Framethumbnail-zywa.png"]} alt="" />  
-                <img className={ thiscss.promotionpic } src={images["Framethumbnail-coca.png"]} alt="" /> 
-                <img className={ thiscss.promotionpic } src={images["Framethumbnail-kippo.png"]} alt="" /> 
-                <img className={ thiscss.promotionpic } src={images["Framethumbnail-zocket.png"]} alt="" /> 
-            </div>
-            <hr className={ thiscss.HrTag }/>
-            <div className={ thiscss.subTitle }>Followers</div>
-            <div className={ thiscss.socialsCountComponent }>
-
-                <div className={ thiscss.socials }>
-                    <img className={ thiscss.socialsImg } src={svgs["svg-linkedin.svg"]} alt="" />
-                    <div className={ thiscss.followersCount }>122k</div>
+                <div className={ thiscss.promotionPicClass}>
+                    <img className={ thiscss.promotionpic } src={images["Framethumbnail-zywa.png"]} />  
+                    <img className={ thiscss.promotionpic } src={images["Framethumbnail-coca.png"]} /> 
+                    <img className={ thiscss.promotionpic } src={images["Framethumbnail-kippo.png"]} /> 
+                    <img className={ thiscss.promotionpic } src={images["Framethumbnail-zocket.png"]} /> 
                 </div>
+                <hr className={ thiscss.HrTag }/>
+                <div className={ thiscss.subTitle }>Followers</div>
+                    <div className={ thiscss.socialsCountComponent }>
 
-                <div className={ thiscss.socials }>
-                    <img className={ thiscss.socialsImg } src={svgs["svg-insta.svg"]} alt="" />
-                    <div className={ thiscss.followersCount }>1.3M</div>
+                        <div className={ thiscss.socials }>
+                            <img className={ thiscss.socialsImg } src={svgs["svg-linkedin.svg"]} />
+                            <div className={ thiscss.followersCount }>122k</div>
+                        </div>
+
+                        <div className={ thiscss.socials }>
+                            <img className={ thiscss.socialsImg } src={svgs["svg-insta.svg"]} />
+                            <div className={ thiscss.followersCount }>1.3M</div>
+                        </div>
+
+                        <div className={ thiscss.socials }>
+                            <img className={ thiscss.socialsImg } src={svgs["svg-x.svg"]} />
+                            <div className={ thiscss.followersCount }>475k</div>
+                        </div>
+
+                        <div className={ thiscss.socials }>
+                            <img className={ thiscss.socialsImg } src={svgs["svg-youtube.svg"]} />
+                            <div className={ thiscss.followersCount }>879K</div>
+                        </div>
+
+                        <div className={ thiscss.socials }>
+                            <img className={ thiscss.socialsImg } src={svgs["svg-reddit.svg"]} />
+                            <div className={ thiscss.followersCount }>65k</div>
+                        </div>
+
+                    </div>
                 </div>
-
-                <div className={ thiscss.socials }>
-                    <img className={ thiscss.socialsImg } src={svgs["svg-x.svg"]} alt="" />
-                    <div className={ thiscss.followersCount }>475k</div>
-                </div>
-
-                <div className={ thiscss.socials }>
-                    <img className={ thiscss.socialsImg } src={svgs["svg-youtube.svg"]} alt="" />
-                    <div className={ thiscss.followersCount }>879K</div>
-                </div>
-
-                <div className={ thiscss.socials }>
-                    <img className={ thiscss.socialsImg } src={svgs["svg-reddit.svg"]} alt="" />
-                    <div className={ thiscss.followersCount }>65k</div>
-                </div>
-
-            </div>
-        </div>
             <div className={ thiscss.CTAs }>
                 <button className={ thiscss.ReqPartnershipBtn }>Request Partnership</button>
                 <button className={ thiscss.ViewProfileBtn }>View Profile</button>

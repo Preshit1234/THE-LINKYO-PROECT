@@ -23,7 +23,7 @@ export default function LandingPage() {
             <div className="landing-page-container">
                 <p className="inline tagline-1">
                     Join forces with us and tap into a dynamic network of top<br />
-                    <span className="tagline-1-gradient-1">Tech Partners</span> & <span className="tagline-1-gradient-2">SaaS/Digital</span> products.
+                    <span className="tagline-1-gradient-1">Tech Partners</span> & <span className="tagline-1-gradient-2">SaaS / Digital</span> products.
                 </p>
                 <Signup />
                 <p className="inline about-1">
