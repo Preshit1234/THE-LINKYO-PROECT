@@ -28,6 +28,7 @@ import OrderAnalytics from './components/recent-orders';
 import OrdersPaidOrPending from './components/recent-orders-paid';
 import ViewDrop from './pages/view-drop';
 import GraphSet1 from './components/graph-set-1';
+import LandingUserPage from './pages/final-landing-page';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -102,6 +103,14 @@ const router = createBrowserRouter([
     path: "/graphset1",
     element: <GraphSet1 />
   },
+  {
+    path : "/landinghomepage",
+    element : <LandingUserPage />
+  },
+  {
+    path : "/edituserpage",
+    element : <EditUser />
+  }
 ]);
 
 root.render(

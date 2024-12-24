@@ -36,6 +36,7 @@ CSS Reset by Nicolas Gallagher
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 /**

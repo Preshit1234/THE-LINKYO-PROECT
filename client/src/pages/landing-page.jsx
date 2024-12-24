@@ -20,6 +20,7 @@ export default function LandingPage() {
                 type="article"
             />
             <Header type="logout" />
+            <div className = "the-most-epic-div-container">
             <div className="landing-page-container">
                 <p className="inline tagline-1">
                     Join forces with us and tap into a dynamic network of top<br />
@@ -69,7 +70,7 @@ export default function LandingPage() {
                     The greatest <span className="tagline-2-gradient-1">Creative</span> boom of our generation is just getting started<br />
                     <span className="tagline-2-gradient-2">Witness the change, the no nonsense way.</span>
                 </p>
-                {/* <img src={svgs["globe-1.svg"]} alt="Globe" className="inline globe" /> */}
+                <img src={svgs["globe-1.svg"]} alt="Globe" className="inline globe" />
                 <div className="inline-flex companies" style={{display: "none"}}>
                     <p>Trusted by the world's leading organizations ↘</p><br />
                     <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
@@ -127,6 +128,7 @@ export default function LandingPage() {
                     <span className="footer-app">{APP_NAME}</span><br />
                     <span className="footer-rights">All rights reserved.2024</span>
                 </p>
+            </div>
             </div>
         </>
     );
