@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import LandingPage from './pages/landing-page';
@@ -114,13 +114,9 @@ const router = createBrowserRouter([
 ]);
 
 root.render(
-  <React.StrictMode>
-    <GoogleOAuthProvider clientId="97663924465-f6ec3ebk4ubcha1h67qmqcm40fhtchsv.apps.googleusercontent.com">
-      <HelmetProvider>
-        <RouterProvider router={router} />
-      </HelmetProvider>
-    </GoogleOAuthProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

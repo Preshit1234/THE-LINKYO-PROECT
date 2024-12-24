@@ -369,7 +369,7 @@ CSS Reset end
 -------------------------------------------------
 */
 
-body, #root {
+body, #root, html {
   min-height: 100vh;
   min-width: 100vw;
 }
