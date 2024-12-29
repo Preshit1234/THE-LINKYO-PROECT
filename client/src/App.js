@@ -20,6 +20,7 @@ import GraphSet1 from "./components/graph-set-1";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import UserProvider from "./contexts/UserContext";
 import EditUser from "./pages/edit-user";
+import LandingUserPage from "./pages/final-landing-page";
 // import UserList from "./components/userlist";
 // import FundAndEarn from "./components/funds-and-earnings";
 // import OrderAnalytics from "./components/recent-orders";
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
     {
         path: "/edit/user",
         element: <EditUser />,
+    },
+    {
+        path: "/landinghomepage",
+        element: <LandingUserPage />,
     },
 ]);
 
