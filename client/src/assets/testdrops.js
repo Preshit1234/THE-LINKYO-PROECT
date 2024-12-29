@@ -94,7 +94,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 7,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -109,7 +109,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 8,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -124,7 +124,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 9,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -139,7 +139,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 10,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -154,7 +154,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 11,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -169,7 +169,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 12,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -184,7 +184,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 13,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -199,7 +199,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 14,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
@@ -214,7 +214,7 @@ const drops = [
         ]
     },
     {
-        "id" : 6,
+        "id" : 15,
         "name" : "Super Mario wonder",
         "publisher" : "Alok",
         "is_publisher_verified" : "y",
