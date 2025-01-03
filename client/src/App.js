@@ -21,6 +21,7 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import UserProvider from './contexts/UserContext';
+import LoginPageX from "./pages/loginpage";
 
 const router = createBrowserRouter([
     {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
         path: "/graphset1",
         element: <GraphSet1 />,
     },
+    {
+        path : "/signinpage",
+        element : <LoginPageX />
+    }
 ]);
 
 export default function App() {

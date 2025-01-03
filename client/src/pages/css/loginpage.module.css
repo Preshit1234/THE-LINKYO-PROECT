@@ -1,0 +1,34 @@
+.loginPageClass{
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F1F1F;
+}
+
+.loginPageContainer{
+    display: flex;
+    flex-direction: column;
+    padding-top : 76px;
+    padding-left: 34px;
+    padding-right: 34px;
+    background-color: #000000;
+}
+
+.titleContainer{
+    display: flex;
+    color: white;
+}
+
+.titleName{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.emailPassContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 76px;
+    gap : 32px;
+}

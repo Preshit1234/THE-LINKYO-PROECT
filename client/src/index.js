@@ -29,6 +29,7 @@ import OrdersPaidOrPending from './components/recent-orders-paid';
 import ViewDrop from './pages/view-drop';
 import GraphSet1 from './components/graph-set-1';
 import LandingUserPage from './pages/final-landing-page';
+import LoginPageX from './pages/loginpage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
   {
     path : "/edituserpage",
     element : <EditUser />
+  },
+  {
+    path : "/signinpage",
+    element : <LoginPageX />
   }
 ]);
 
