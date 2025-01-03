@@ -2,6 +2,10 @@ import './css/login-page.css';
 import Login from '../components/login';
 import {importAll} from '../components/js/import-data.js';
 import Header from '../components/header';
+import { useLocation } from 'react-router-dom';
+import { isObjectEmpty, isStringEmpty, isDataFromOurDatabase, isEmailValid } from '../helper';
+
+
 
 const LoginPage = () => {
     const svgs = importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
@@ -10,7 +14,7 @@ const LoginPage = () => {
         <>
             <Header type="loggingin" />
             <div id="login-page-container">
-                <p id="login-page-heading">Create your <span>Affable</span> Account. It's freee.</p>
+                <p id="login-page-heading">Create your <span>{process.env.REACT_APP_NAME}</span> Account. It's freee.</p>
                 <p id="login-page-tagline">Join forces with us and tap into a dynamic network of Top <span>Tech Affiliates</span> & <span>Digital</span> products. No Credit card required.</p>
                 <Login />
                 <p id="login-fine-print">By Continuing You are aggre to Affable terms of Service and Privacy Policy</p>

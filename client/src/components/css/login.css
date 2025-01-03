@@ -20,6 +20,7 @@
     align-items: center;
     gap: 4px;
     box-sizing: border-box;
+    cursor: pointer;
 
     color: black;
     width: 328px;
@@ -131,6 +132,7 @@ hr {
     align-items: center;
     gap: 10px;
     z-index: 3;
+    cursor: pointer;
 
     box-sizing: border-box;
     padding-top: 10px;

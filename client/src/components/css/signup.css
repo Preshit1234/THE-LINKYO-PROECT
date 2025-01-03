@@ -78,6 +78,7 @@
     align-items: center;
     gap: 4px;
     box-sizing: border-box;
+    cursor: pointer;
 
     color: black;
     width: 400px;
@@ -189,6 +190,7 @@ hr {
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 
     box-sizing: border-box;
     padding-top: 10px;

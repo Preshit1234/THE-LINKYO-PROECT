@@ -17,10 +17,14 @@ import EmailConfirmation from "./components/email-confirmation";
 import UserCard from "./components/usercards";
 import ViewDrop from "./pages/view-drop";
 import GraphSet1 from "./components/graph-set-1";
-import { createContext, useState, useEffect } from "react";
-import axios from "axios";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import UserProvider from './contexts/UserContext';
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import UserProvider from "./contexts/UserContext";
+import EditUser from "./pages/edit-user";
+import LandingUserPage from "./pages/final-landing-page";
+// import UserList from "./components/userlist";
+// import FundAndEarn from "./components/funds-and-earnings";
+// import OrderAnalytics from "./components/recent-orders";
+// import OrdersPaidOrPending from "./components/recent-orders-paid";
 import LoginPageX from "./pages/loginpage";
 
 const router = createBrowserRouter([
@@ -95,20 +99,28 @@ const router = createBrowserRouter([
         element: <GraphSet1 />,
     },
     {
+        path: "/edit/user",
+        element: <EditUser />,
+    },
+    {
+        path: "/landinghomepage",
+        element: <LandingUserPage />,
+    },
+    {
         path : "/signinpage",
         element : <LoginPageX />
     }
 ]);
 
 export default function App() {
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
 
     // async function getUser() {
     //     try {
     //         const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login/success`;
     //         const { data } = await axios.get(url, { withCredentials: true });
     //         setUser(data.user._json);
-	// 		console.log(data.user._json);
+    // 		console.log(data.user._json);
     //     } catch (err) {
     //         console.log(err);
     //     }
@@ -118,14 +130,15 @@ export default function App() {
     //     getUser();
     // }, []);
 
-	console.log(process.env.REACT_GOOGLE_CLIENT_ID);
     return (
         <UserProvider>
-			<GoogleOAuthProvider clientId={"97663924465-f6ec3ebk4ubcha1h67qmqcm40fhtchsv.apps.googleusercontent.com"}>
-				<HelmetProvider>
-					<RouterProvider router={router} />
-				</HelmetProvider>
-			</GoogleOAuthProvider>
+            <GoogleOAuthProvider
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            >
+                <HelmetProvider>
+                    <RouterProvider router={router} />
+                </HelmetProvider>
+            </GoogleOAuthProvider>
         </UserProvider>
     );
 }
