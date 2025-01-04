@@ -1,8 +1,14 @@
 import loginstyles from './css/loginpage.module.css'
 import {importAll} from '../components/js/import-data.js';
 import FormInput from '../components/form-input.jsx';
+import { useRef } from 'react';
 
 export default function LoginPageX(){
+
+    const emailInputRef = useRef();
+    const passwordInputRef = useRef();
+    //console.log(emailInputRef.current.value, passwordInputRef.current.value);
+
     const images = importAll(require.context('../assets/images/', false, /\.(png|jpe?g|svg)$/));
     const svgs= importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
     return(
@@ -15,13 +21,21 @@ export default function LoginPageX(){
                         </div>
                     </div>
                     <div className = { loginstyles.emailPassContainer }>
-                        <FormInput type = "email" />
-                        <FormInput type = "password" />
+                        <FormInput
+                            componentType="email"
+                            componentIdPrefix="loginpage"
+                            componentRef={emailInputRef}
+                        />
+                        <FormInput
+                            componentType="password"
+                            componentIdPrefix="loginpage"
+                            componentRef={passwordInputRef}
+                        />
                         <div className = { loginstyles.forgotPassLink }>Forgotten your Password?</div>
                     </div>
                     <div className = { loginstyles.logInBtnsContainer }>
                         <div className = {loginstyles.logInBtn }>
-                            <button type="button" className={ loginstyles.updateBtn }>Update Info</button>
+                            <button type="button" className={ loginstyles.updateBtn }>Log in</button>
                         </div>
                         <div className = { loginstyles.theOrGroup }>
                             <div className = { loginstyles.OrTitle }>OR</div>
