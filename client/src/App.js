@@ -110,7 +110,7 @@ const router = createBrowserRouter([
     {
         path : "/signinpage",
         element : <LoginPageX />
-    }
+    },
     {
         path: "/verify/email/token/:token",
         element: <VerifyEmailToken />,
