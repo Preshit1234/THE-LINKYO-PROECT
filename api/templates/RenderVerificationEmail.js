@@ -1,5 +1,5 @@
-function RenderVerificationEmail(username, backendURI, accessToken) {
-    return `"
+function RenderVerificationEmail(username, clientURI, accessToken) {
+    return `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -84,7 +84,7 @@ function RenderVerificationEmail(username, backendURI, accessToken) {
                     <p>Please verify your email address by clicking the button below. This will expire in 4 minutes.</p>
                 </div>
                 <div id='verify-button'>
-                    <a href="${backendURI}/api/auth/verify/email?token=${accessToken}" id="verify-button-id"> Verify Email </button>
+                    <a href="${clientURI}/verify/email/token/${accessToken}" id="verify-button-id"> Verify Email </button>
                 </div>
                 <div id='greet-out'>
                     <p id='the-last-rite'>Happy Scheduling, </p>
@@ -93,7 +93,7 @@ function RenderVerificationEmail(username, backendURI, accessToken) {
             </div>
         </body>
         </html>
-    "`;
+    `;
 }
 
 module.exports = RenderVerificationEmail;

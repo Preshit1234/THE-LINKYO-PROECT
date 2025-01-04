@@ -145,7 +145,7 @@ router.post("/email", async (req, res) => {
     // create a temporary user
     const tempUser = new TempUser({
         username: data.username,
-        email: data.username,
+        email: data.email,
         password: CryptoJS.AES.encrypt(
             data.password,
             process.env.SECRET_KEY
@@ -164,10 +164,11 @@ router.post("/email", async (req, res) => {
                 email: newTempUser.email,
                 password: newTempUser.tempPassword,
             },
-            process.env.SECRET_KEY,
-            {
-                expiresIn: "2m",
-            }
+            process.env.SECRET_KEY
+            // ,
+            // {
+            //     expiresIn: "2m",
+            // }
         );
 
         // Save the access token in the database
@@ -179,11 +180,9 @@ router.post("/email", async (req, res) => {
             const updatedData = await TempUser.findOne({
                 _id: newTempUser._id,
             });
-            console.log("Updated Data: ");
-            console.log(updatedData);
 
             const userEmailInput = data.email;
-            const backendURI = process.env.BACKEND_URL;
+            const clientURI = process.env.CLIENT_URL;
             if (helper.isEmailValid(userEmailInput)) {
                 const transporter = nodemailer.createTransport({
                     host: process.env.EMAIL_SMTP,
@@ -209,7 +208,7 @@ router.post("/email", async (req, res) => {
                         text: "Verify your E-mail Address", // plain text body
                         html: RenderVerificationEmail(
                             updatedData.username,
-                            backendURI,
+                            clientURI,
                             updatedData.accessToken
                         ), // html body
                     });
@@ -229,6 +228,57 @@ router.post("/email", async (req, res) => {
             res.status(500).json(err);
         }
     } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.post("/verify/email/token", async (req, res) => {
+    const token = req.body.token;
+
+    // Decode token
+    try {
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+        // Find if the user exixts
+        try {
+            const tempUser = await TempUser.findById(decoded.id).exec();
+
+            if (!tempUser) {
+                res.status(401).json({ message: "User not found" });
+            } else {
+                // If decoded password is same as the temp user, then register a new User
+                if (decoded.password === tempUser.tempPassword) {
+                    const user = new User({
+                        username: tempUser.username,
+                        email: tempUser.email,
+                        password: tempUser.password,
+                        isEmailVerified: true,
+                    });
+                    try {
+                        const newUser = await user.save();
+                        res.status(200).json({
+                            message: "User Registered",
+                            user: {
+                                username: newUser.username,
+                                id: newUser._id,
+                            },
+                        });
+                    } catch (err) {
+                        console.log(err);
+                        res.status(500).json(err);
+                    }
+                } else {
+                    res.status(401).json({ message: "Password Tampered" });
+                }
+            }
+        } catch (err) {
+            console.log("MongoDb Error:");
+            console.log(err);
+            res.status(500).json(err);
+        }
+    } catch (err) {
+        console.log("JWT error: ");
         console.log(err);
         res.status(500).json(err);
     }
