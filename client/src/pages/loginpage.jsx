@@ -35,13 +35,15 @@ export default function LoginPageX(){
                     </div>
                     <div className = { loginstyles.logInBtnsContainer }>
                         <div className = {loginstyles.logInBtn }>
-                            <button type="button" className={ loginstyles.updateBtn }>Log in</button>
+                            <button type="button" className={ loginstyles.signInBtn }>Log in</button>
                         </div>
                         <div className = { loginstyles.theOrGroup }>
+                            <hr className = { loginstyles.HrTag} />
                             <div className = { loginstyles.OrTitle }>OR</div>
+                            <hr className = { loginstyles.HrTag} />
                         </div>
                         <div className = { loginstyles.googleLoginBtn }>
-
+                            {/* prithvi is building component for google login button */}
                         </div>
                     </div>
                     <div className = { loginstyles.signUpClass }>
