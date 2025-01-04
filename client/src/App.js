@@ -108,9 +108,9 @@ const router = createBrowserRouter([
         element: <LandingUserPage />,
     },
     {
-        path : "/signinpage",
-        element : <LoginPageX />
-    }
+        path: "/signinpage",
+        element: <LoginPageX />,
+    },
     {
         path: "/verify/email/token/:token",
         element: <VerifyEmailToken />,
