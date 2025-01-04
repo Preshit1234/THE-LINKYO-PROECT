@@ -1,11 +1,7 @@
 import "./css/signup.css";
-import axios from "axios";
-import { useEffect, useState, useRef } from "react";
-import { importAll } from "./js/import-data";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGoogleLogin } from "@react-oauth/google";
-// import { isObjectEmpty, isStringEmpty, isDataFromOurDatabase, isEmailValid } from '../helper';
-import { useUser } from "../contexts/UserContext";
+import FormInput from "./form-input";
 
 /**
  * Signup Component.
@@ -14,76 +10,9 @@ import { useUser } from "../contexts/UserContext";
  */
 export default function Signup() {
     const navigate = useNavigate();
-    const svgs = importAll(
-        require.context("../assets/svgs/", false, /.(png|jpe?g|svg)$/)
-    );
-
-    // States
-    const [googleUserData, setGoogleUserData] = useState(null);
-    const [loginUserData, setLoginUserData] = useState(null);
 
     // Refs
     const usernameInput = useRef();
-
-    // Contexts
-    const { setUser } = useUser();
-
-    // Effects
-    useEffect(() => {
-        if (googleUserData) {
-            const continueWithGoogle = async () => {
-                try {
-                    let googleUser = await axios.post(
-                        `${process.env.REACT_APP_BACKEND_URL}/api/auth/google`,
-                        {
-                            googleUserData: googleUserData,
-                        }
-                    );
-                    setLoginUserData(googleUser.data.data);
-                } catch (err) {
-                    console.log(err);
-                }
-            };
-            continueWithGoogle();
-        }
-    }, [googleUserData]);
-
-    useEffect(() => {
-        if (loginUserData) {
-            setUser(loginUserData);
-            !loginUserData.isWelcomed
-                ? navigate("/welcome")
-                : navigate("/browse/drops");
-        }
-    }, [loginUserData, navigate, setUser]);
-
-    // Functions
-    // const continueWithGoogle = async () => {
-    //     try {
-    //         let googleUser = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/google`, {
-    //             googleUserData: googleUserData,
-    //         });
-    //         setLoginUserData(googleUser.data.data);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-
-    const handleGoogleBtn = useGoogleLogin({
-        // onSuccess: tokenResponse => console.log(tokenResponse),
-        onSuccess: async (tokenResponse) => {
-            const userInfo = await axios.get(
-                "https://www.googleapis.com/oauth2/v3/userinfo",
-                {
-                    headers: {
-                        Authorization: `Bearer ${tokenResponse.access_token}`,
-                    },
-                }
-            );
-            setGoogleUserData(userInfo.data);
-        },
-        onError: (errorResponse) => console.log(errorResponse),
-    });
 
     const handleSignupButton = () => {
         if (!!usernameInput.current.value) {
@@ -97,14 +26,7 @@ export default function Signup() {
 
     return (
         <div className="signup-container">
-            <button className="signup-google-link" onClick={handleGoogleBtn}>
-                <img
-                    src={svgs["icon-google.svg"]}
-                    alt="Google Icon"
-                    className="signup-google-icon"
-                />
-                Continue up with Google
-            </button>
+            <FormInput componentType="google" />
             <span className="signup-partition">
                 <hr />
                 <span>Or</span>

@@ -8,7 +8,7 @@
     font-size: 16px;
     line-height: 100%;
     font-weight: 500;
-    color: #B7BFC7;
+    color: #b7bfc7;
 }
 
 .form-input-wrap {
@@ -31,16 +31,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #B7BFC7;
+    color: #b7bfc7;
 }
 
-.input-username, .input-email, .input-password {
+.input-username,
+.input-email,
+.input-password {
     flex-grow: 1;
     height: 100%;
     background-color: transparent;
     border: 0;
     outline: 0;
-    color: #B7BFC7;
+    color: #b7bfc7;
     padding: 10px 20px;
 }
 
@@ -82,14 +84,14 @@
 
 .input-usage-consent-checkbox {
     cursor: pointer;
-    color : #ffffff;
+    color: #ffffff;
     /* height: 0; */
     /* width: 0; */
 }
 
 .input-usage-consent-checkbox-custom {
     background-color: transparent;
-    border: 1px solid #5E5C5C;
+    border: 1px solid #5e5c5c;
     border-radius: 4px;
     position: absolute;
     top: 0;
@@ -98,7 +100,6 @@
     width: 16px;
     background-color: #eee;
 }
-
 
 /* Custom checkbox css */
 .checkbox-wrapper-4 {
@@ -138,7 +139,7 @@
     transform: scale(1);
     border: 1px solid #606060;
     transition: all 0.2s ease;
-    box-shadow: 0 1px 1px rgba(0,16,75,0.05);
+    box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
 }
 .checkbox-wrapper-4 .cbx span:first-child svg {
     position: absolute;
@@ -160,7 +161,7 @@
     font-size: 14px;
     line-height: 16px;
     font-weight: 200;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 .checkbox-wrapper-4 .cbx:hover span:first-child {
     border-color: #07f;
@@ -184,6 +185,43 @@
     pointer-events: none;
     user-select: none;
 }
+.signup-google-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    color: black;
+    width: 400px;
+    height: 52px;
+    align-self: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    line-height: 22px;
+
+    /* Gradient Color Borders */
+    background: linear-gradient(to right, #ffffff, #999999),
+        linear-gradient(to bottom right, #d2a8ff, #920a0a);
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border: 1px solid transparent;
+    border-radius: 9px;
+}
+.signup-google-link > img {
+    width: 27px;
+    height: 27px;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .signup-google-link {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 640px) {
     .checkbox-wrapper-4 .cbx {
         width: 100%;
