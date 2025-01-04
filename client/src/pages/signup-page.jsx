@@ -47,6 +47,7 @@ export default function SignupPage() {
                 }
             );
             console.log(data);
+            navigate("/confirmemail");
         } catch (err) {
             console.log(err);
         }

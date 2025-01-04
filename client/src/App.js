@@ -21,6 +21,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import UserProvider from "./contexts/UserContext";
 import EditUser from "./pages/edit-user";
 import LandingUserPage from "./pages/final-landing-page";
+import VerifyEmailToken from "./components/verify-email-token";
 // import UserList from "./components/userlist";
 // import FundAndEarn from "./components/funds-and-earnings";
 // import OrderAnalytics from "./components/recent-orders";
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
         path : "/signinpage",
         element : <LoginPageX />
     }
+    {
+        path: "/verify/email/token/:token",
+        element: <VerifyEmailToken />,
+    },
 ]);
 
 export default function App() {
