@@ -26,6 +26,7 @@ import VerifyEmailToken from "./components/verify-email-token";
 // import FundAndEarn from "./components/funds-and-earnings";
 // import OrderAnalytics from "./components/recent-orders";
 // import OrdersPaidOrPending from "./components/recent-orders-paid";
+import LoginPageX from "./pages/loginpage";
 
 const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
         path: "/landinghomepage",
         element: <LandingUserPage />,
     },
+    {
+        path : "/signinpage",
+        element : <LoginPageX />
+    }
     {
         path: "/verify/email/token/:token",
         element: <VerifyEmailToken />,
