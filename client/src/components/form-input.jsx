@@ -24,7 +24,8 @@ export default function FormInput(props) {
     const { setUser } = useUser();
 
     useEffect(() => {
-        setComponentType(props.componentType);
+        if (!!props.componentType === true)
+            setComponentType(props.componentType);
         if (!!props.componentValue === true)
             setComponentValue(props.componentValue);
         if (!!props.componentIdPrefix === true)
@@ -79,7 +80,6 @@ export default function FormInput(props) {
     }, [loginUserData, navigate, setUser]);
 
     const handleGoogleBtn = useGoogleLogin({
-        // onSuccess: tokenResponse => console.log(tokenResponse),
         onSuccess: async (tokenResponse) => {
             const userInfo = await axios.get(
                 "https://www.googleapis.com/oauth2/v3/userinfo",
