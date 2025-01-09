@@ -27,6 +27,13 @@ import VerifyEmailToken from "./components/verify-email-token";
 // import OrderAnalytics from "./components/recent-orders";
 // import OrdersPaidOrPending from "./components/recent-orders-paid";
 import LoginPageX from "./pages/loginpage";
+import DropperSignup from "./pages/dropper-signup";
+import ProductRegistrationPage from "./pages/dropper/product/register";
+import OfferRegistrationPage from "./pages/dropper/offer/register";
+import DropperUserRegistrationPage from "./pages/dropper/user/register";
+import DropperUserRoleRegistrationPage from "./pages/dropper/role/register";
+import DropRegistrationPage from "./pages/dropper/drop/register";
+import DropperCredentialsPage from "./pages/dropper/developer/credentials";
 
 const router = createBrowserRouter([
     {
@@ -114,6 +121,34 @@ const router = createBrowserRouter([
     {
         path: "/verify/email/token/:token",
         element: <VerifyEmailToken />,
+    },
+    {
+        path: "/signup/dropper",
+        element: <DropperSignup />,
+    },
+    {
+        path: "/dropper/product/register",
+        element: <ProductRegistrationPage />,
+    },
+    {
+        path: "/dropper/offer/register",
+        element: <OfferRegistrationPage />,
+    },
+    {
+        path: "/dropper/user/register",
+        element: <DropperUserRegistrationPage />,
+    },
+    {
+        path: "/dropper/role/register",
+        element: <DropperUserRoleRegistrationPage />,
+    },
+    {
+        path: "/dropper/drop/register",
+        element: <DropRegistrationPage />,
+    },
+    {
+        path: "/dropper/developer/credentials",
+        element: <DropperCredentialsPage />,
     },
 ]);
 

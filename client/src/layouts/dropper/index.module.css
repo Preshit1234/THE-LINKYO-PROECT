@@ -1,0 +1,42 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding-top: 68px;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar {
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.activeLink,
+.inactiveLink {
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: white;
+    text-decoration: none;
+}
+
+.activeLink {
+    background-color: blueviolet;
+}
+
+.inactiveLink:hover {
+    background-color: #131823;
+}
+
+.main {
+    flex: 1;
+    padding: 30px;
+}
