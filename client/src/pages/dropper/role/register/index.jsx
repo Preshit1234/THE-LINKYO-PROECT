@@ -1,7 +1,7 @@
 import styles from "./index.module.css";
 import DropperLayout from "../../../../layouts/dropper";
 
-export default function DropperUserRoleRegistrationPage() {
+export default function DropperRoleRegistrationPage() {
     return (
         <DropperLayout>
             <div className={styles.container}>

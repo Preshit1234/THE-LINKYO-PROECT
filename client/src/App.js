@@ -28,12 +28,22 @@ import VerifyEmailToken from "./components/verify-email-token";
 // import OrdersPaidOrPending from "./components/recent-orders-paid";
 import LoginPageX from "./pages/loginpage";
 import DropperSignup from "./pages/dropper-signup";
+import DropperDashboard from "./pages/dropper/dashboard/view";
+import DropperProductsPage from "./pages/dropper/product/view";
 import ProductRegistrationPage from "./pages/dropper/product/register";
+import DropperOffersPage from "./pages/dropper/offer/view";
 import OfferRegistrationPage from "./pages/dropper/offer/register";
-import DropperUserRegistrationPage from "./pages/dropper/user/register";
-import DropperUserRoleRegistrationPage from "./pages/dropper/role/register";
+import DropperCampaignPage from "./pages/dropper/campaign/view";
+import DropperCampaignRegistrationPage from "./pages/dropper/campaign/register";
+import DropperDropsPage from "./pages/dropper/drop/view";
 import DropRegistrationPage from "./pages/dropper/drop/register";
-import DropperCredentialsPage from "./pages/dropper/developer/credentials";
+import DropperUsersPage from "./pages/dropper/user/view";
+import DropperUserRegistrationPage from "./pages/dropper/user/register";
+import DropperRolesPage from "./pages/dropper/role/view";
+import DropperRoleRegistrationPage from "./pages/dropper/role/register";
+import DropperDeveloperConsolePage from "./pages/dropper/developer/view";
+import DropperCredentialsPage from "./pages/dropper/developer/credentials/view";
+import DropperCredentialRegistrationPage from "./pages/dropper/developer/credentials/register";
 
 const router = createBrowserRouter([
     {
@@ -127,28 +137,68 @@ const router = createBrowserRouter([
         element: <DropperSignup />,
     },
     {
+        path: "/dropper/dashboard",
+        element: <DropperDashboard />,
+    },
+    {
+        path: "/dropper/products",
+        element: <DropperProductsPage />,
+    },
+    {
         path: "/dropper/product/register",
         element: <ProductRegistrationPage />,
+    },
+    {
+        path: "/dropper/offers",
+        element: <DropperOffersPage />,
     },
     {
         path: "/dropper/offer/register",
         element: <OfferRegistrationPage />,
     },
     {
-        path: "/dropper/user/register",
-        element: <DropperUserRegistrationPage />,
+        path: "/dropper/campaigns",
+        element: <DropperCampaignPage />,
     },
     {
-        path: "/dropper/role/register",
-        element: <DropperUserRoleRegistrationPage />,
+        path: "/dropper/campaign/register",
+        element: <DropperCampaignRegistrationPage />,
+    },
+    {
+        path: "/dropper/drops",
+        element: <DropperDropsPage />,
     },
     {
         path: "/dropper/drop/register",
         element: <DropRegistrationPage />,
     },
     {
+        path: "/dropper/users",
+        element: <DropperUsersPage />,
+    },
+    {
+        path: "/dropper/user/register",
+        element: <DropperUserRegistrationPage />,
+    },
+    {
+        path: "/dropper/roles",
+        element: <DropperRolesPage />,
+    },
+    {
+        path: "/dropper/role/register",
+        element: <DropperRoleRegistrationPage />,
+    },
+    {
+        path: "/dropper/developer/console",
+        element: <DropperDeveloperConsolePage />,
+    },
+    {
         path: "/dropper/developer/credentials",
         element: <DropperCredentialsPage />,
+    },
+    {
+        path: "/dropper/developer/credential/register",
+        element: <DropperCredentialRegistrationPage />,
     },
 ]);
 
