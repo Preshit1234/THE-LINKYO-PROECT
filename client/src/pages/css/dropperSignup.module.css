@@ -13,13 +13,21 @@
     width: 100vw;
     flex-shrink: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
+    gap: 20px;
 }
 
 .backButton {
     position: absolute;
     top: 50%;
     left: 30px;
+}
+
+.orgainzationRegistrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
