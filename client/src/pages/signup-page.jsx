@@ -43,6 +43,7 @@ export default function SignupPage() {
                     usageConsentCheck: usageConsentCheckRef.current.checked,
                 }
             );
+            if (!!data) console.log("");
             navigate("/confirmemail", {
                 state: {
                     email: emailInputRef.current.value,

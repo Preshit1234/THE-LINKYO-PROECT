@@ -17,7 +17,7 @@ export default function FormInput(props) {
     const [componentValue, setComponentValue] = useState("");
     const [componentIdPrefix, setComponentIdPrefix] = useState("");
     const [componentRef, setComponentRef] = useState();
-    const [isValueValid, setIsValueValid] = useState(false);
+    // const [isValueValid, setIsValueValid] = useState(false);
 
     // Component Type "password" states
     const [showPassword, setShowPassword] = useState();
@@ -225,10 +225,10 @@ export default function FormInput(props) {
     }
 
     const handlePasswordChange = (e) => {
-        const inputValue = e.target.value;
-        const textCasesCheck = /(?=.*[a-z])(?=.*[A-Z])/.test(inputValue);
-        const numberCheck = /(?=.*[0-9])/.test(inputValue);
-        const lengthCheck = inputValue.length >= 8 ? true : false;
+        // const inputValue = e.target.value;
+        // const textCasesCheck = /(?=.*[a-z])(?=.*[A-Z])/.test(inputValue);
+        // const numberCheck = /(?=.*[0-9])/.test(inputValue);
+        // const lengthCheck = inputValue.length >= 8 ? true : false;
         // console.log("------------Test------------");
         // console.log(
         //     "Test: Password includes mix of both capital letter and small letter: ",
@@ -244,11 +244,11 @@ export default function FormInput(props) {
         // );
         // console.log("------------Test------------");
         // console.log("");
-        if (textCasesCheck && numberCheck && lengthCheck) {
-            setIsValueValid(true);
-        } else {
-            setIsValueValid(false);
-        }
+        // if (textCasesCheck && numberCheck && lengthCheck) {
+        //     setIsValueValid(true);
+        // } else {
+        //     setIsValueValid(false);
+        // }
         setComponentValue(e.target.value);
     };
     if (componentType === "password") {
@@ -382,11 +382,11 @@ export default function FormInput(props) {
                                 data-countrycode={country.code}
                                 data-countryphone={country.phone}
                                 onClick={handleCountrySelectionOptions}
+                                key={countries.indexOf(country)}
                             >
-                                <span
-                                    class="iconify"
-                                    data-icon={`flag:${country.code.toLowerCase()}-4x3`}
-                                ></span>
+                                <Icon
+                                    icon={`flag:${country.code.toLowerCase()}-4x3`}
+                                />
                                 <span className="input-contact-country-selection-options-country-name">
                                     {country.name}
                                 </span>

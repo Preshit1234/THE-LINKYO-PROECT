@@ -1,8 +1,7 @@
-import Chart from 'chart.js/auto';
-import { Line } from 'react-chartjs-2';
+// import Chart from 'chart.js/auto';
+import { Line } from "react-chartjs-2";
 
 export default function LineChart() {
-
     const jsonData = [
         { year: 2023, month: "Jan", revenue: 80000, expenses: 60000 },
         { year: 2023, month: "Feb", revenue: 96000, expenses: 70000 },
@@ -33,12 +32,8 @@ export default function LineChart() {
                 backgroundColor: "#00C2FF",
                 borderColor: "#00C2FF",
             },
-        ]
-    }
+        ],
+    };
 
-    return (
-        <Line
-            data={lineChartData}
-        />
-    );
+    return <Line data={lineChartData} />;
 }

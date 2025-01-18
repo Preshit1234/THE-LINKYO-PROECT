@@ -1,6 +1,6 @@
-import './css/drop-card.css';
-import {importAll} from './js/import-data';
-import styles from'./css/DropCard.module.css';
+import "./css/drop-card.css";
+import { importAll } from "./js/import-data";
+import styles from "./css/DropCard.module.css";
 
 /**
  * A react component that renders a Drop
@@ -8,47 +8,62 @@ import styles from'./css/DropCard.module.css';
  * @returns {ReactNode} A react element that renders a Drop
  */
 export default function DropCard(props) {
-
     /**
      * All images with png, jpg and jpeg extensions from assets/images/ folder
      */
-    const images = importAll(require.context('../assets/images/', false, /\.(png|jpe?g|svg)$/));
-
+    const images = importAll(
+        require.context("../assets/images/", false, /\.(png|jpe?g|svg)$/)
+    );
 
     /**
      * All images with svg extensions from assets/svgs/ folder
      */
-    const svgs= importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
+    const svgs = importAll(
+        require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
+    );
 
-
-    const drop = props.drop;
+    // const drop = props.drop;
 
     return (
         <div className={styles.container}>
             <div className={styles.wrap1}>
                 <div className={styles.wrap1a}>
-                    <p className={styles.pDescription}>Instantly generate clear, compelling writing while maintaining your unique voice.</p>
+                    <p className={styles.pDescription}>
+                        Instantly generate clear, compelling writing while
+                        maintaining your unique voice.
+                    </p>
                     <p className={styles.pOffer}>
                         <span className={styles.potext1}>Earn</span>
                         <span className={styles.potext2}>$59</span>
-                        <span className={styles.potext3}>/ Premium User Signup</span>
+                        <span className={styles.potext3}>
+                            / Premium User Signup
+                        </span>
                     </p>
                     <div className={styles.wrap1a1}>
                         <div className={styles.pAutherWrapper}>
                             <span className={styles.pAuthor}>By Sid Kan</span>
-                            <img src={svgs["verification-tick.svg"]} alt="verification tick" />
+                            <img
+                                src={svgs["verification-tick.svg"]}
+                                alt="verification tick"
+                            />
                         </div>
-                            <span className={styles.pTags}>Writing</span>
-                            <span className={styles.pTags}>Edtech</span>
-                            <span className={styles.pTags}>Gen AI</span>
-                            <span className={styles.pTags}>ML Modelling</span>
+                        <span className={styles.pTags}>Writing</span>
+                        <span className={styles.pTags}>Edtech</span>
+                        <span className={styles.pTags}>Gen AI</span>
+                        <span className={styles.pTags}>ML Modelling</span>
                     </div>
                 </div>
                 <div className={styles.wrap1b}>
-                    <img src={images["Framethumbnail-grammarly.png"]} alt="product cover" className={styles.pCover} />
+                    <img
+                        src={images["Framethumbnail-grammarly.png"]}
+                        alt="product cover"
+                        className={styles.pCover}
+                    />
                     <div className={styles.wrap1b1}>
                         <p className={styles.pTitle}>Grammarly</p>
-                        <p className={styles.pSubtitle}>Future of Grammar enhancement </p>
+                        <p className={styles.pSubtitle}>
+                            Future of Grammar enhancement{" "}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -58,7 +73,6 @@ export default function DropCard(props) {
             </div>
         </div>
     );
-
 
     // return (
     //     <div className="drop-card">
@@ -75,17 +89,17 @@ export default function DropCard(props) {
     //                         <span>{drop.publisher}</span> &nbsp;
     //                         {
     //                             drop.is_publisher_verified === "y" ?
-    //                             <img 
-    //                                 src={svgs['verification-tick.svg']} 
-    //                                 alt="Verification Tick" 
-    //                                 className="verification-tick" 
+    //                             <img
+    //                                 src={svgs['verification-tick.svg']}
+    //                                 alt="Verification Tick"
+    //                                 className="verification-tick"
     //                             />
     //                             : ""
     //                         }
     //                     </span>
     //                 </div>
     //             </div>
-                
+
     //             {/* For Tags */}
     //             <div className="drop-card-tags">
     //                 {
@@ -116,7 +130,7 @@ export default function DropCard(props) {
     //         {/* For ratings */}
     //         <div className="grid-item grid-item-5">
     //             <span className="drop-card-rating-description">
-    //                 <span className="drop-card-rating-description-1">Linkyo</span> 
+    //                 <span className="drop-card-rating-description-1">Linkyo</span>
     //                 <span className="drop-card-rating-description-2">score</span>
     //             </span>
     //             <span className="drop-card-rating-number">{drop.score}%</span>

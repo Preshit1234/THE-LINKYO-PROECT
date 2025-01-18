@@ -13,8 +13,8 @@ export default function Header(props) {
     const APP_NAME = process.env.REACT_APP_NAME;
 
     // States
-    const [createDropButtonRedirectUrl, setCreateDropButtonRedirectUrl] =
-        useState("/drop/create");
+    // const [createDropButtonRedirectUrl, setCreateDropButtonRedirectUrl] =
+    //     useState("/drop/create");
 
     /**
      * A state variable to store the current type of the Header component
@@ -89,7 +89,7 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <Link
-                    to=""
+                    to="/signup/dropper"
                     className="header-inline login"
                     id="header-create-drop-button"
                 >
@@ -128,7 +128,7 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <div className="right-hand-side">
-                    <Link to="" className="" id="header-login-link">
+                    <Link to="/signinpage" className="" id="header-login-link">
                         Login
                     </Link>
                     <Link
@@ -139,10 +139,7 @@ export default function Header(props) {
                         Become a partner
                     </Link>
                     <Link
-                        to={"/login"}
-                        state={{
-                            loginRedirectUrl: createDropButtonRedirectUrl,
-                        }}
+                        to={"/signinpage"}
                         className=""
                         id="header-create-drop-button"
                     >
