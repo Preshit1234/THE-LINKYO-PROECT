@@ -23,10 +23,27 @@
 .backButton {
     position: absolute;
     top: 50%;
-    left: 30px;
+    left: 60px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
 }
 
-.orgainzationRegistrationForm {
+.backButtonIcon {
+    color: #0960da;
+}
+
+.backButtonIcon:hover {
+    color: #4485e0;
+}
+
+.backButtonIcon:active {
+    color: #0960da;
+}
+
+.orgainzationRegistrationForm,
+.adminRegistrationForm {
     display: flex;
     flex-direction: column;
     gap: 30px;

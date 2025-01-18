@@ -1,15 +1,72 @@
-import { useState, useContext, createContext } from "react";
+/** @module UserContext */
+
+import { useContext, createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const UserContext = createContext();
 
-export function useUser () {
+// Import this function to make changes to the user context
+/**
+ * Stores the login user data to use it throughout the application.
+ *
+ * Import syntax example:
+ * - import { useUser } from "../contexts/UserContext";
+ *
+ * Usage:
+ * - const { user } = useUser(); --- Get login user data.
+ * - const { setUser } = useUser(); --- A function to store login user data.
+ * - const { user, setUser } = useUser();
+ *
+ * The { user } and { setUser } are properties of UserProvider
+ *
+ * @returns UserContext
+ */
+export function useUser() {
     return useContext(UserContext);
 }
 
+/**
+ * Provider of UserContext
+ * @param {*} param0
+ * @returns UserProvider ReactNode
+ */
 export default function UserProvider({ children }) {
-    const [user, setUser] = useState(null);
+    /**
+     * A state variable to store logged in user data
+     */
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        if (!user) getLoginData();
+    }, [user]);
+
+    /**
+     * A function to get missing login data.
+     * In case if the user state is reset, the missing data will be retreived with the access token
+     * stored in the localStorage.
+     *
+     * The retrieved data will be stored in the user state to access it throughout our application.
+     */
+    const getLoginData = async () => {
+        let accessToken = localStorage.getItem("accessToken");
+        if (!!accessToken) {
+            let reqBody = {
+                accessToken: accessToken,
+            };
+            try {
+                let res = await axios.post(
+                    `${process.env.REACT_APP_BACKEND_URL}/api/auth/user/login/data`,
+                    reqBody
+                );
+                setUser(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
+
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{ user, setUser }}>
             {children}
         </UserContext.Provider>
     );

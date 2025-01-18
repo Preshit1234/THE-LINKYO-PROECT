@@ -1,26 +1,76 @@
-import loginstyles from './css/loginpage.module.css'
-import {importAll} from '../components/js/import-data.js';
-import FormInput from '../components/form-input.jsx';
-import { useRef } from 'react';
+import loginstyles from "./css/loginpage.module.css";
+// import { importAll } from "../components/js/import-data.js";
+import FormInput from "../components/form-input.jsx";
+import { useEffect, useRef } from "react";
+import axios from "axios";
+import { useUser } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginPageX(){
-
+export default function LoginPageX() {
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
-    //console.log(emailInputRef.current.value, passwordInputRef.current.value);
+    const { user, setUser } = useUser();
+    const navigate = useNavigate();
 
-    const images = importAll(require.context('../assets/images/', false, /\.(png|jpe?g|svg)$/));
-    const svgs= importAll(require.context('../assets/svgs/', false, /\.(png|jpe?g|svg)$/));
-    return(
+    useEffect(() => {
+        if (!!user) {
+            if (user.isWelcomed) {
+                navigate("/browse/drops");
+            } else {
+                navigate("/welcomepage");
+            }
+        }
+    }, [user, navigate]);
+
+    const handleLogin = async () => {
+        try {
+            const login = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+                {
+                    email: emailInputRef.current.value,
+                    password: passwordInputRef.current.value,
+                }
+            );
+            if (!!login) {
+                const userData = {
+                    id: login.data._id,
+                    username: login.data.username,
+                    email: login.data.email,
+                    isEmailVerified: login.data.isEmailVerified,
+                    googleSubId: login.data.googleSubId,
+
+                    firstName: login.data.firstName,
+                    lastName: login.data.lastName,
+                    fullName: login.data.fullName,
+                    about: login.data.about,
+
+                    profilepic: login.data.profilepic,
+                    followers: login.data.followers,
+                    followings: login.data.followings,
+
+                    isDropper: login.data.isDropper,
+                    belongsToOrgs: login.data.belongsToOrg,
+
+                    isWelcomed: login.data.isWelcomed,
+                    createdAt: login.data.createdAt,
+                };
+                localStorage.setItem("accessToken", login.data.accessToken);
+                setUser(userData);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    return (
         <>
-            <div className = { loginstyles.loginPageClass }>
-                <div className = { loginstyles.loginPageContainer }>
-                    <div className = { loginstyles.titleContainer }>
-                        <div className = { loginstyles.titleName }>
+            <div className={loginstyles.loginPageClass}>
+                <div className={loginstyles.loginPageContainer}>
+                    <div className={loginstyles.titleContainer}>
+                        <div className={loginstyles.titleName}>
                             Welcome Back to Linkyo.io
                         </div>
                     </div>
-                    <div className = { loginstyles.emailPassContainer }>
+                    <div className={loginstyles.emailPassContainer}>
                         <FormInput
                             componentType="email"
                             componentIdPrefix="loginpage"
@@ -31,29 +81,41 @@ export default function LoginPageX(){
                             componentIdPrefix="loginpage"
                             componentRef={passwordInputRef}
                         />
-                        <div className = { loginstyles.forgotPassLink }>Forgotten your Password?</div>
+                        <div className={loginstyles.forgotPassLink}>
+                            Forgotten your Password?
+                        </div>
                     </div>
-                    <div className = { loginstyles.logInBtnsContainer }>
-                        <div className = {loginstyles.logInBtn }>
-                            <button type="button" className={ loginstyles.signInBtn }>Log in</button>
+                    <div className={loginstyles.logInBtnsContainer}>
+                        <div className={loginstyles.logInBtn}>
+                            <button
+                                type="button"
+                                className={loginstyles.signInBtn}
+                                onClick={handleLogin}
+                            >
+                                Log in
+                            </button>
                         </div>
-                        <div className = { loginstyles.theOrGroup }>
-                            <hr className = { loginstyles.HrTag} />
-                            <div className = { loginstyles.OrTitle }>OR</div>
-                            <hr className = { loginstyles.HrTag} />
+                        <div className={loginstyles.theOrGroup}>
+                            <hr className={loginstyles.HrTag} />
+                            <div className={loginstyles.OrTitle}>OR</div>
+                            <hr className={loginstyles.HrTag} />
                         </div>
-                        <div className = { loginstyles.googleLoginBtn }>
+                        <div className={loginstyles.googleLoginBtn}>
                             {/* prithvi is building component for google login button */}
                         </div>
                     </div>
-                    <div className = { loginstyles.signUpClass }>
-                        <div className = { loginstyles.signUpTitleClass }>
-                            <div className = { loginstyles.signUpAcctitle }>Don't have an Account? </div> 
-                            <div className = { loginstyles.signUpTitle }>Sign Up </div>
+                    <div className={loginstyles.signUpClass}>
+                        <div className={loginstyles.signUpTitleClass}>
+                            <div className={loginstyles.signUpAcctitle}>
+                                Don't have an Account?{" "}
+                            </div>
+                            <div className={loginstyles.signUpTitle}>
+                                Sign Up{" "}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }

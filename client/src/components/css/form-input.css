@@ -1,3 +1,11 @@
+input:-webkit-autofill {
+    background-color: white !important; /* Set your desired background color */
+    color: #b7bfc7 !important; /* Set your desired text color */
+    -webkit-text-fill-color: #b7bfc7 !important; /* Ensures text color for autofilled fields */
+    -webkit-box-shadow: 0 0 0px 1000px #0d0d0d inset !important; /* Force the background color */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent quick flash of autofill styles */
+}
+
 .form-input-container {
     display: flex;
     flex-direction: column;

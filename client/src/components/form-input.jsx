@@ -17,6 +17,9 @@ export default function FormInput(props) {
     const [componentValue, setComponentValue] = useState("");
     const [componentIdPrefix, setComponentIdPrefix] = useState("");
     const [componentRef, setComponentRef] = useState();
+    const [isValueValid, setIsValueValid] = useState(false);
+
+    // Component Type "password" states
     const [showPassword, setShowPassword] = useState();
 
     // Component Type "google" states
@@ -28,6 +31,7 @@ export default function FormInput(props) {
     const [countryFlagCode, setCountryFlagCode] = useState("in");
     const [countryPhoneCode, setCountryPhoneCode] = useState("+91");
     const [isContactValidated, setIsContactValidated] = useState(false);
+    const [completeContactNumber, setCompleteContactNumber] = useState("");
 
     const countrySelectionOptionsRef = useRef();
 
@@ -220,6 +224,33 @@ export default function FormInput(props) {
         );
     }
 
+    const handlePasswordChange = (e) => {
+        const inputValue = e.target.value;
+        const textCasesCheck = /(?=.*[a-z])(?=.*[A-Z])/.test(inputValue);
+        const numberCheck = /(?=.*[0-9])/.test(inputValue);
+        const lengthCheck = inputValue.length >= 8 ? true : false;
+        // console.log("------------Test------------");
+        // console.log(
+        //     "Test: Password includes mix of both capital letter and small letter: ",
+        //     textCasesCheck
+        // );
+        // console.log(
+        //     "Test: Password includes at least one number: ",
+        //     numberCheck
+        // );
+        // console.log(
+        //     "Test: Password is minimum 8 characters long: ",
+        //     lengthCheck
+        // );
+        // console.log("------------Test------------");
+        // console.log("");
+        if (textCasesCheck && numberCheck && lengthCheck) {
+            setIsValueValid(true);
+        } else {
+            setIsValueValid(false);
+        }
+        setComponentValue(e.target.value);
+    };
     if (componentType === "password") {
         return (
             <div className="form-input-container">
@@ -236,7 +267,7 @@ export default function FormInput(props) {
                         className="input-password"
                         placeholder="eX@mp73('w')/P@s5w04d*"
                         value={componentValue}
-                        onChange={(e) => setComponentValue(e.target.value)}
+                        onChange={handlePasswordChange}
                         ref={componentRef}
                     />
                     <div>
@@ -284,13 +315,14 @@ export default function FormInput(props) {
     const handleContactInputChange = (e) => {
         const completeContactNumber = countryPhoneCode + e.target.value;
         // const isMobilePhone = isMobilePhone();
-        console.log(isMobilePhone(completeContactNumber));
+        // console.log(isMobilePhone(completeContactNumber));
         setIsContactValidated(isMobilePhone(completeContactNumber));
         setComponentValue({
             contactCountryPhoneCode: countryPhoneCode,
             contactPhoneNumber: e.target.value,
             completeContactNumber: completeContactNumber,
         });
+        setCompleteContactNumber(completeContactNumber);
     };
 
     if (componentType === "contact") {
@@ -330,6 +362,10 @@ export default function FormInput(props) {
                         id={componentIdPrefix + "input-contact"}
                         className="input-contact"
                         onChange={handleContactInputChange}
+                    />
+                    <input
+                        type="hidden"
+                        value={completeContactNumber}
                         ref={componentRef}
                     />
                     <div

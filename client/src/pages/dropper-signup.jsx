@@ -1,37 +1,64 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Header from "../components/header";
 import styles from "./css/dropperSignup.module.css";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/form-input";
+import { Icon } from "@iconify/react";
+import axios from "axios";
 
 export default function DropperSignup() {
-    const [organizationName, setOrganizationName] = useState();
-    const [organizationEmail, setOrganizationEmail] = useState();
-    const [organizationContact, setOrganizationContact] = useState();
-    const [organizationAddress, setOrganizationAddress] = useState();
-
     const organizationNameRef = useRef();
     const organizationEmailRef = useRef();
     const organizationContactRef = useRef();
     const organizationAddressRef = useRef();
 
+    const adminUsernameRef = useRef();
+    const adminEmailRef = useRef();
+    const adminPasswordRef = useRef();
+
     const section1Ref = useRef();
     const section2Ref = useRef();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleNextButton = (e) => {
         e.preventDefault();
-        // console.log("Organization Form Data: ", {
-        //     organizationName: organizationName,
-        //     organizationEmail: organizationEmail,
-        //     organizationContact: organizationContact,
-        //     organizationAddress: organizationAddress,
-        // });
         section2Ref.current.scrollIntoView({ behavior: "smooth" });
     };
-    const handleContinueButton = (e) => {
+    const handleCreateAdminAccountButton = async (e) => {
         e.preventDefault();
-        navigate("/dropper/product/register");
+        const organizationRegistrationFormData = {
+            name: organizationNameRef.current.value,
+            email: organizationEmailRef.current.value,
+            contact: organizationContactRef.current.value,
+            address: organizationAddressRef.current.value,
+        };
+        const adminRegistrationFormData = {
+            username: adminUsernameRef.current.value,
+            email: adminEmailRef.current.value,
+            password: adminPasswordRef.current.value,
+        };
+        try {
+            const registeredOrganizationData = axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/api/dropper/organization/create`,
+                organizationRegistrationFormData
+            );
+            console.log(
+                "Registered organization data: ",
+                registeredOrganizationData
+            );
+            try {
+                const registeredAdminData = axios.post(
+                    `${process.env.REACT_APP_BACKEND_URL}/api/dropper/organization/admin/create`,
+                    adminRegistrationFormData
+                );
+                console.log("Registered Admin account: ", registeredAdminData);
+            } catch (err) {
+                console.log("Dropper admin account registration error: ", err);
+            }
+        } catch (err) {
+            console.log("Dropper organization registration error: ", err);
+        }
+        // navigate("/dropper/product/register");
     };
     const handleBackButton = (e) => {
         e.preventDefault();
@@ -76,37 +103,37 @@ export default function DropperSignup() {
                     className={styles.backButton}
                     onClick={handleBackButton}
                 >
-                    Back
+                    <Icon
+                        icon="famicons:arrow-back"
+                        width="50"
+                        height="50"
+                        className={styles.backButtonIcon}
+                    />
                 </button>
+                <h1>Create your Admin account</h1>
                 <form
                     action=""
                     method=""
                     className={styles.adminRegistrationForm}
                 >
-                    <label htmlFor="adminEmail">
-                        Admin Email:
-                        <input type="email" name="adminEmail" id="adminEmail" />
-                    </label>
-                    <br />
-                    <label htmlFor="adminUsername">
-                        Admin Name:
-                        <input
-                            type="text"
-                            name="adminUsername"
-                            id="adminUsername"
-                        />
-                    </label>
-                    <br />
-                    <label htmlFor="adminPassword">
-                        Admin Password:
-                        <input
-                            type="number"
-                            name="adminPassword"
-                            id="adminPassword"
-                        />
-                    </label>
-                    <br />
-                    <button onClick={handleContinueButton}>Continue</button>
+                    <FormInput
+                        componentType="email"
+                        componentIdPrefix="adminForm"
+                        componentRef={adminEmailRef}
+                    />
+                    <FormInput
+                        componentType="username"
+                        componentIdPrefix="adminForm"
+                        componentRef={adminUsernameRef}
+                    />
+                    <FormInput
+                        componentType="password"
+                        componentIdPrefix="adminForm"
+                        componentRef={adminPasswordRef}
+                    />
+                    <button onClick={handleCreateAdminAccountButton}>
+                        Create Admin Account
+                    </button>
                 </form>
             </section>
         </div>
