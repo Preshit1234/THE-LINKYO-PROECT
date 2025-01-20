@@ -13,7 +13,7 @@
     padding-top: 76px;
     padding-left: 34px;
     padding-right: 34px;
-    padding-bottom: 86px;
+    padding-bottom: 66px;
     background-color: #000000;
     width: 440px;
 
@@ -61,7 +61,7 @@
 .logInBtnsContainer {
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 12px;
 }
 
 .logInBtn {
@@ -87,6 +87,12 @@
     font-weight: 700;
     font-size: 16px;
     cursor: pointer;
+}
+
+.googleLoginBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .theOrGroup {
