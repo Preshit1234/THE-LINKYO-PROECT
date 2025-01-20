@@ -20,15 +20,15 @@ export default function SignupPage() {
     const passwordInputRef = useRef();
     const usageConsentCheckRef = useRef();
 
-    useEffect(() => {
-        if (!!location.state === true) {
-            !!location.state.usernameInputValue
-                ? setUsername(location.state.usernameInputValue)
-                : navigate("/");
-        } else {
-            navigate("/");
-        }
-    }, [location.state, navigate]);
+    // useEffect(() => {
+    //     if (!!location.state === true) {
+    //         !!location.state.usernameInputValue
+    //             ? setUsername(location.state.usernameInputValue)
+    //             : navigate("/");
+    //     } else {
+    //         navigate("/");
+    //     }
+    // }, [location.state, navigate]);
 
     const handleContinueButton = async (e) => {
         e.preventDefault();
