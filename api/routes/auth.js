@@ -112,16 +112,23 @@ router.get("/register/google", async (req, res) => {
 router.post("/login", async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
-        !user && res.status(401).json("Wrong Email or Password");
 
+        // If user not found return err
+        if (!user) {
+            res.status(401).json("User not found");
+            return;
+        }
         const bytes = CryptoJS.AES.decrypt(
             user.password,
             process.env.SECRET_KEY
         );
         const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-        originalPassword !== req.body.password &&
+        // if password does not match return err
+        if (originalPassword !== req.body.password) {
             res.status(401).json("Wrong Email or Password");
+            return;
+        }
 
         const accessToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
@@ -134,6 +141,52 @@ router.post("/login", async (req, res) => {
         const { password, ...info } = user._doc;
         res.status(200).json({ ...info, accessToken });
     } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.post("/user/login/data", async (req, res) => {
+    let token = req.body.accessToken;
+    let userId;
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+        if (err) {
+            res.status(403).json("Token is not valid");
+            return;
+        }
+        userId = user.id;
+    });
+
+    try {
+        let userData = await User.findOne({ _id: userId });
+        if (!userData) {
+            res.status(404).json("User not found");
+            return;
+        }
+        let resData = {
+            id: userData._id,
+            username: userData.username,
+            email: userData.email,
+            isEmailVerified: userData.isEmailVerified,
+            googleSubId: userData.googleSubId,
+
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            fullName: userData.fullName,
+            about: userData.about,
+
+            profilepic: userData.profilepic,
+            followers: userData.followers,
+            followings: userData.followings,
+
+            isDropper: userData.isDropper,
+            belongsToOrgs: userData.belongsToOrg,
+
+            isWelcomed: userData.isWelcomed,
+            createdAt: userData.createdAt,
+        };
+        res.status(200).json(resData);
+    } catch (err) {
+        console.log("Database error: ", err);
         res.status(500).json(err);
     }
 });

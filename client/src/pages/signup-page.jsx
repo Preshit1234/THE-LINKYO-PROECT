@@ -32,9 +32,6 @@ export default function SignupPage() {
 
     const handleContinueButton = async (e) => {
         e.preventDefault();
-        console.log("Continue button pressed");
-        console.log("usageConsentCheckRef: ");
-        console.log(usageConsentCheckRef);
         // send form data for email confirmation
         try {
             let data = await axios.post(
@@ -46,8 +43,12 @@ export default function SignupPage() {
                     usageConsentCheck: usageConsentCheckRef.current.checked,
                 }
             );
-            console.log(data);
-            navigate("/confirmemail");
+            if (!!data) console.log("");
+            navigate("/confirmemail", {
+                state: {
+                    email: emailInputRef.current.value,
+                },
+            });
         } catch (err) {
             console.log(err);
         }

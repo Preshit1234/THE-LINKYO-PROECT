@@ -1,0 +1,50 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    padding-top: 68px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.section1,
+.section2 {
+    height: 100%;
+    width: 100vw;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 20px;
+}
+
+.backButton {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.backButtonIcon {
+    color: #0960da;
+}
+
+.backButtonIcon:hover {
+    color: #4485e0;
+}
+
+.backButtonIcon:active {
+    color: #0960da;
+}
+
+.orgainzationRegistrationForm,
+.adminRegistrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

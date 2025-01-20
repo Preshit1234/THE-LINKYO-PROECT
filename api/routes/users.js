@@ -164,6 +164,56 @@ router.put("/:id/unfollow", async (req, res) => {
     }
 });
 
+// Update user data on welcome page form submission
+router.post("/welcome", verify, async (req, res) => {
+    let requestBody = req.body;
+    let requestByUser = req.user; // User who sent the request
+
+    try {
+        let updatedUserData = await User.findOneAndUpdate(
+            { _id: requestByUser.id },
+            {
+                fullName: requestBody.fullName,
+                about: requestBody.userBio,
+                profilepic: requestBody.profilepic,
+                isWelcomed: true,
+            },
+            {
+                new: true,
+            }
+        );
+        let newUserData = {
+            id: updatedUserData._id,
+            username: updatedUserData.username,
+            email: updatedUserData.email,
+            isEmailVerified: updatedUserData.isEmailVerified,
+            googleSubId: updatedUserData.googleSubId,
+
+            firstName: updatedUserData.firstName,
+            lastName: updatedUserData.lastName,
+            fullName: updatedUserData.fullName,
+            about: updatedUserData.about,
+
+            profilepic: updatedUserData.profilepic,
+            followers: updatedUserData.followers,
+            followings: updatedUserData.followings,
+
+            isDropper: updatedUserData.isDropper,
+            belongsToOrgs: updatedUserData.belongsToOrg,
+
+            isWelcomed: updatedUserData.isWelcomed,
+            createdAt: updatedUserData.createdAt,
+        };
+        res.status(200).json({
+            message: "User updated successfully",
+            newUserData: newUserData,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "User update failed", error: err });
+    }
+});
+
 // tuza localhost:8080/
 
 module.exports = router;

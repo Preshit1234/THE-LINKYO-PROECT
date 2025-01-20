@@ -8,7 +8,7 @@
     padding-left: 200px;
     padding-right: 200px;
     min-height: 100vh;
-    background-color: #1A1A1A;
+    background-color: #1a1a1a;
 }
 
 .signup-page-col-1 {
@@ -36,16 +36,20 @@
     padding-top: 35px;
     padding-bottom: 35px;
     gap: 30px;
-    
-    background: 
-    linear-gradient(to right, #0D0D0D, #0D0D0D), /* Main background */
-    linear-gradient(to bottom, rgba(9, 105, 218, 79%), rgba(23, 2, 12, 79%)); /* Border Background */ 
+
+    background: linear-gradient(to right, #0d0d0d, #0d0d0d),
+        /* Main background */
+            linear-gradient(
+                to bottom,
+                rgba(9, 105, 218, 79%),
+                rgba(23, 2, 12, 79%)
+            ); /* Border Background */
     box-sizing: border-box;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
     border-radius: 12px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
 }
 
 .signup-page-form-header {
@@ -70,7 +74,7 @@
     font-size: 14px;
     line-height: 125%;
     font-weight: 200;
-    color: #B7BFC7;
+    color: #b7bfc7;
 }
 
 .signup-page-form-body {
@@ -100,7 +104,7 @@
     font-size: 14px;
     line-height: 125%;
     font-weight: 400;
-    color: #B7BFC7;
+    color: #b7bfc7;
 }
 
 .signup-page-form-group-3 {
@@ -141,18 +145,26 @@
     height: 52px;
     flex-grow: 1;
     border-radius: 9px;
-    background:
-        linear-gradient(to right, rgba(9, 105, 218, 100%), rgba(13, 13, 13, 100%)),
-        linear-gradient(to right, rgba(48, 64, 61, 100%), rgba(87, 96, 106, 100%));
+    background: linear-gradient(
+            to right,
+            rgba(9, 105, 218, 100%),
+            rgba(13, 13, 13, 100%)
+        ),
+        linear-gradient(
+            to right,
+            rgba(48, 64, 61, 100%),
+            rgba(87, 96, 106, 100%)
+        );
     box-sizing: border-box;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
+    cursor: pointer;
 
     font-size: 16px;
     font-weight: 400;
     line-height: 22px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .signup-page-form-group-3 .google-login-button {
@@ -164,9 +176,16 @@
     height: 52px;
     flex-grow: 1;
     border-radius: 9px;
-    background:
-        linear-gradient(to right, rgba(255, 255, 255, 100%), rgba(255, 255, 255, 100%)),
-        linear-gradient(to right, rgba(153, 153, 153, 100%), rgba(153, 153, 153, 100%));
+    background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 100%),
+            rgba(255, 255, 255, 100%)
+        ),
+        linear-gradient(
+            to right,
+            rgba(153, 153, 153, 100%),
+            rgba(153, 153, 153, 100%)
+        );
     box-sizing: border-box;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
@@ -195,17 +214,17 @@
 }
 
 .signup-page-form-footer p:last-child {
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 200;
     font-size: 12px;
 }
 
 .signup-page-form-footer-link {
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 200;
 }
 .signup-page-form-footer-link.sign-in-link {
-    color: #1B6DDF;
+    color: #1b6ddf;
     font-weight: 400;
     text-decoration: none;
 }
@@ -215,7 +234,7 @@
     line-height: 150%;
     font-weight: 700;
 
-    background: -webkit-linear-gradient(-45deg, #58A6FF 20%, #C632C9 80%);
+    background: -webkit-linear-gradient(-45deg, #58a6ff 20%, #c632c9 80%);
     background-clip: content-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -231,7 +250,7 @@
 }
 
 .signup-page-app-logo-text span {
-    color: #0A7CEE;
+    color: #0a7cee;
     font-size: 32px;
     font-weight: 800;
     line-height: 125%;

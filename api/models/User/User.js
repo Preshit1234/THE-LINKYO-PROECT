@@ -8,14 +8,22 @@ const UserSchema = new mongoose.Schema(
         password: { type: String, required: false },
         firstName: { type: String, default: "" },
         lastName: { type: String, default: "" },
+        fullName: { type: String, default: "" },
         profilepic: { type: String, default: "" },
-        isAdmin: { type: Boolean, default: false },
-        isDropper: { type: Boolean, default: false },
-        followers: { type: Array, default: [] },
-        followings: { type: Array, default: [] },
+        followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+        followings: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         googleSubId: { type: String, default: null },
         about: { type: String, default: "" },
         isWelcomed: { type: Boolean, default: false }, // Tracks whether the user has submitted the welcome page form
+
+        //Dropper details
+        isDropper: { type: Boolean, default: false },
+        belongsToOrg: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Organization",
+            },
+        ],
     },
     { timestamps: true }
 );

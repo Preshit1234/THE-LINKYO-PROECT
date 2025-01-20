@@ -1,87 +1,92 @@
-.loginPageClass{
+.loginPageClass {
     min-height: 100vh;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1F1F1F;
+    background-color: #1f1f1f;
 }
 
-.loginPageContainer{
+.loginPageContainer {
     display: flex;
     flex-direction: column;
-    padding-top : 56px;
+    padding-top: 76px;
     padding-left: 34px;
     padding-right: 34px;
     padding-bottom: 66px;
     background-color: #000000;
     width: 440px;
 
-    background: 
-    linear-gradient(to right, #0D0D0D, #0D0D0D), /* Main background */
-    linear-gradient(to bottom, rgba(9, 105, 218, 79%), rgba(23, 2, 12, 79%)); /* Border Background */ 
+    background: linear-gradient(to right, #0d0d0d, #0d0d0d),
+        /* Main background */
+            linear-gradient(
+                to bottom,
+                rgba(9, 105, 218, 79%),
+                rgba(23, 2, 12, 79%)
+            ); /* Border Background */
     box-sizing: border-box;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
     border-radius: 12px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
 }
 
-.titleContainer{
+.titleContainer {
     display: flex;
     color: white;
 }
 
-.titleName{
+.titleName {
     font-size: 20px;
     font-weight: 600;
 }
 
-.emailPassContainer{
+.emailPassContainer {
     display: flex;
     flex-direction: column;
-    margin-top: 56px;
-    gap : 32px;
+    margin-top: 76px;
+    gap: 32px;
 }
 
-.forgotPassLink{
+.forgotPassLink {
     display: flex;
     flex-wrap: wrap;
-    color : #1B6DDF;
+    color: #1b6ddf;
     font-weight: 500;
-    font-size : 15px;
-    margin-top : -15px;
+    font-size: 15px;
+    margin-top: -15px;
 }
 
-.logInBtnsContainer{
+.logInBtnsContainer {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.logInBtn{
+.logInBtn {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 34px;
 }
 
-.signInBtn{
+.signInBtn {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top : 16px;
-    padding-bottom : 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     padding-left: 160px;
     padding-right: 160px;
-    stroke : none;
+    stroke: none;
     border: none;
-    background: #0969DA;
+    background: #0969da;
     color: white;
     border-radius: 6px;
-    font-weight : 700;
+    font-weight: 700;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .googleLoginBtn{
@@ -90,46 +95,45 @@
     align-items: center;
 }
 
-.theOrGroup{
+.theOrGroup {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.HrTag{
-    border-top: 0px solid #6E7681;
+.HrTag {
+    border-top: 0px solid #6e7681;
     opacity: 70%;
     width: 179px;
 }
 
-.OrTitle{
+.OrTitle {
     font-size: 14px;
     font-weight: 600;
-    padding : 10px;
-    color : #B7BFC7;
+    padding: 10px;
+    color: #b7bfc7;
 }
 
-.signUpClass{
+.signUpClass {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.signUpTitleClass{
+.signUpTitleClass {
     display: flex;
     flex-direction: row;
-    gap:10px;
-    margin-top: 76px;
+    gap: 10px;
 }
 
-.signUpAcctitle{
+.signUpAcctitle {
     font-weight: 500;
     font-size: 14px;
-    color : #D9D9D9;
+    color: #d9d9d9;
 }
 
-.signUpTitle{
+.signUpTitle {
     font-weight: 500;
     font-size: 14px;
-    color : #1B6DDF;
+    color: #1b6ddf;
 }

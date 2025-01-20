@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
 
 export default function VerifyEmailToken() {
@@ -8,8 +8,8 @@ export default function VerifyEmailToken() {
     let token = params.token;
     let navigate = useNavigate();
 
-    const [tempUser, setTempUser] = useState();
-    const [loginUserData, setLoginUserData] = useState();
+    // const [tempUser, setTempUser] = useState();
+    // const [loginUserData, setLoginUserData] = useState();
 
     const { setUser } = useUser();
 
@@ -23,26 +23,35 @@ export default function VerifyEmailToken() {
                         token: token,
                     }
                 );
-                setTempUser(res.data.user);
+                // setTempUser(res.data.user);
                 console.log("res.data.user: ");
                 console.log(res.data.user);
-                setLoginUserData(res.data.user);
+                // setLoginUserData(res.data.user);
+                const loginUserData = res.data.user;
+                if (loginUserData) {
+                    setUser(loginUserData);
+                    console.log("Login User Data: ", loginUserData);
+                    !loginUserData.isWelcomed
+                        ? navigate("/signinpage")
+                        : navigate("/browse/drops");
+                }
             } catch (err) {
                 console.log(err);
             }
         };
 
-        if (!tempUser === true) verifyEmail();
+        // if (!tempUser === true) verifyEmail();
+        verifyEmail();
     });
 
-    useEffect(() => {
-        if (loginUserData) {
-            setUser(loginUserData);
-            !loginUserData.isWelcomed
-                ? navigate("/login")
-                : navigate("/browse/drops");
-        }
-    });
+    // useEffect(() => {
+    //     if (loginUserData) {
+    //         setUser(loginUserData);
+    //         !loginUserData.isWelcomed
+    //             ? navigate("/login")
+    //             : navigate("/browse/drops");
+    //     }
+    // });
 
-    return <></>;
+    return <>Verifying your email...</>;
 }

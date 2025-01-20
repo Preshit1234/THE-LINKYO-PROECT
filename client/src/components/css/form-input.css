@@ -1,3 +1,11 @@
+input:-webkit-autofill {
+    background-color: white !important; /* Set your desired background color */
+    color: #b7bfc7 !important; /* Set your desired text color */
+    -webkit-text-fill-color: #b7bfc7 !important; /* Ensures text color for autofilled fields */
+    -webkit-box-shadow: 0 0 0px 1000px #0d0d0d inset !important; /* Force the background color */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent quick flash of autofill styles */
+}
+
 .form-input-container {
     display: flex;
     flex-direction: column;
@@ -9,6 +17,22 @@
     line-height: 100%;
     font-weight: 500;
     color: #b7bfc7;
+}
+
+.input-username,
+.input-name,
+.input-fullName,
+.input-address,
+.input-email,
+.input-password,
+.input-contact {
+    flex-grow: 1;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: #b7bfc7;
+    padding: 10px 20px;
 }
 
 .form-input-wrap {
@@ -34,18 +58,6 @@
     color: #b7bfc7;
 }
 
-.input-username,
-.input-email,
-.input-password {
-    flex-grow: 1;
-    height: 100%;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: #b7bfc7;
-    padding: 10px 20px;
-}
-
 .input-email {
     border: 1px solid #606060;
 }
@@ -64,6 +76,69 @@
     align-items: center;
     justify-content: center;
     border-left: 1px solid #606060;
+}
+
+.input-contact-wrap {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.input-contact-country-selection-display {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    flex-shrink: 0;
+    border-right: 1px solid #606060;
+}
+
+.input-contact-country-selection-options-wrap {
+    position: absolute;
+    top: 110%;
+    height: 280px;
+    overflow-y: scroll;
+    border: 1px solid #606060;
+    border-radius: 8px;
+    background-color: #0d1118;
+    width: 100%;
+}
+
+.input-contact-country-selection-options-wrap::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+.input-contact-country-selection-options-wrap::-webkit-scrollbar-thumb {
+    width: 0.4rem;
+    height: 3rem;
+    background-color: #ccc;
+    border-radius: 0.4rem;
+}
+
+.input-contact-country-selection-options {
+    padding: 15px;
+    border-bottom: 1px solid #606060;
+    border-right: 1px solid #606060;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.input-contact-country-selection-options:hover {
+    background-color: #141a24;
+}
+
+.input-contact-country-selection-options:last-child {
+    border-bottom: none;
+}
+
+.input-contact-country-selection-options-country-name {
+    flex: 1;
+    text-align: left;
 }
 
 .input-usage-consent-container {
