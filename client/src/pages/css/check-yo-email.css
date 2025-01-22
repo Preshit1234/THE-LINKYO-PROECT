@@ -60,3 +60,21 @@
     margin-bottom: 40px;
     width: 500px;
 }
+
+@media screen and (max-width: 460px) {
+    #check-yo-email-container {
+        height: 100vh;
+        width: 100vw;
+        padding: 10px;
+    }
+
+    #text-content {
+        width: 100%;
+    }
+
+    #check-yo-email-container h4 {
+        line-height: 1.5;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+}

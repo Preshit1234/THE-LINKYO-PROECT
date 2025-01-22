@@ -265,7 +265,7 @@ export default function FormInput(props) {
                         type="password"
                         id={componentIdPrefix + "input-password"}
                         className="input-password"
-                        placeholder="eX@mp73('w')/P@s5w04d*"
+                        placeholder="eXmp1P@s5w04d*"
                         value={componentValue}
                         onChange={handlePasswordChange}
                         ref={componentRef}
@@ -279,6 +279,7 @@ export default function FormInput(props) {
                                     height: "20px",
                                     width: "20px",
                                     cursor: "pointer",
+                                    flexShrink: "0",
                                 }}
                                 onClick={handleShowPassword}
                             />
@@ -440,7 +441,11 @@ export default function FormInput(props) {
 
     if (componentType === "google") {
         return (
-            <button className="signup-google-link" onClick={handleGoogleBtn}>
+            <button
+                className="signup-google-link"
+                style={props.style}
+                onClick={handleGoogleBtn}
+            >
                 <img
                     src={svgs["icon-google.svg"]}
                     alt="Google Icon"

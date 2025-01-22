@@ -9,3 +9,10 @@
     gap: 30px 30px;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width: 430px) {
+    .drops-container {
+        flex-direction: column;
+        gap: 34px;
+    }
+}

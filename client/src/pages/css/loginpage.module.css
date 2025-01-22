@@ -62,6 +62,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-items: stretch;
 }
 
 .logInBtn {
@@ -69,6 +70,8 @@
     justify-content: center;
     align-items: center;
     padding-top: 34px;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .signInBtn {
@@ -77,8 +80,7 @@
     align-items: center;
     padding-top: 12px;
     padding-bottom: 12px;
-    padding-left: 160px;
-    padding-right: 160px;
+    align-self: stretch;
     stroke: none;
     border: none;
     background: #0969da;
@@ -89,7 +91,7 @@
     cursor: pointer;
 }
 
-.googleLoginBtn{
+.googleLoginBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,4 +138,19 @@
     font-weight: 500;
     font-size: 14px;
     color: #1b6ddf;
+}
+
+@media screen and (max-width: 460px) {
+    .loginPageContainer {
+        height: calc(100vh); /* Exclude header height */
+        width: 100vw;
+        padding: 10px;
+        padding-top: 110px;
+        border: 0;
+        border-radius: 0;
+    }
+
+    .emailPassContainer {
+        margin-top: 30px;
+    }
 }

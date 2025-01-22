@@ -4,7 +4,6 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const helper = require("../helper");
-const passport = require("passport");
 const TempUser = require("../models/User/TempUser");
 const RenderVerificationEmail = require("../templates/RenderVerificationEmail");
 

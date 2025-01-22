@@ -1,4 +1,3 @@
-
 #browse-drops-container {
     background-color: #010409;
     /* display: flex; */
@@ -6,8 +5,9 @@
     align-items: stretch;
     gap: 40px;
     flex-grow: 1;
-    padding-left: 260px;
+    /* padding-left: 260px; */
     padding-top: 68px;
+    padding-left: 205px;
 }
 
 /* Hide Scrollbar */
@@ -22,22 +22,27 @@
     align-content: center;
     flex-shrink: 0;
     padding: 10px 26px;
-    border: 1px solid #0969DA;
+    border: 1px solid #0969da;
     border-radius: 42px;
     background-color: rgba(88, 88, 88, 25%);
     font-size: 15px;
     font-weight: 500;
     line-height: 20px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #welcome-message-container {
     height: 113px;
     width: 1031px;
-    border: 1px solid #0366D6;
+    border: 1px solid #0366d6;
     border-radius: 6px;
-    background-image: linear-gradient(120deg, rgba(0, 4, 9, 100%), rgba(130, 131, 134, 50%), rgba(255, 255, 255, 0%));
-    color: #FFFFFF;
+    background-image: linear-gradient(
+        120deg,
+        rgba(0, 4, 9, 100%),
+        rgba(130, 131, 134, 50%),
+        rgba(255, 255, 255, 0%)
+    );
+    color: #ffffff;
     padding-top: 14px;
     padding-bottom: 14px;
     padding-left: 20px;
@@ -90,7 +95,7 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding: 76px 40px;
+    padding: 76px 20px;
 }
 
 .drops-types {
@@ -106,5 +111,24 @@
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-    color: #FFFFFF;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 430px) {
+    #browse-drops-container {
+        padding-top: 50px;
+        padding-left: 0px;
+    }
+
+    #drops-container {
+        padding-left: 56px;
+        padding-right: 10px;
+        width: 100vw;
+        padding-top: 50px;
+    }
+
+    .category-tags {
+        padding: 4px 12px;
+        font-size: 12px;
+    }
 }

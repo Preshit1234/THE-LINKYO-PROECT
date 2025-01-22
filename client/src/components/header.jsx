@@ -1,11 +1,17 @@
 // Begin
 import { importAll } from "./js/import-data";
 import "./css/header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 /**
  * A react component that renders the website header
+ * Props:
+ * - type: The type of header to render.
+ *  - ""
+ *  - "loggingin" Set this in login and signup page
+ *  - "login"
+ * - userData: Login user data.
  * @returns {ReactNode}
  */
 export default function Header(props) {
@@ -25,6 +31,7 @@ export default function Header(props) {
     const [profilePic, setProfilePic] = useState(
         "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
     );
+    const navigate = useNavigate();
 
     useEffect(() => {
         setType(props.type);
@@ -41,6 +48,11 @@ export default function Header(props) {
         require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
     );
 
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        navigate("/");
+    };
+
     if (type === "loggingin") {
         return (
             <div className="header-container">
@@ -50,8 +62,13 @@ export default function Header(props) {
                     alt="App Logo"
                     className="header-inline"
                     id="app-logo-img"
+                    onClick={handleLogoClick}
                 />
-                <span className="header-inline" id="app-logo-text">
+                <span
+                    className="header-inline"
+                    id="app-logo-text"
+                    onClick={handleLogoClick}
+                >
                     {APP_NAME}
                 </span>
 
@@ -69,8 +86,13 @@ export default function Header(props) {
                     alt="App Logo"
                     className="header-inline"
                     id="app-logo-img"
+                    onClick={handleLogoClick}
                 />
-                <span className="header-inline" id="app-logo-text">
+                <span
+                    className="header-inline"
+                    id="app-logo-text"
+                    onClick={handleLogoClick}
+                >
                     {APP_NAME}
                 </span>
 
@@ -119,8 +141,13 @@ export default function Header(props) {
                     alt="App Logo"
                     className="header-inline"
                     id="app-logo-img"
+                    onClick={handleLogoClick}
                 />
-                <span className="header-inline" id="app-logo-text">
+                <span
+                    className="header-inline"
+                    id="app-logo-text"
+                    onClick={handleLogoClick}
+                >
                     {APP_NAME}
                 </span>
 

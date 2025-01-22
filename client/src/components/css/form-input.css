@@ -26,13 +26,14 @@ input:-webkit-autofill {
 .input-email,
 .input-password,
 .input-contact {
-    flex-grow: 1;
+    flex: 1;
     height: 100%;
     background-color: transparent;
     border: 0;
     outline: 0;
     color: #b7bfc7;
     padding: 10px 20px;
+    width: 100%;
 }
 
 .form-input-wrap {
@@ -50,6 +51,7 @@ input:-webkit-autofill {
 
 .input-username-wrap span {
     width: 103px;
+    flex-shrink: 0;
     height: 100%;
     border-right: 1px solid #606060;
     display: flex;
@@ -69,7 +71,7 @@ input:-webkit-autofill {
 }
 
 .input-password-wrap div {
-    flex-grow: 0;
+    flex: 0;
     height: 100%;
     padding: 0 15px;
     display: flex;
@@ -206,8 +208,13 @@ input:-webkit-autofill {
     vertical-align: middle;
     transform: translate3d(0, 0, 0);
 }
+.cbx {
+    display: flex;
+    flex-direction: row;
+}
 .checkbox-wrapper-4 .cbx span:first-child {
     position: relative;
+    flex-shrink: 0;
     width: 16px;
     height: 16px;
     border-radius: 4px;
@@ -237,6 +244,7 @@ input:-webkit-autofill {
     line-height: 16px;
     font-weight: 200;
     color: #ffffff;
+    flex: 1;
 }
 .checkbox-wrapper-4 .cbx:hover span:first-child {
     border-color: #07f;
@@ -269,9 +277,7 @@ input:-webkit-autofill {
     cursor: pointer;
 
     color: black;
-    width: 400px;
     height: 52px;
-    align-self: center;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 16px;
@@ -293,14 +299,14 @@ input:-webkit-autofill {
 /* For mobile screens */
 @media screen and (max-width: 430px) {
     .signup-google-link {
-        width: 100%;
+        /* width: 100%; */
+        max-width: 100%;
     }
 }
 
 @media screen and (max-width: 640px) {
     .checkbox-wrapper-4 .cbx {
         width: 100%;
-        display: inline-block;
     }
 }
 @-moz-keyframes wave-4 {

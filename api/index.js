@@ -6,9 +6,6 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const passport = require("passport");
-const expressSession = require("express-session");
-const passportSetup = require("./passport");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const dropRoute = require("./routes/drops");
@@ -26,38 +23,35 @@ mongoose
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(
-    expressSession({
-        secret: "keyboard cat",
-        resave: false,
-        saveUninitialized: false,
-        cookie: { secure: true },
-    })
-);
+// app.use(cors());
+app.use(function (req, res, next) {
+    // Allow api access only to these request origins
+    const allowedOrigins = [
+        "https://linkyo.io",
+        "http://localhost:3000",
+        process.env.CLIENT_URL,
+    ];
+    const origin = req.headers.origin;
 
-// register regenerate & save after the cookieSession middleware initialization
-app.use(function (request, response, next) {
-    if (request.session && !request.session.regenerate) {
-        request.session.regenerate = (cb) => {
-            cb();
-        };
+    if (allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin); // update to match the domain you will make the request from
+        res.header(
+            "Access-Control-Allow-Headers",
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        );
+        res.header(
+            "Access-Control-Allow-Methods",
+            "GET, POST, PUT, DELETE, OPTIONS"
+        );
+        res.header("Access-Control-Allow-Credentials", "true");
     }
-    if (request.session && !request.session.save) {
-        request.session.save = (cb) => {
-            cb();
-        };
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(204); // Handle preflight
     }
+
     next();
 });
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(
-    cors({
-        origin: "http://localhost:3000",
-        methods: "GET,POST,PUT,DELETE",
-        credentials: true,
-    })
-);
 
 //Serve files from the uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
