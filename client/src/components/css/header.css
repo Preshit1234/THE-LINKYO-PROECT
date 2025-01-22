@@ -138,6 +138,10 @@
     );
 }
 
+#header-create-drop-button.dropButtonMobile {
+    display: none;
+}
+
 #header-login-link {
     font-size: 13px;
     line-height: 20px;
@@ -183,10 +187,14 @@
 
     #header-promote-drop-button,
     #header-create-drop-button {
-        position: static;
+        /* position: static; */
         display: none;
-        width: 0;
+        /* width: 0; */
         overflow: hidden;
+    }
+
+    #header-create-drop-button.dropButtonMobile {
+        display: inline-flex;
     }
 
     #header-login-link {

@@ -45,38 +45,45 @@ export default function DropperSignup() {
         }
     };
     return (
-        <div className={styles.container}>
+        <>
             <Header type="login" userData={user} />
-            <section className={styles.section1}>
-                <h1>Register your Organization</h1>
-                <form
-                    action=""
-                    method=""
-                    className={styles.orgainzationRegistrationForm}
-                >
-                    <FormInput
-                        componentType="name"
-                        componentIdPrefix="organizationForm"
-                        componentRef={organizationNameRef}
-                    />
-                    <FormInput
-                        componentType="email"
-                        componentIdPrefix="organizationForm"
-                        componentRef={organizationEmailRef}
-                    />
-                    <FormInput
-                        componentType="contact"
-                        componentIdPrefix="organizationForm"
-                        componentRef={organizationContactRef}
-                    />
-                    <FormInput
-                        componentType="address"
-                        componentIdPrefix="organizationForm"
-                        componentRef={organizationAddressRef}
-                    />
-                    <button onClick={handleNextButton}>Next</button>
-                </form>
-            </section>
-        </div>
+            <div className={styles.container}>
+                <section className={styles.section1}>
+                    <h1 className={styles.title}>Register your Organization</h1>
+                    <form
+                        action=""
+                        method=""
+                        className={styles.orgainzationRegistrationForm}
+                    >
+                        <FormInput
+                            componentType="name"
+                            componentIdPrefix="organizationForm"
+                            componentRef={organizationNameRef}
+                        />
+                        <FormInput
+                            componentType="email"
+                            componentIdPrefix="organizationForm"
+                            componentRef={organizationEmailRef}
+                        />
+                        <FormInput
+                            componentType="contact"
+                            componentIdPrefix="organizationForm"
+                            componentRef={organizationContactRef}
+                        />
+                        <FormInput
+                            componentType="address"
+                            componentIdPrefix="organizationForm"
+                            componentRef={organizationAddressRef}
+                        />
+                        <button
+                            onClick={handleNextButton}
+                            className={styles.nextButton}
+                        >
+                            Next
+                        </button>
+                    </form>
+                </section>
+            </div>
+        </>
     );
 }

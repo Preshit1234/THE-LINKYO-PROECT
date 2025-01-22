@@ -112,10 +112,17 @@ export default function Header(props) {
                 {/* Right Hand Side */}
                 <Link
                     to="/signup/dropper"
-                    className="header-inline login"
+                    className="header-inline login dropButtonDefault"
                     id="header-create-drop-button"
                 >
                     Drop Product
+                </Link>
+                <Link
+                    to="/signup/dropper"
+                    className="header-inline login dropButtonMobile"
+                    id="header-create-drop-button"
+                >
+                    Drop
                 </Link>
                 <img
                     src={svgs["notification-icon-active.svg"]}

@@ -1,5 +1,5 @@
 .container {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     padding-top: 68px;
     overflow: hidden;
@@ -47,4 +47,37 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .section1 {
+        margin: 0;
+        padding: 10px 10px;
+        padding-bottom: 100px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .nextButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        align-self: stretch;
+        stroke: none;
+        border: none;
+        background: #0969da;
+        color: white;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .title {
+        font-size: 25px;
+        align-self: flex-start;
+    }
 }
