@@ -44,6 +44,7 @@ export default function DropperSignup() {
             console.log("Dropper organization registration error: ", err);
         }
     };
+
     return (
         <>
             <Header type="login" userData={user} />

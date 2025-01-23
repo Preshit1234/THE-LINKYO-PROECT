@@ -22,7 +22,6 @@ input:-webkit-autofill {
 .input-username,
 .input-name,
 .input-fullName,
-.input-address,
 .input-email,
 .input-password,
 .input-contact {
@@ -36,10 +35,25 @@ input:-webkit-autofill {
     width: 100%;
 }
 
+.input-address {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: #b7bfc7;
+    padding: 10px 20px;
+    width: 100%;
+    line-height: 1.5;
+}
+
 .form-input-wrap {
     height: 44px;
     border: 1px solid #606060;
     border-radius: 8px;
+}
+
+.input-address.form-input-wrap {
+    min-height: 44px;
+    height: 100%;
 }
 
 .input-username-wrap {

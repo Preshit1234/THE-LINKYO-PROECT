@@ -8,6 +8,7 @@ import axios from "axios";
 import { countries } from "../helper.js";
 import { Icon } from "@iconify/react";
 import isMobilePhone from "validator/lib/isMobilePhone";
+import TextareaAutosize from "react-textarea-autosize";
 
 export default function FormInput(props) {
     const svgs = importAll(
@@ -22,6 +23,9 @@ export default function FormInput(props) {
     // Component Type "password" states
     const [showPassword, setShowPassword] = useState();
 
+    // Component Type "address" states
+    // const [inputHeight, setInputHeight] = useState();
+
     // Component Type "google" states
     const [googleUserData, setGoogleUserData] = useState(null);
     const [loginUserData, setLoginUserData] = useState(null);
@@ -34,6 +38,7 @@ export default function FormInput(props) {
     const [completeContactNumber, setCompleteContactNumber] = useState("");
 
     const countrySelectionOptionsRef = useRef();
+    const addressInputRef = useRef();
 
     const navigate = useNavigate();
 
@@ -66,6 +71,13 @@ export default function FormInput(props) {
                 : (componentRef.current.type = "password");
         }
     }, [showPassword, componentRef, componentType]);
+
+    useEffect(() => {
+        if (componentType === "address") {
+            if (!!addressInputRef.current.value === false)
+                addressInputRef.current.value = componentValue;
+        }
+    }, [componentType, componentValue, addressInputRef]);
 
     // Effects
     useEffect(() => {
@@ -181,6 +193,11 @@ export default function FormInput(props) {
         );
     }
 
+    const handleAddressChange = (e) => {
+        e.preventDefault();
+        setComponentValue(e.target.value);
+    };
+
     if (componentType === "address") {
         return (
             <div className="form-input-container">
@@ -190,13 +207,24 @@ export default function FormInput(props) {
                 >
                     Address
                 </label>
-                <textarea
+                {/* <textarea
                     id={componentIdPrefix + "input-address"}
                     className="form-input-wrap input-address"
                     placeholder="..."
                     value={componentValue}
-                    onChange={(e) => setComponentValue(e.target.value)}
+                    onChange={handleAddressChange}
                     ref={componentRef}
+                /> */}
+                <TextareaAutosize
+                    id={componentIdPrefix + "input-address"}
+                    className="form-input-wrap input-address"
+                    placeholder="..."
+                    onChange={handleAddressChange}
+                    ref={(el) => {
+                        componentRef.current = el;
+                        addressInputRef.current = el;
+                    }}
+                    autoFocus
                 />
             </div>
         );
