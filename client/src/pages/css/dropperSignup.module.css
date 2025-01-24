@@ -49,6 +49,23 @@
     gap: 30px;
 }
 
+.nextButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    align-self: stretch;
+    stroke: none;
+    border: none;
+    background: #0969da;
+    color: white;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 /* For mobile screens */
 @media screen and (max-width: 430px) {
     .section1 {
@@ -57,23 +74,6 @@
         padding-bottom: 100px;
         height: 100%;
         width: 100%;
-    }
-
-    .nextButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        align-self: stretch;
-        stroke: none;
-        border: none;
-        background: #0969da;
-        color: white;
-        border-radius: 6px;
-        font-weight: 700;
-        font-size: 16px;
-        cursor: pointer;
     }
 
     .title {
