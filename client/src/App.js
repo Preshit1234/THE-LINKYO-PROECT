@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landing-page";
 import FaqAccordion from "./components/faq-accordion";
 // import { gsap } from 'gsap';
@@ -45,163 +45,6 @@ import DropperDeveloperConsolePage from "./pages/dropper/developer/view";
 import DropperCredentialsPage from "./pages/dropper/developer/credentials/view";
 import DropperCredentialRegistrationPage from "./pages/dropper/developer/credentials/register";
 
-const router = createBrowserRouter([
-    {
-        path: "/welcome",
-        element: <h1>Welcome to Linkyo</h1>,
-    },
-    {
-        path: "/",
-        element: <LandingPage title="Linkyo | 10x growth for SaaS" />,
-    },
-    {
-        path: "/accordion",
-        element: <FaqAccordion />,
-    },
-    {
-        path: "/header",
-        element: <Header type="login" />,
-    },
-    {
-        path: "/browse/drops",
-        element: <BrowseDrops />,
-    },
-    {
-        path: "/create/drop",
-        element: <CreateDrop />,
-    },
-    {
-        path: "/login",
-        element: <LoginPage />,
-    },
-    {
-        path: "/test",
-        element: <Test />,
-    },
-    {
-        path: "/confirmemail",
-        element: <CheckEmail />,
-    },
-    {
-        path: "/prototype/affiliateLink",
-        element: <CreateAffiliateLink />,
-    },
-    {
-        path: "/prototype/fakeURL/fakeProduct",
-        element: <FakeProduct />,
-    },
-    {
-        path: "/signup",
-        element: <SignupPage />,
-    },
-    {
-        path: "/welcomepage",
-        element: <Finalise />,
-    },
-    {
-        //This is component, I'm using this only for testing purpose
-        path: "/emailcomponent",
-        element: <EmailConfirmation />,
-    },
-    {
-        //This is component, I'm using this only for testing purpose
-        path: "/usercardtest",
-        element: <UserCard />,
-    },
-    {
-        path: "/view/drop",
-        element: <ViewDrop />,
-    },
-    {
-        path: "/graphset1",
-        element: <GraphSet1 />,
-    },
-    {
-        path: "/edit/user",
-        element: <EditUser />,
-    },
-    {
-        path: "/landinghomepage",
-        element: <LandingUserPage />,
-    },
-    {
-        path: "/signinpage",
-        element: <LoginPageX />,
-    },
-    {
-        path: "/verify/email/token/:token",
-        element: <VerifyEmailToken />,
-    },
-    {
-        path: "/signup/dropper",
-        element: <DropperSignup />,
-    },
-    {
-        path: "/dropper/dashboard",
-        element: <DropperDashboard />,
-    },
-    {
-        path: "/dropper/products",
-        element: <DropperProductsPage />,
-    },
-    {
-        path: "/dropper/product/register",
-        element: <ProductRegistrationPage />,
-    },
-    {
-        path: "/dropper/offers",
-        element: <DropperOffersPage />,
-    },
-    {
-        path: "/dropper/offer/register",
-        element: <OfferRegistrationPage />,
-    },
-    {
-        path: "/dropper/campaigns",
-        element: <DropperCampaignPage />,
-    },
-    {
-        path: "/dropper/campaign/register",
-        element: <DropperCampaignRegistrationPage />,
-    },
-    {
-        path: "/dropper/drops",
-        element: <DropperDropsPage />,
-    },
-    {
-        path: "/dropper/drop/register",
-        element: <DropRegistrationPage />,
-    },
-    {
-        path: "/dropper/users",
-        element: <DropperUsersPage />,
-    },
-    {
-        path: "/dropper/user/register",
-        element: <DropperUserRegistrationPage />,
-    },
-    {
-        path: "/dropper/roles",
-        element: <DropperRolesPage />,
-    },
-    {
-        path: "/dropper/role/register",
-        element: <DropperRoleRegistrationPage />,
-    },
-    {
-        path: "/dropper/developer/console",
-        element: <DropperDeveloperConsolePage />,
-    },
-    {
-        path: "/dropper/developer/credentials",
-        element: <DropperCredentialsPage />,
-    },
-    {
-        path: "/dropper/developer/credential/register",
-        element: <DropperCredentialRegistrationPage />,
-    },
-]);
-
 export default function App() {
     return (
         <UserProvider>
@@ -209,7 +52,143 @@ export default function App() {
                 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             >
                 <HelmetProvider>
-                    <RouterProvider router={router} />
+                    <BrowserRouter>
+                        <Routes>
+                            <Route
+                                path="/welcome"
+                                element={<h1>Welcome to Linkyo</h1>}
+                            />
+                            <Route
+                                path="/"
+                                element={
+                                    <LandingPage title="Linkyo | 10x growth for SaaS" />
+                                }
+                            />
+                            <Route
+                                path="/accordion"
+                                element={<FaqAccordion />}
+                            />
+                            <Route
+                                path="/header"
+                                element={<Header type="login" />}
+                            />
+                            <Route
+                                path="/browse/drops"
+                                element={<BrowseDrops />}
+                            />
+                            <Route
+                                path="/create/drop"
+                                element={<CreateDrop />}
+                            />
+                            <Route path="/login" element={<LoginPage />} />
+                            <Route path="/test" element={<Test />} />
+                            <Route
+                                path="/confirmemail"
+                                element={<CheckEmail />}
+                            />
+                            <Route
+                                path="/prototype/affiliateLink"
+                                element={<CreateAffiliateLink />}
+                            />
+                            <Route
+                                path="/prototype/fakeURL/fakeProduct"
+                                element={<FakeProduct />}
+                            />
+                            <Route path="/signup" element={<SignupPage />} />
+                            <Route path="/welcomepage" element={<Finalise />} />
+                            <Route
+                                path="/emailcomponent"
+                                element={<EmailConfirmation />}
+                            />
+                            <Route
+                                path="/usercardtest"
+                                element={<UserCard />}
+                            />
+                            <Route path="/view/drop" element={<ViewDrop />} />
+                            <Route path="/graphset1" element={<GraphSet1 />} />
+                            <Route path="/edit/user" element={<EditUser />} />
+                            <Route
+                                path="/landinghomepage"
+                                element={<LandingUserPage />}
+                            />
+                            <Route
+                                path="/signinpage"
+                                element={<LoginPageX />}
+                            />
+                            <Route
+                                path="/verify/email/token/:token"
+                                element={<VerifyEmailToken />}
+                            />
+                            <Route
+                                path="/signup/dropper"
+                                element={<DropperSignup />}
+                            />
+                            <Route
+                                path="/dropper/dashboard"
+                                element={<DropperDashboard />}
+                            />
+                            <Route
+                                path="/dropper/products"
+                                element={<DropperProductsPage />}
+                            />
+                            <Route
+                                path="/dropper/product/register"
+                                element={<ProductRegistrationPage />}
+                            />
+                            <Route
+                                path="/dropper/offers"
+                                element={<DropperOffersPage />}
+                            />
+                            <Route
+                                path="/dropper/offer/register"
+                                element={<OfferRegistrationPage />}
+                            />
+                            <Route
+                                path="/dropper/campaigns"
+                                element={<DropperCampaignPage />}
+                            />
+                            <Route
+                                path="/dropper/campaign/register"
+                                element={<DropperCampaignRegistrationPage />}
+                            />
+                            <Route
+                                path="/dropper/drops"
+                                element={<DropperDropsPage />}
+                            />
+                            <Route
+                                path="/dropper/drop/register"
+                                element={<DropRegistrationPage />}
+                            />
+                            <Route
+                                path="/dropper/users"
+                                element={<DropperUsersPage />}
+                            />
+                            <Route
+                                path="/dropper/user/register"
+                                element={<DropperUserRegistrationPage />}
+                            />
+                            <Route
+                                path="/dropper/roles"
+                                element={<DropperRolesPage />}
+                            />
+                            <Route
+                                path="/dropper/role/register"
+                                element={<DropperRoleRegistrationPage />}
+                            />
+                            <Route
+                                path="/dropper/developer/console"
+                                element={<DropperDeveloperConsolePage />}
+                            />
+                            <Route
+                                path="/dropper/developer/credentials"
+                                element={<DropperCredentialsPage />}
+                            />
+                            <Route
+                                path="/dropper/developer/credential/register"
+                                element={<DropperCredentialRegistrationPage />}
+                            />
+                        </Routes>
+                    </BrowserRouter>
                 </HelmetProvider>
             </GoogleOAuthProvider>
         </UserProvider>
