@@ -1,19 +1,16 @@
-:root {
-    font-family: Inter, sans-serif;
-    font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+html {
+    font-family: "Inter", "system-ui";
 }
+
 @supports (font-variation-settings: normal) {
-    :root {
-        font-family: InterVariable, sans-serif;
-    }
+    html {
+        font-family: "InterVariable", "system-ui";
+    } /* If using the variable font */
 }
 
 * {
-    font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal;
-    font-variation-settings: "slnt" 0;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
