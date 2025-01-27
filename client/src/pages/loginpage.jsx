@@ -4,7 +4,9 @@ import FormInput from "../components/form-input.jsx";
 import { useEffect, useRef } from "react";
 import axios from "axios";
 import { useUser } from "../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import SEO from "../components/seo.jsx";
+import Header from "../components/header.jsx";
 
 export default function LoginPageX() {
     const emailInputRef = useRef();
@@ -15,9 +17,9 @@ export default function LoginPageX() {
     useEffect(() => {
         if (!!user) {
             if (user.isWelcomed) {
-                navigate("/browse/drops");
+                navigate("/user/home");
             } else {
-                navigate("/welcomepage");
+                navigate("/user/welcome");
             }
         }
     }, [user, navigate]);
@@ -29,6 +31,9 @@ export default function LoginPageX() {
                 {
                     email: emailInputRef.current.value,
                     password: passwordInputRef.current.value,
+                },
+                {
+                    withCredentials: "true",
                 }
             );
             if (!!login) {
@@ -61,8 +66,16 @@ export default function LoginPageX() {
             console.log(err);
         }
     };
+
     return (
         <>
+            <SEO
+                title="Linkyo | Login Page"
+                description="Login into your Linkyo.io account"
+                name="Linkyo"
+                type="website"
+            />
+            <Header type="loggingin" />
             <div className={loginstyles.loginPageClass}>
                 <div className={loginstyles.loginPageContainer}>
                     <div className={loginstyles.titleContainer}>
@@ -109,9 +122,12 @@ export default function LoginPageX() {
                             <div className={loginstyles.signUpAcctitle}>
                                 Don't have an Account?{" "}
                             </div>
-                            <div className={loginstyles.signUpTitle}>
-                                Sign Up{" "}
-                            </div>
+                            <NavLink
+                                to="/signup"
+                                className={loginstyles.signUpTitle}
+                            >
+                                Sign Up
+                            </NavLink>
                         </div>
                     </div>
                 </div>

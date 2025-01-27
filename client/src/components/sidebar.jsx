@@ -8,41 +8,53 @@ export default function Sidebar() {
     );
     return (
         <nav className={styles.container}>
-            <NavLink to="" className={styles.links}>
+            <NavLink to="" className={styles.links + " " + styles.homeNavLink}>
                 <img src={svgs["home.svg"]} alt="" className={styles.icons} />
-                Home
+                <span>Home</span>
             </NavLink>
-            <NavLink to="" className={styles.links}>
+            <NavLink
+                to=""
+                className={styles.links + " " + styles.analyticsNavLink}
+            >
                 <img src={svgs["cart.svg"]} alt="" className={styles.icons} />
-                Analytics
+                <span>Analytics</span>
             </NavLink>
-            <NavLink to="" className={styles.links}>
+            <NavLink
+                to=""
+                className={styles.links + " " + styles.promotionsNavLink}
+            >
                 <img
                     src={svgs["peoples.svg"]}
                     alt=""
                     className={styles.icons}
                 />
-                Promotions
+                <span>Promotions</span>
             </NavLink>
-            <NavLink to="" className={styles.links}>
+            <NavLink
+                to=""
+                className={styles.links + " " + styles.businessNavLink}
+            >
                 <img src={svgs["cart.svg"]} alt="" className={styles.icons} />
-                Business
+                <span>Business</span>
             </NavLink>
-            <NavLink to="" className={styles.links}>
+            <NavLink
+                to=""
+                className={styles.links + " " + styles.settingsNavLink}
+            >
                 <img
                     src={svgs["peoples.svg"]}
                     alt=""
                     className={styles.icons}
                 />
-                Settings
+                <span>Settings</span>
             </NavLink>
-            <NavLink to="" className={styles.links}>
+            <NavLink to="" className={styles.links + " " + styles.helpNavLink}>
                 <img
                     src={svgs["peoples.svg"]}
                     alt=""
                     className={styles.icons}
                 />
-                Help
+                <span>Help</span>
             </NavLink>
         </nav>
     );

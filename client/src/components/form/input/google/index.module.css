@@ -1,0 +1,35 @@
+.googleButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    color: black;
+    height: 52px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    line-height: 22px;
+
+    /* Gradient Color Borders */
+    background: linear-gradient(to right, #ffffff, #999999),
+        linear-gradient(to bottom right, #d2a8ff, #920a0a);
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border: 1px solid transparent;
+    border-radius: 9px;
+}
+.googleIcon {
+    width: 27px;
+    height: 27px;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .googleButton {
+        /* width: 100%; */
+        max-width: 100%;
+    }
+}

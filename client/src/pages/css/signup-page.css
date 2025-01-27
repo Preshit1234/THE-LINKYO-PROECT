@@ -66,6 +66,7 @@
     font-size: 22px;
     line-height: 125%;
     font-weight: 600;
+    color: #ffffff;
 }
 
 .signup-page-form-description {
@@ -73,7 +74,7 @@
     margin: 0;
     font-size: 14px;
     line-height: 125%;
-    font-weight: 200;
+    font-weight: 300;
     color: #b7bfc7;
 }
 
@@ -111,6 +112,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-items: stretch;
 }
 
 .signup-page-form-group-3 button {
@@ -247,6 +249,7 @@
     font-weight: 400;
     line-height: 125%;
     text-align: center;
+    color: #f5f7f9;
 }
 
 .signup-page-app-logo-text span {
@@ -254,4 +257,54 @@
     font-size: 32px;
     font-weight: 800;
     line-height: 125%;
+}
+
+#root {
+    width: 100vw;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 430px) {
+    .signup-page-col-2 {
+        display: none;
+    }
+
+    .signup-page-col-1,
+    .signup-page-container {
+        padding: 0;
+        margin: 0;
+        width: 100vw;
+        overflow-y: scroll;
+    }
+
+    .signup-page-form {
+        width: 100vw;
+        align-items: stretch;
+        margin: 0;
+        padding: 30px 0;
+        border-radius: 0;
+        border: 0;
+    }
+
+    .signup-page-form-header {
+        padding: 0 10px;
+    }
+
+    .signup-page-col-1 {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    .signup-page-form-group-1 {
+        padding: 0 10px;
+    }
+
+    .signup-page-form-group-2 {
+        padding: 0 10px;
+    }
+
+    .signup-page-form-group-3 button {
+        margin: 0 10px;
+    }
 }

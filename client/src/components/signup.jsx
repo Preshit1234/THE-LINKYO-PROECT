@@ -26,7 +26,13 @@ export default function Signup() {
 
     return (
         <div className="signup-container">
-            <FormInput componentType="google" />
+            <FormInput
+                componentType="google"
+                style={{
+                    alignSelf: "center",
+                    width: "400px",
+                }}
+            />
             <span className="signup-partition">
                 <hr />
                 <span>Or</span>
@@ -36,9 +42,9 @@ export default function Signup() {
                 <div className="signup-form-input">
                     <div className="signup-form-linkyo-title">linkyo.io/</div>
                     <input
-                        type="email"
+                        type="text"
                         className=""
-                        id="signup-form-input-email"
+                        id="signup-form-input-username"
                         placeholder="Enter Username"
                         ref={usernameInput}
                     />

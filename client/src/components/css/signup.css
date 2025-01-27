@@ -132,7 +132,8 @@ hr {
     width: 121px;
     flex-shrink: 0;
     border-right: 1px solid #606060;
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 100%;
 }
 
 .signup-form-input input {
@@ -145,6 +146,7 @@ hr {
     /* width: 100%; */
     font-size: 16px;
     font-weight: 400;
+    line-height: 100%;
     color: #958b8b;
 }
 

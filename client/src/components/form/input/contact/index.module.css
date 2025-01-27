@@ -1,0 +1,100 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.label {
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
+    color: #b7bfc7;
+}
+
+.wrap {
+    min-height: 44px;
+    height: 100%;
+    border: 1px solid #606060;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: center;
+    position: relative;
+}
+
+.input {
+    flex: 1;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: #b7bfc7;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.input:-webkit-autofill {
+    background-color: white !important; /* Set your desired background color */
+    color: #b7bfc7 !important; /* Set your desired text color */
+    -webkit-text-fill-color: #b7bfc7 !important; /* Ensures text color for autofilled fields */
+    -webkit-box-shadow: 0 0 0px 1000px #0d0d0d inset !important; /* Force the background color */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent quick flash of autofill styles */
+}
+
+.countrySelectionDisplay {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    flex-shrink: 0;
+    border-right: 1px solid #606060;
+}
+
+.optionsWrap {
+    position: absolute;
+    top: 110%;
+    height: 280px;
+    overflow-y: scroll;
+    border: 1px solid #606060;
+    border-radius: 8px;
+    background-color: #0d1118;
+    width: 100%;
+}
+
+.optionsWrap::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+.optionsWrap::-webkit-scrollbar-thumb {
+    width: 0.4rem;
+    height: 3rem;
+    background-color: #ccc;
+    border-radius: 0.4rem;
+}
+
+.options {
+    padding: 15px;
+    border-bottom: 1px solid #606060;
+    border-right: 1px solid #606060;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options:hover {
+    background-color: #141a24;
+}
+
+.options:last-child {
+    border-bottom: none;
+}
+
+.optionsCountryName {
+    flex: 1;
+    text-align: left;
+}

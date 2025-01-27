@@ -1,17 +1,12 @@
 import "./css/signup-page.css";
-import { importAll } from "../components/js/import-data.js";
-// import Header from "../components/header";
 import FormInput from "../components/form-input.jsx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import SEO from "../components/seo.jsx";
 
 export default function SignupPage() {
     const [username, setUsername] = useState();
-
-    const svgs = importAll(
-        require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
-    );
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -20,18 +15,29 @@ export default function SignupPage() {
     const passwordInputRef = useRef();
     const usageConsentCheckRef = useRef();
 
-    // useEffect(() => {
-    //     if (!!location.state === true) {
-    //         !!location.state.usernameInputValue
-    //             ? setUsername(location.state.usernameInputValue)
-    //             : navigate("/");
-    //     } else {
-    //         navigate("/");
-    //     }
-    // }, [location.state, navigate]);
+    useEffect(() => {
+        if (!!location.state === true) {
+            !!location.state.usernameInputValue
+                ? setUsername(location.state.usernameInputValue)
+                : setUsername("");
+            // : navigate("/");
+        } else {
+            // navigate("/");
+            setUsername("");
+        }
+    }, [location.state]);
 
     const handleContinueButton = async (e) => {
         e.preventDefault();
+        // proceed only if all the data fields are populated
+        let areFormInputsFilled =
+            !!usernameInputRef.current.value &&
+            !!emailInputRef.current.value &&
+            !!passwordInputRef.current.value &&
+            !!usageConsentCheckRef.current.checked;
+        if (!areFormInputsFilled) {
+            return;
+        }
         // send form data for email confirmation
         try {
             let data = await axios.post(
@@ -56,7 +62,12 @@ export default function SignupPage() {
 
     return (
         <>
-            {/* <Header type="loggingin" /> */}
+            <SEO
+                title="Linkyo | Signup Page"
+                description="Create your Linkyo.io account"
+                name="Linkyo"
+                type="website"
+            />
             <div className="signup-page-container">
                 <div className="signup-page-col-1">
                     <form action="" className="signup-page-form">
@@ -119,17 +130,17 @@ export default function SignupPage() {
                                 </div>
 
                                 {/* Google Login Button */}
-                                <button className="google-login-button">
-                                    <img src={svgs["google-icon.svg"]} alt="" />
-                                    Express Login with Google
-                                </button>
+                                <FormInput
+                                    componentType="google"
+                                    style={{ maxWidth: "400px" }}
+                                />
                             </div>
                         </div>
                         <div className="signup-page-form-footer">
                             <p>
                                 Already have an account?{" "}
                                 <Link
-                                    to={""}
+                                    to="/signin"
                                     className={
                                         "signup-page-form-footer-link sign-in-link"
                                     }

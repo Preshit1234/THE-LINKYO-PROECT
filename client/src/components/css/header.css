@@ -15,7 +15,7 @@
     gap: 20px;
     align-items: center;
     justify-content: flex-end;
-    
+
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
@@ -23,7 +23,7 @@
 }
 
 .login-header {
-    background-color: #161B22;
+    background-color: #161b22;
 }
 
 .header-inline {
@@ -35,7 +35,8 @@
 }
 
 #app-logo-img {
-    left: 40px; 
+    left: 40px;
+    cursor: pointer;
 }
 
 #app-logo-text {
@@ -43,8 +44,9 @@
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    
-    background: -webkit-linear-gradient(0deg, #C632C9 45%, #58A6FF 56%);
+    cursor: pointer;
+
+    background: -webkit-linear-gradient(0deg, #c632c9 45%, #58a6ff 56%);
     background-clip: content-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,7 +56,7 @@
     font-size: 15px;
     font-weight: 600;
     line-height: 21px;
-    color: #FDF6FC;
+    color: #fdf6fc;
 }
 
 #header-homepage-link {
@@ -93,13 +95,13 @@
     border: 0px solid transparent;
     border-radius: 16px;
     background-color: #363738;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 400;
 }
 
 #header-searchbar-input::placeholder {
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 400;
 }
@@ -111,20 +113,33 @@
     justify-content: center;
     padding: 6px 20px;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500px;
     line-height: 20px;
     border: 1px solid rgba(240, 246, 252, 10%);
     border-radius: 6px;
-    background-image: linear-gradient(90deg, rgba(9, 105, 218, 100%), rgba(5, 56, 116, 100%));
+    background-image: linear-gradient(
+        90deg,
+        rgba(9, 105, 218, 100%),
+        rgba(5, 56, 116, 100%)
+    );
 }
 
-#header-create-drop-button, .login {
+#header-create-drop-button,
+.login {
     right: 116px;
     border: 1px solid rgba(27, 27, 27, 100%);
     border-radius: 6px;
-    background-image: linear-gradient(90deg, rgba(198, 50, 201, 100%), rgba(5, 56, 116, 100%));
+    background-image: linear-gradient(
+        90deg,
+        rgba(198, 50, 201, 100%),
+        rgba(5, 56, 116, 100%)
+    );
+}
+
+#header-create-drop-button.dropButtonMobile {
+    display: none;
 }
 
 #header-login-link {
@@ -132,7 +147,7 @@
     line-height: 20px;
     font-weight: 700;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #header-promote-drop-button {
@@ -142,11 +157,11 @@
     justify-content: center;
     padding: 6px 20px;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500px;
     line-height: 20px;
-    border: 1px solid #0960DA;
+    border: 1px solid #0960da;
     border-radius: 6px;
     /* background-image: linear-gradient(90deg, rgba(9, 105, 218, 100%), rgba(31, 158, 152, 50%), rgba(15, 110, 255, 0%)); */
 }
@@ -166,18 +181,36 @@
 
 /* For mobile screens */
 @media screen and (max-width: 430px) {
-    .right-hand-side {
-        position: static;
+    .header-container {
+        height: 50px;
+    }
+
+    #header-promote-drop-button,
+    #header-create-drop-button {
+        /* position: static; */
         display: none;
-        width: 0;
+        /* width: 0; */
         overflow: hidden;
     }
 
+    #header-create-drop-button.dropButtonMobile {
+        display: inline-flex;
+    }
+
+    #header-login-link {
+        font-size: 16px;
+    }
+
     #app-logo-img {
-        left: 16px; 
+        left: 16px;
     }
 
     #app-logo-text {
         left: 60px;
+        font-size: 20px;
+    }
+
+    #header-searchbar-form {
+        display: none;
     }
 }

@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: stretch;
     overflow: hidden;
+    position: relative;
 }
 
 .categoryWrapper {
@@ -14,10 +15,11 @@
     top: 68px;
     right: 0;
     overflow: auto;
-    left: 300px;
+    left: 205px;
     /* right: 40px; */
-    padding-right: 40px;
     padding: 16px 0px;
+    padding-right: 40px;
+    padding-left: 20px;
     /* Hide Scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -31,7 +33,15 @@
 }
 
 .activeTag {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: #000000;
     border-color: #475569;
+}
+
+@media screen and (max-width: 430px) {
+    .categoryWrapper {
+        left: 56px;
+        top: 50px;
+        padding: 8px 0px;
+    }
 }

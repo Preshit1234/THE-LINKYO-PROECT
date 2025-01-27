@@ -1,20 +1,22 @@
 // Begin
 import { importAll } from "./js/import-data";
 import "./css/header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 /**
  * A react component that renders the website header
+ * Props:
+ * - type: The type of header to render.
+ *  - ""
+ *  - "loggingin" Set this in login and signup page
+ *  - "login"
+ * - userData: Login user data.
  * @returns {ReactNode}
  */
 export default function Header(props) {
     // Environment Variables
     const APP_NAME = process.env.REACT_APP_NAME;
-
-    // States
-    // const [createDropButtonRedirectUrl, setCreateDropButtonRedirectUrl] =
-    //     useState("/drop/create");
 
     /**
      * A state variable to store the current type of the Header component
@@ -25,6 +27,7 @@ export default function Header(props) {
     const [profilePic, setProfilePic] = useState(
         "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
     );
+    const navigate = useNavigate();
 
     useEffect(() => {
         setType(props.type);
@@ -41,6 +44,11 @@ export default function Header(props) {
         require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
     );
 
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        navigate("/");
+    };
+
     if (type === "loggingin") {
         return (
             <div className="header-container">
@@ -50,8 +58,13 @@ export default function Header(props) {
                     alt="App Logo"
                     className="header-inline"
                     id="app-logo-img"
+                    onClick={handleLogoClick}
                 />
-                <span className="header-inline" id="app-logo-text">
+                <span
+                    className="header-inline"
+                    id="app-logo-text"
+                    onClick={handleLogoClick}
+                >
                     {APP_NAME}
                 </span>
 
@@ -69,8 +82,13 @@ export default function Header(props) {
                     alt="App Logo"
                     className="header-inline"
                     id="app-logo-img"
+                    onClick={handleLogoClick}
                 />
-                <span className="header-inline" id="app-logo-text">
+                <span
+                    className="header-inline"
+                    id="app-logo-text"
+                    onClick={handleLogoClick}
+                >
                     {APP_NAME}
                 </span>
 
@@ -81,7 +99,7 @@ export default function Header(props) {
                     id="header-searchbar-form"
                 >
                     <input
-                        type="text"
+                        type="search"
                         placeholder="Search Product, Category, genre, etc.."
                         id="header-searchbar-input"
                     />
@@ -89,11 +107,18 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <Link
-                    to="/signup/dropper"
-                    className="header-inline login"
+                    to="/dropper/signup"
+                    className="header-inline login dropButtonDefault"
                     id="header-create-drop-button"
                 >
                     Drop Product
+                </Link>
+                <Link
+                    to="/dropper/signup"
+                    className="header-inline login dropButtonMobile"
+                    id="header-create-drop-button"
+                >
+                    Drop
                 </Link>
                 <img
                     src={svgs["notification-icon-active.svg"]}
@@ -119,8 +144,13 @@ export default function Header(props) {
                     alt="App Logo"
                     className="header-inline"
                     id="app-logo-img"
+                    onClick={handleLogoClick}
                 />
-                <span className="header-inline" id="app-logo-text">
+                <span
+                    className="header-inline"
+                    id="app-logo-text"
+                    onClick={handleLogoClick}
+                >
                     {APP_NAME}
                 </span>
 
@@ -128,18 +158,18 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <div className="right-hand-side">
-                    <Link to="/signinpage" className="" id="header-login-link">
+                    <Link to="/signin" className="" id="header-login-link">
                         Login
                     </Link>
                     <Link
-                        to={"/browse/drops"}
+                        to={"user/home"}
                         className=""
                         id="header-promote-drop-button"
                     >
                         Become a partner
                     </Link>
                     <Link
-                        to={"/signinpage"}
+                        to={"/signin"}
                         className=""
                         id="header-create-drop-button"
                     >
