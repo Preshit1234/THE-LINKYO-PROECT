@@ -16,6 +16,7 @@ const testRoute = require("./routes/test");
 const dropperRoute = require("./routes/dropper");
 const imagesRoute = require("./routes/image");
 const path = require("path");
+const adminPermissionRoute = require("./routes/dropper/Roles/adminRoute")
 
 mongoose
     .connect(process.env.MONGO_URL, {})
@@ -68,6 +69,7 @@ app.use("/api/drops/", dropRoute);
 app.use("/api/test/", testRoute);
 app.use("/api/dropper", dropperRoute);
 app.use("/api/image", imagesRoute);
+app.use("/api/admin", adminPermissionRoute);
 
 app.get("/api/test", (req, res) => {
     res.json({ success: "Hello World" });
