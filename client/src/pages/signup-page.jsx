@@ -140,7 +140,7 @@ export default function SignupPage() {
                             <p>
                                 Already have an account?{" "}
                                 <Link
-                                    to="/signinpage"
+                                    to="/signin"
                                     className={
                                         "signup-page-form-footer-link sign-in-link"
                                     }

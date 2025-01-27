@@ -54,7 +54,17 @@ app.use(function (req, res, next) {
 });
 
 //Serve files from the uploads folder
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "uploads"), {
+        setHeaders: (res) => {
+            res.setHeader(
+                "Cache-Control",
+                "public, max-age=31536000, immutable"
+            );
+        },
+    })
+);
 
 app.use("/api/auth/", authRoute);
 app.use("/api/users/", userRoute);

@@ -17,9 +17,9 @@ export default function LoginPageX() {
     useEffect(() => {
         if (!!user) {
             if (user.isWelcomed) {
-                navigate("/browse/drops");
+                navigate("/user/home");
             } else {
-                navigate("/welcomepage");
+                navigate("/user/welcome");
             }
         }
     }, [user, navigate]);
