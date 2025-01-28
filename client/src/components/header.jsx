@@ -1,8 +1,9 @@
 // Begin
 import { importAll } from "./js/import-data";
 import "./css/header.css";
+import styles from "./css/header.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /**
  * A react component that renders the website header
@@ -27,7 +28,9 @@ export default function Header(props) {
     const [profilePic, setProfilePic] = useState(
         "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
     );
+    const [isProfilePicDialogOpen, setIsProfilePicDialogOpen] = useState(false);
     const navigate = useNavigate();
+    const profilePicDialogRef = useRef();
 
     useEffect(() => {
         setType(props.type);
@@ -40,6 +43,13 @@ export default function Header(props) {
             );
     }, [props.type, props.userData]);
 
+    useEffect(() => {
+        if (!!profilePicDialogRef.current)
+            !!isProfilePicDialogOpen
+                ? profilePicDialogRef.current.show()
+                : profilePicDialogRef.current.close();
+    });
+
     const svgs = importAll(
         require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
     );
@@ -47,6 +57,10 @@ export default function Header(props) {
     const handleLogoClick = (e) => {
         e.preventDefault();
         navigate("/");
+    };
+
+    const handleProfilePicClick = (e) => {
+        setIsProfilePicDialogOpen(!isProfilePicDialogOpen);
     };
 
     if (type === "loggingin") {
@@ -132,7 +146,53 @@ export default function Header(props) {
                     className="header-inline"
                     id="header-user-profile-pic"
                     crossOrigin="use-credentials"
+                    onClick={handleProfilePicClick}
                 />
+                {/* {isProfilePicDialogOpen ? (
+                    <dialog
+                        ref={profilePicDialogRef}
+                        open
+                        className={styles.profilePicDialog}
+                    >
+                        <img
+                            src={profilePic}
+                            alt="user profile pic"
+                            className="header-inline"
+                            id="header-user-profile-pic"
+                            crossOrigin="use-credentials"
+                        />
+                        {userData.fullName}
+                        {userData.email}
+                        <hr />
+                        Profile <br />
+                        Switch <br />
+                        Account <br />
+                        Sign out <br />
+                        Settings
+                    </dialog>
+                ) : (
+                    ""
+                )} */}
+                <dialog
+                    ref={profilePicDialogRef}
+                    className={styles.profilePicDialog}
+                >
+                    <img
+                        src={profilePic}
+                        alt="user profile pic"
+                        className="header-inline"
+                        id="header-user-profile-pic"
+                        crossOrigin="use-credentials"
+                    />
+                    {userData.fullName}
+                    {userData.email}
+                    <hr />
+                    Profile <br />
+                    Switch <br />
+                    Account <br />
+                    Sign out <br />
+                    Settings
+                </dialog>
             </div>
         );
     } else {
