@@ -50,7 +50,7 @@ export default function SignupPage() {
                 }
             );
             if (!!data) console.log("");
-            navigate("/confirmemail", {
+            navigate("/user/confirmemail", {
                 state: {
                     email: emailInputRef.current.value,
                 },

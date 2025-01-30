@@ -114,6 +114,7 @@ router.post("/login", async (req, res) => {
 
         // If user not found return err
         if (!user) {
+            console.log(user);
             res.status(401).json("User not found");
             return;
         }

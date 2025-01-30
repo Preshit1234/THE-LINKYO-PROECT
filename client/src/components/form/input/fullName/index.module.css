@@ -36,7 +36,7 @@
 .input {
     flex: 1;
     width: 100%;
-    background-color: transparent;
+    background-color: #0d0d0d;
     border: 0;
     outline: 0;
     color: #b7bfc7;
@@ -45,7 +45,7 @@
 }
 
 .input:-webkit-autofill {
-    background-color: white !important; /* Set your desired background color */
+    background-color: #0d0d0d !important; /* Set your desired background color */
     color: #b7bfc7 !important; /* Set your desired text color */
     -webkit-text-fill-color: #b7bfc7 !important; /* Ensures text color for autofilled fields */
     -webkit-box-shadow: 0 0 0px 1000px #0d0d0d inset !important; /* Force the background color */

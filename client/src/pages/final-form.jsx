@@ -106,7 +106,7 @@ export default function Finalise() {
                 }
             );
             setUser(res.data.newUserData);
-            navigate("/browse/drops");
+            navigate("/user/home");
         } catch (err) {
             console.log("Welcome page form submission error: ", err);
         }

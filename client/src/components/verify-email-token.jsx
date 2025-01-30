@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
@@ -32,8 +32,8 @@ export default function VerifyEmailToken() {
                     setUser(loginUserData);
                     console.log("Login User Data: ", loginUserData);
                     !loginUserData.isWelcomed
-                        ? navigate("/signinpage")
-                        : navigate("/browse/drops");
+                        ? navigate("/signin")
+                        : navigate("/user/home");
                 }
             } catch (err) {
                 console.log(err);
