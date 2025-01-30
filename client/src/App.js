@@ -67,8 +67,15 @@ export default function App() {
             </Route>
 
             <Route path="user">
-                <Route path="welcome" element={<Finalise />} />
+                <Route path="welcome" element={<Finalise />} /> 
                 <Route path="home" element={<BrowseDrops />} />
+
+                {/* //For future Development */}
+                <Route exact path="homedrop">
+                    <Route index element={<BrowseDrops />} />
+                    <Route path="paiddrops" element={<BrowseDrops typePaid="paid" />} />
+                    <Route path="freedrops" element={<BrowseDrops typePaid="free" />} />
+                </Route>
 
                 <Route path="drops">
                     <Route path=":drop" element={<ViewDrop />} />
