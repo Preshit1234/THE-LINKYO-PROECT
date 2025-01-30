@@ -7,6 +7,9 @@
     top: 0;
     z-index: 100;
     background-color: #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .header-container .right-hand-side {
@@ -14,24 +17,10 @@
     flex-direction: row;
     gap: 20px;
     align-items: center;
-    justify-content: flex-end;
-
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    right: 40px;
 }
 
 .login-header {
     background-color: #161b22;
-}
-
-.header-inline {
-    /* display: inline-block; */
-    text-decoration: none;
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
 }
 
 #app-logo-img {
@@ -83,65 +72,6 @@
     left: 517px;
 }
 
-#header-searchbar-form {
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#header-searchbar-input {
-    padding-left: 29px;
-    width: 583px;
-    height: 32px;
-    border: 0px solid transparent;
-    border-radius: 16px;
-    background-color: #363738;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-#header-searchbar-input::placeholder {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-#header-create-drop-button {
-    right: 64px;
-    display: inline-flex;
-    align-content: center;
-    justify-content: center;
-    padding: 6px 20px;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 500px;
-    line-height: 20px;
-    border: 1px solid rgba(240, 246, 252, 10%);
-    border-radius: 6px;
-    background-image: linear-gradient(
-        90deg,
-        rgba(9, 105, 218, 100%),
-        rgba(5, 56, 116, 100%)
-    );
-}
-
-#header-create-drop-button,
-.login {
-    right: 116px;
-    border: 1px solid rgba(27, 27, 27, 100%);
-    border-radius: 6px;
-    background-image: linear-gradient(
-        90deg,
-        rgba(198, 50, 201, 100%),
-        rgba(5, 56, 116, 100%)
-    );
-}
-
-#header-create-drop-button.dropButtonMobile {
-    display: none;
-}
-
 #header-login-link {
     font-size: 13px;
     line-height: 20px;
@@ -166,11 +96,6 @@
     /* background-image: linear-gradient(90deg, rgba(9, 105, 218, 100%), rgba(31, 158, 152, 50%), rgba(15, 110, 255, 0%)); */
 }
 
-#header-notification-button {
-    right: 65px;
-    margin-top: -2px;
-}
-
 #header-user-profile-pic {
     right: 24px;
     height: 28px;
@@ -185,16 +110,9 @@
         height: 50px;
     }
 
-    #header-promote-drop-button,
-    #header-create-drop-button {
-        /* position: static; */
+    #header-promote-drop-button {
         display: none;
-        /* width: 0; */
         overflow: hidden;
-    }
-
-    #header-create-drop-button.dropButtonMobile {
-        display: inline-flex;
     }
 
     #header-login-link {

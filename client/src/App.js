@@ -38,6 +38,11 @@ import DropperRoleRegistrationPage from "./pages/dropper/role/register";
 import DropperDeveloperConsolePage from "./pages/dropper/developer/view";
 import DropperCredentialsPage from "./pages/dropper/developer/credentials/view";
 import DropperCredentialRegistrationPage from "./pages/dropper/developer/credentials/register";
+import FetcherLayout from "./layouts/fetcher";
+
+function Test() {
+    return <h1>Test</h1>;
+}
 
 export default function App() {
     return (
@@ -54,6 +59,12 @@ export default function App() {
                 path="verify/email/token/:token"
                 element={<VerifyEmailToken />}
             />
+
+            <Route path="test" element={<FetcherLayout />}>
+                <Route index element={<Test />} />
+                <Route path="home2" element={<h1>Test 2</h1>} />
+                <Route path="home3" element={<h1>Test 3</h1>} />
+            </Route>
 
             <Route path="user">
                 <Route path="welcome" element={<Finalise />} />
