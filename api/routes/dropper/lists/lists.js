@@ -48,21 +48,21 @@ router.get("/getlists", async (req,res)=>{
         if(typeQuery){
             if(tagsQuery){
                 list = await Lists.aggregate([
-                    {$sample : { size: 10 }},
+                    {$sample : { size: 9 }},
                     {$match : { type: typeQuery, tags: tagsQuery }},
                 ]);
             }
             //For ex. If type is Paid and there is no tag
             else{
                 list = await Lists.aggregate([
-                    {$sample : { size: 10 }},
+                    {$sample : { size: 9 }},
                     {$match : { type: typeQuery }}, 
                 ]);
             }
         }
         //for ex. If type is random and tag is random
         else{
-            list = await Lists.aggregate([{ $sample : { size: 10 } }])
+            list = await Lists.aggregate([{ $sample : { size: 9 } }])
         }
         res.status(200).json(list);
     }catch(err){

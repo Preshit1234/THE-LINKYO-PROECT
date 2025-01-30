@@ -106,7 +106,7 @@ export default function BrowseDrops({type}) {
                         <MultipleDropCards />
                     </div> */}
                     <div id="drops-type-2" className="drops-types">
-                        <MultipleDropCards />
+                        {/* <MultipleDropCards /> */}
                     </div>
                 </div>
             </div>
