@@ -62,8 +62,8 @@ export default function App() {
                 {/* //For future Development */}
                 <Route exact path="homedrop">
                     <Route index element={<BrowseDrops />} />
-                    <Route path="paiddrops" element={<BrowseDrops typePaid="paid" />} />
-                    <Route path="freedrops" element={<BrowseDrops typePaid="free" />} />
+                    <Route path="paiddrops" element={<BrowseDrops type="paid" />} />
+                    <Route path="freedrops" element={<BrowseDrops type="free" />} />
                 </Route>
 
                 <Route path="drops">

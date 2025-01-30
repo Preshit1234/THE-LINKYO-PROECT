@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema(
         lastName: { type: String, default: "" },
         fullName: { type: String, default: "" },
         profilepic: { type: String, default: "" },
+        isAdmin : {type: Boolean, default: false},
         followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         followings: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         googleSubId: { type: String, default: null },
