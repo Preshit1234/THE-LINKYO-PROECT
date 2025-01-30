@@ -7,6 +7,8 @@ import Header from "../components/header.jsx";
 // import { importAll } from "../components/js/import-data.js";
 import Sidebar from "../components/sidebar.jsx";
 import { useUser } from "../contexts/UserContext.jsx";
+import { Outlet } from 'react-router-dom';
+import TogglePaid from './testDropperpage/browsedroppaid';
 
 // Mock API response data
 const categoryTagsList = [
@@ -28,7 +30,7 @@ const categoryTagsList = [
  * A react component that renders the browse drops page.
  * @returns {ReactNode}
  */
-export default function BrowseDrops() {
+export default function BrowseDrops({typePaid}) {
     const [categoryTags, setCategoryTags] = useState([]);
     const { user } = useUser();
 
@@ -44,6 +46,7 @@ export default function BrowseDrops() {
 
     return (
         <div className={styles.container}>
+            {/* <Outlet context={{ paid, free }} /> */}
             <Header
                 type={!!user ? "login" : ""}
                 userData={!!user ? user : ""}
@@ -67,6 +70,7 @@ export default function BrowseDrops() {
                     </div>
                 </div>
                 <div id="drops-container">
+                    <TogglePaid typePaid={typePaid} />
                     {/* <div id="drops-type-1" className="drops-types">
                         <p className="drops-type-text">Top products dropped recently</p>
                         <MultipleDropCards />
