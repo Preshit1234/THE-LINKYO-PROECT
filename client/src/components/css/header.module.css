@@ -1,6 +1,281 @@
-.profilePicDialog {
+.container {
+    width: 100%;
+    height: 68px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
     background-color: #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.container.login {
+    background-color: #161b22;
+}
+
+.left {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.form {
+    width: 100%;
+    max-width: 583px;
+    height: 32px;
+    border: 0px solid transparent;
+    border-radius: 16px;
+    background-color: #363738;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: center;
+    overflow: hidden;
+}
+
+.inputContainer {
+    padding-left: 25px;
+    /* padding-right: 25px; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    position: relative;
+    background-color: inherit;
+}
+
+.searchInput {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+}
+
+.searchInput::placeholder {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* .searchInput::-webkit-search-cancel-button {
+    color: #ffffff;
+} */
+
+.searchInputCancelButton {
+    background-color: inherit;
+    outline: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    align-self: stretch;
+    height: 100%;
+    cursor: pointer;
+    padding: 4px;
+    display: none;
+}
+
+.searchButton {
+    /* background-color: #363738; */
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 16px;
+    /* border-left: 1px solid rgba(255, 255, 255, 0.2); */
+}
+
+.right {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    align-content: center;
+    flex-shrink: 0;
+}
+.notificationsIconContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.notificationIcon {
+    padding-top: 2px;
+}
+
+.dropButton {
+    right: 64px;
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    padding: 6px 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    border: 1px solid rgba(27, 27, 27, 100%);
+    border-radius: 6px;
+    background-image: linear-gradient(
+        90deg,
+        rgba(198, 50, 201, 100%),
+        rgba(5, 56, 116, 100%)
+    );
+    flex-shrink: 0;
+}
+
+.dropButton.mobile {
+    display: none;
+}
+
+.profilePicDialog {
+    background-color: #30363d;
     left: unset;
     right: 25px;
     top: 52px;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+}
+
+.profilePicDialog .row1 {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 10px;
+    align-items: center;
+}
+
+.profilePicDialog .row1 .col1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profilePicDialog .row1 .dialogPic {
+    height: 40px;
+    width: 40px;
+    border-radius: 999px;
+}
+
+.profilePicDialog .row1 .col2 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+}
+
+/* .profilePicDialog .row1 .col2 .fullName {
+} */
+
+.profilePicDialog .row1 .col2 .email {
+    font-size: 14px;
+}
+
+.profilePicDialog .row1 .col2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.profilePicDialog .row2 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profilePicDialog .row2 .links {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    align-items: center;
+    outline: 0;
+}
+
+.profilePicDialog .row2 .links:hover {
+    background-color: #3b424a;
+}
+
+.notificationsDialog {
+    background-color: #30363d;
+    left: unset;
+    right: 69px;
+    top: 52px;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.notificationsDialog .row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.notificationsDialog .row2 {
+    height: 400px;
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media screen and (max-width: 430px) {
+    .header-container {
+        height: 50px;
+    }
+
+    .dropButton.default {
+        display: none;
+        /* overflow: hidden; */
+    }
+
+    .dropButton.mobile {
+        display: inline-flex;
+    }
+
+    #header-login-link {
+        font-size: 16px;
+    }
+
+    #app-logo-img {
+        left: 16px;
+    }
+
+    #app-logo-text {
+        left: 60px;
+        font-size: 20px;
+    }
+
+    #header-searchbar-form {
+        display: none;
+    }
 }

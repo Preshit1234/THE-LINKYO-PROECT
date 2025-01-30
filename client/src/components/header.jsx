@@ -4,6 +4,8 @@ import "./css/header.css";
 import styles from "./css/header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { Icon } from "@iconify/react";
+import useClickDetector from "./hooks/clickDetector";
 
 /**
  * A react component that renders the website header
@@ -29,8 +31,62 @@ export default function Header(props) {
         "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
     );
     const [isProfilePicDialogOpen, setIsProfilePicDialogOpen] = useState(false);
+    const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] =
+        useState(false);
+    const [haveNewNotifications, setHaveNewNotifications] = useState(true);
     const navigate = useNavigate();
+    const profilePicRef = useRef();
+    const notificationsIconRef = useRef();
     const profilePicDialogRef = useRef();
+    const notificationsDialogRef = useRef();
+    const cancelButtonRef = useRef();
+    const searchInputRef = useRef();
+    const [clickedElement, setClickedElement] = useClickDetector();
+
+    // Effect to control modals
+    useEffect(() => {
+        if (!clickedElement) {
+            return;
+        }
+        // If user clicked on notifications icon or notifications modal
+        if (
+            !!notificationsIconRef.current &&
+            clickedElement === notificationsIconRef.current
+        ) {
+            setIsNotificationsDialogOpen(!isNotificationsDialogOpen);
+            setHaveNewNotifications(false);
+        } else if (
+            !!notificationsDialogRef.current &&
+            notificationsDialogRef.current.contains(clickedElement)
+        ) {
+            setIsNotificationsDialogOpen(true);
+        } else {
+            if (isNotificationsDialogOpen) setIsNotificationsDialogOpen(false);
+        }
+
+        // If user clicked on profile pic or profile pic modal
+        if (
+            !!profilePicRef.current &&
+            clickedElement === profilePicRef.current
+        ) {
+            setIsProfilePicDialogOpen(!isProfilePicDialogOpen);
+        } else if (
+            !!profilePicDialogRef.current &&
+            profilePicDialogRef.current.contains(clickedElement)
+        ) {
+            setIsProfilePicDialogOpen(true);
+        } else {
+            setIsProfilePicDialogOpen(false);
+        }
+
+        // Setting clicked element to null to avoid an infinite loop
+        setClickedElement(null);
+    }, [
+        clickedElement,
+        setClickedElement,
+        isNotificationsDialogOpen,
+        isProfilePicDialogOpen,
+    ]);
 
     useEffect(() => {
         setType(props.type);
@@ -48,7 +104,14 @@ export default function Header(props) {
             !!isProfilePicDialogOpen
                 ? profilePicDialogRef.current.show()
                 : profilePicDialogRef.current.close();
-    });
+    }, [isProfilePicDialogOpen]);
+
+    useEffect(() => {
+        if (!!notificationsDialogRef.current)
+            !!isNotificationsDialogOpen
+                ? notificationsDialogRef.current.show()
+                : notificationsDialogRef.current.close();
+    }, [isNotificationsDialogOpen]);
 
     const svgs = importAll(
         require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
@@ -59,165 +122,295 @@ export default function Header(props) {
         navigate("/");
     };
 
-    const handleProfilePicClick = (e) => {
-        setIsProfilePicDialogOpen(!isProfilePicDialogOpen);
+    const handleSearchInputCancelButtonClick = (e) => {
+        e.preventDefault();
+        searchInputRef.current.value = "";
+        cancelButtonRef.current.style.display = "none";
+    };
+
+    const handleSearchInputMouseEnter = () => {
+        if (!!searchInputRef.current.value)
+            cancelButtonRef.current.style.display = "flex";
+    };
+
+    const handleSearchInputMouseLeave = (e) => {
+        if (!searchInputRef.current.value) {
+            cancelButtonRef.current.style.display = "none";
+        }
+    };
+
+    const handleSearchInputFocusEvent = () => {
+        cancelButtonRef.current.style.display = "flex";
     };
 
     if (type === "loggingin") {
         return (
-            <div className="header-container">
+            <div className={styles.container}>
                 {/* Left Hand Side */}
-                <img
-                    src={svgs["app-logo.svg"]}
-                    alt="App Logo"
-                    className="header-inline"
-                    id="app-logo-img"
-                    onClick={handleLogoClick}
-                />
-                <span
-                    className="header-inline"
-                    id="app-logo-text"
-                    onClick={handleLogoClick}
-                >
-                    {APP_NAME}
-                </span>
+                <div className={styles.left}>
+                    <img
+                        src={svgs["app-logo.svg"]}
+                        alt="App Logo"
+                        className=""
+                        id="app-logo-img"
+                        onClick={handleLogoClick}
+                    />
+                    <span
+                        className=""
+                        id="app-logo-text"
+                        onClick={handleLogoClick}
+                    >
+                        {APP_NAME}
+                    </span>
+                </div>
 
                 {/* Center */}
 
                 {/* Right Hand Side */}
+                <div></div>
             </div>
         );
     } else if (type === "login" && !!userData) {
         return (
-            <div className="header-container login-header">
+            <div className={styles.container + " " + styles.login}>
                 {/* Left Hand Side */}
-                <img
-                    src={svgs["app-logo.svg"]}
-                    alt="App Logo"
-                    className="header-inline"
-                    id="app-logo-img"
-                    onClick={handleLogoClick}
-                />
-                <span
-                    className="header-inline"
-                    id="app-logo-text"
-                    onClick={handleLogoClick}
-                >
-                    {APP_NAME}
-                </span>
+                <div className={styles.left}>
+                    <img
+                        src={svgs["app-logo.svg"]}
+                        alt="App Logo"
+                        className={styles.logoImg}
+                        id="app-logo-img"
+                        onClick={handleLogoClick}
+                    />
+                    <span
+                        className={styles.logoText}
+                        id="app-logo-text"
+                        onClick={handleLogoClick}
+                    >
+                        {APP_NAME}
+                    </span>
+                </div>
 
                 {/* Center */}
-                <form
-                    action=""
-                    className="header-inline"
-                    id="header-searchbar-form"
-                >
-                    <input
-                        type="search"
-                        placeholder="Search Product, Category, genre, etc.."
-                        id="header-searchbar-input"
-                    />
-                </form>
+                <div className={styles.center}>
+                    <form
+                        action=""
+                        id="header-searchbar-form"
+                        className={styles.form}
+                    >
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="search"
+                                placeholder="Search Product, Category, genre, etc.."
+                                id="header-searchbar-input"
+                                className={styles.searchInput}
+                                ref={searchInputRef}
+                                onFocus={handleSearchInputFocusEvent}
+                                onMouseEnter={handleSearchInputMouseEnter}
+                                onMouseLeave={handleSearchInputMouseLeave}
+                            />
+                            <button
+                                className={styles.searchInputCancelButton}
+                                ref={cancelButtonRef}
+                                onClick={handleSearchInputCancelButtonClick}
+                                onMouseEnter={handleSearchInputMouseEnter}
+                                onMouseLeave={handleSearchInputMouseLeave}
+                            >
+                                <Icon
+                                    icon="radix-icons:cross-1"
+                                    width="20"
+                                    height="20"
+                                    style={{ color: "#fff" }}
+                                />
+                            </button>
+                        </div>
+                        <button className={styles.searchButton}>
+                            <Icon
+                                icon="uil:search"
+                                width="18"
+                                height="18"
+                                style={{ color: "#fff" }}
+                            />
+                        </button>
+                    </form>
+                </div>
 
                 {/* Right Hand Side */}
-                <Link
-                    to="/dropper/signup"
-                    className="header-inline login dropButtonDefault"
-                    id="header-create-drop-button"
-                >
-                    Drop Product
-                </Link>
-                <Link
-                    to="/dropper/signup"
-                    className="header-inline login dropButtonMobile"
-                    id="header-create-drop-button"
-                >
-                    Drop
-                </Link>
-                <img
-                    src={svgs["notification-icon-active.svg"]}
-                    alt="active notification icon"
-                    className="header-inline"
-                    id="header-notification-button"
-                />
-                <img
-                    src={profilePic}
-                    alt="user profile pic"
-                    className="header-inline"
-                    id="header-user-profile-pic"
-                    crossOrigin="use-credentials"
-                    onClick={handleProfilePicClick}
-                />
-                {/* {isProfilePicDialogOpen ? (
-                    <dialog
-                        ref={profilePicDialogRef}
-                        open
-                        className={styles.profilePicDialog}
+                <div className={styles.right}>
+                    <Link
+                        to="/dropper/signup"
+                        className={styles.dropButton + " " + styles.default}
+                        id="header-create-drop-button"
                     >
-                        <img
-                            src={profilePic}
-                            alt="user profile pic"
-                            className="header-inline"
-                            id="header-user-profile-pic"
-                            crossOrigin="use-credentials"
+                        Drop Product
+                    </Link>
+                    <Link
+                        to="/dropper/signup"
+                        className={styles.dropButton + " " + styles.mobile}
+                        id="header-create-drop-button"
+                    >
+                        Drop
+                    </Link>
+                    <div
+                        style={{ width: "30px", height: "30px" }}
+                        className={styles.notificationsIconContainer}
+                        ref={notificationsIconRef}
+                    >
+                        {!haveNewNotifications && !isNotificationsDialogOpen ? (
+                            <Icon
+                                icon="material-symbols:notifications-outline-rounded"
+                                width="30"
+                                height="30"
+                                style={{ color: "#fff", pointerEvents: "none" }}
+                                alt="active notification icon"
+                                className={styles.notificationIcon}
+                                id="header-notification-button"
+                            />
+                        ) : isNotificationsDialogOpen ? (
+                            <Icon
+                                icon="material-symbols:notifications-rounded"
+                                width="30"
+                                height="30"
+                                style={{ color: "#fff", pointerEvents: "none" }}
+                                alt="active notification icon"
+                                className={styles.notificationIcon}
+                                id="header-notification-button"
+                            />
+                        ) : (
+                            <Icon
+                                icon="material-symbols:notifications-unread-outline-rounded"
+                                width="30"
+                                height="30"
+                                style={{ color: "#fff", pointerEvents: "none" }}
+                                alt="active notification icon"
+                                className={styles.notificationIcon}
+                                id="header-notification-button"
+                            />
+                        )}
+                    </div>
+                    <img
+                        src={profilePic}
+                        alt="user profile pic"
+                        className=""
+                        id="header-user-profile-pic"
+                        crossOrigin="use-credentials"
+                        style={{ cursor: "pointer" }}
+                        ref={profilePicRef}
+                    />
+                </div>
+                <dialog
+                    className={styles.notificationsDialog}
+                    ref={notificationsDialogRef}
+                >
+                    <div className={styles.row1}>
+                        <span>Notifications</span>
+                        <Icon
+                            icon="ic:baseline-settings"
+                            width="24"
+                            height="24"
+                            style={{ color: "#b82727" }}
                         />
-                        {userData.fullName}
-                        {userData.email}
-                        <hr />
-                        Profile <br />
-                        Switch <br />
-                        Account <br />
-                        Sign out <br />
-                        Settings
-                    </dialog>
-                ) : (
-                    ""
-                )} */}
+                    </div>
+                    <div className={styles.row2}></div>
+                </dialog>
                 <dialog
                     ref={profilePicDialogRef}
                     className={styles.profilePicDialog}
                 >
-                    <img
-                        src={profilePic}
-                        alt="user profile pic"
-                        className="header-inline"
-                        id="header-user-profile-pic"
-                        crossOrigin="use-credentials"
-                    />
-                    {userData.fullName}
-                    {userData.email}
-                    <hr />
-                    Profile <br />
-                    Switch <br />
-                    Account <br />
-                    Sign out <br />
-                    Settings
+                    <div className={styles.row1}>
+                        <div className={styles.col1}>
+                            <img
+                                src={profilePic}
+                                alt="user profile pic"
+                                className={styles.dialogPic}
+                                id=""
+                                crossOrigin="use-credentials"
+                            />
+                        </div>
+                        <div className={styles.col2}>
+                            <span className={styles.fullName}>
+                                {userData.fullName}
+                            </span>
+                            <span className={styles.email}>
+                                {userData.email}
+                            </span>
+                        </div>
+                    </div>
+                    <div className={styles.row2}>
+                        <div to="" className={styles.links}>
+                            <Icon
+                                icon="ic:round-person"
+                                width="24"
+                                height="24"
+                                style={{ color: "#ffffff" }}
+                            />
+                            Profile
+                        </div>
+                        <div to="" className={styles.links}>
+                            <Icon
+                                icon="ic:sharp-switch-account"
+                                width="24"
+                                height="24"
+                                style={{ color: "#ffffff" }}
+                            />
+                            Switch
+                        </div>
+                        <div to="" className={styles.links}>
+                            <Icon
+                                icon="ic:sharp-account-box"
+                                width="24"
+                                height="24"
+                                style={{ color: "#ffffff" }}
+                            />
+                            Account
+                        </div>
+                        <div to="" className={styles.links}>
+                            <Icon
+                                icon="ic:sharp-exit-to-app"
+                                width="24"
+                                height="24"
+                                style={{ color: "#ffffff" }}
+                            />
+                            Sign out
+                        </div>
+                        <div to="" className={styles.links}>
+                            <Icon
+                                icon="ic:baseline-settings"
+                                width="24"
+                                height="24"
+                                style={{ color: "#ffffff" }}
+                            />
+                            Settings
+                        </div>
+                    </div>
                 </dialog>
             </div>
         );
     } else {
         return (
-            <div className="header-container">
+            <div className={styles.container}>
                 {/* Left Hand Side */}
-                <img
-                    src={svgs["app-logo.svg"]}
-                    alt="App Logo"
-                    className="header-inline"
-                    id="app-logo-img"
-                    onClick={handleLogoClick}
-                />
-                <span
-                    className="header-inline"
-                    id="app-logo-text"
-                    onClick={handleLogoClick}
-                >
-                    {APP_NAME}
-                </span>
+                <div className={styles.left}>
+                    <img
+                        src={svgs["app-logo.svg"]}
+                        alt="App Logo"
+                        className=""
+                        id="app-logo-img"
+                        onClick={handleLogoClick}
+                    />
+                    <span
+                        className=""
+                        id="app-logo-text"
+                        onClick={handleLogoClick}
+                    >
+                        {APP_NAME}
+                    </span>
+                </div>
 
                 {/* Center */}
 
                 {/* Right Hand Side */}
-                <div className="right-hand-side">
+                <div className={styles.right}>
                     <Link to="/signin" className="" id="header-login-link">
                         Login
                     </Link>
