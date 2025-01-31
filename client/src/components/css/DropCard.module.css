@@ -82,8 +82,26 @@
 .wrap1a1 {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    white-space: nowrap;
+    width: 355px;
+    overflow-x: hidden;
+    position: relative;
 }
+
+.wrap1a1::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px; /* Width of the fade effect */
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgb(7 14 21 / 78%)
+    ); /* Gradient for fade effect */
+    pointer-events: none; /* Ensure the overlay doesn't block interactions */
+  }
 
 .pAutherWrapper {
     display: flex;
@@ -137,6 +155,7 @@
     flex-direction: column;
     flex-grow: 1;
     gap: 4px;
+    width: 298px;
 }
 
 .pTitle {
@@ -150,6 +169,8 @@
     line-height: 18px;
     font-weight: 500;
     color: #6e7681;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .wrap2 {

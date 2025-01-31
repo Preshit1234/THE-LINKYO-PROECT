@@ -2,16 +2,50 @@ const router = require("express").Router();
 const Drop = require("../models/Dropper/Drop");
 const User = require("../models/User/User")
 const verify = require("../verifyToken");
+const multer = require("multer");
+const storage = multer.memoryStorage(); // Store files in memory as buffers
+
+const fileFilter = (req, file, cb) => {
+  // Accept only image files with specific MIME types
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg') {
+    cb(null, true); // Accept the file
+  } else {
+    cb(new Error('Invalid file type. Only JPEG, JPG, and PNG images are allowed.'), false); // Reject the file
+  }
+};
+
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 1024 * 1024 * 5, // Limit file size to 5MB
+  },
+});
 
 //CREATE A DROP
 
-router.post("/", async (req,res)=>{
-    const newDrop = new Drop(req.body)
-    try{
-        const savedDrop = await newDrop.save();
-        res.status(200).json(savedDrop);
-    }catch(err){
-        res.status(500).json(err);
+router.post("/add", 
+    upload.fields([
+        { name: 'productPic', maxCount: 1 }, // Single file for profile picture
+        { name: 'relatedImg', maxCount: 3 }, // Up to 3 files for images
+    ]),
+    async (req,res)=>{
+        // console.log("Request body: ", req.body);
+        // res.status(200).json({message: "Testing"});
+        // return;
+        const { userId, product_name, url, short_desc, tagline, tags, owners_name, org_email, pin, value, discount } = req.body;
+        const productPic = req.files['productPic'] ? req.files['productPic'][0].buffer.toString('base64') : null;
+        const relatedimg = req.files['relatedImg'] ? req.files['relatedImg'].map((file) => file.buffer.toString('base64')) : [];
+        try{
+            const newDrop = new Drop({
+                userId, product_name, url, short_desc, tagline, tags, owners_name, org_email, pin, value, discount,
+                productPic,
+                relatedimg,
+              });
+            const savedDrop = await newDrop.save();
+            res.status(200).json(savedDrop);
+        }catch(err){
+            res.status(500).json(err);
     }
 });
 

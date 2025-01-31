@@ -1,6 +1,8 @@
+//import { useEffect } from 'react';
 import {useRef, useState} from 'react';
 import DropCard from '../drop-card';
 import ListStyles from './list.module.css';
+//import axios from 'axios';
 
 export default function List({list}){
     const listRef = useRef();
@@ -10,7 +12,7 @@ export default function List({list}){
             <span className={ ListStyles.ListNamaes }>{list.title} </span>
             <div className={ ListStyles.ListDropCards} ref={listRef}>
                 {list.content.map((item, i)=>(
-                    <DropCard index={i} item={item} />
+                    <DropCard item={item} />
                 ))}
             </div>
         </div>

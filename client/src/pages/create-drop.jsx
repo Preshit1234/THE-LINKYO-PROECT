@@ -5,6 +5,9 @@ import Header from "../components/header";
 import DropCard from "../components/drop-card";
 import { importAll } from "../components/js/import-data";
 import { useState, useEffect, useRef } from "react";
+import axios from 'axios';
+import { useUser } from '../contexts/UserContext'
+import { useNavigate } from "react-router-dom";
 
 /**
  * A dummy api response for rendering drop card component.
@@ -108,6 +111,7 @@ const CreateDrop = () => {
 
     const handleGetStarted = contextSafe((e) => {
         e.preventDefault();
+        ref2Url.current.value = refUrl.current.value;
         console.log("clicked Get Started");
         // validateURL()
         // if url is valid then
@@ -447,6 +451,73 @@ const CreateDrop = () => {
             );
     });
 
+    const refUrl = useRef();
+    const ref2Url = useRef();
+    const {user, setUser} = useUser();
+    const [drop, setDrop] = useState({product_name: '', short_desc: '', productPic: null, relatedImg: [], tagline : '', tags: [],
+    owners_name:'', org_email:'', pin:'', value:'', discount:''});
+
+    const navigate = useNavigate();
+  
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setDrop({...drop, [e.target.name]:value, userId: user.id})
+    }
+
+    const handleProductPicChange = (e) => {
+        const file = e.target.files[0];
+        setDrop({
+          ...drop,
+          productPic: file,
+        });
+      };
+    
+      const handleImagesChange = (e) => {
+        const files = Array.from(e.target.files); // Convert FileList to an array
+        setDrop({
+          ...drop,
+          relatedImg: files,
+        });
+      };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const data = new FormData();
+            data.append('userId', user.id);
+            data.append('url', drop.url);
+            data.append('product_name', drop.product_name);
+            data.append('short_desc', drop.short_desc);
+            data.append('productPic', drop.productPic);
+            data.append('tagline', drop.tagline);
+            data.append('tags', drop.tags);
+            data.append('owners_name', drop.owners_name);
+            data.append('org_email', drop.org_email);
+            data.append('pin', drop.pin);
+            data.append('value', drop.value);
+            data.append('discount', drop.discount);
+            drop.relatedImg.map((i) => data.append('relatedImg', i));
+                 // Append each image to the FormData object
+          const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/drops/add`, data, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            }});
+          console.log('Form submitted successfully:', res.data);
+          // You can add additional logic here, such as showing a success message or redirecting the user
+          console.log(res);
+          setDrop({ product_name: '', short_desc: '', productPic: null, relatedImg: [], tagline : '', tags: [],
+          owners_name:'', org_email:'', pin:'', value:'', discount:''
+        });
+        } catch (error) {
+          console.error('There was an error submitting the form:', error);
+          // You can add additional error handling logic here
+          return;
+        }
+
+        // navigate("/dropper/dashboard");
+      };
+
     return (
         <div id="create-drop-container">
             <Header type="login" />
@@ -473,9 +544,11 @@ const CreateDrop = () => {
                         <div id="create-drop-subform-1">
                             <input
                                 type="text"
-                                name="productInitialUrl"
+                                name="url"
                                 id="create-drop-subform-1-input"
                                 placeholder="Enter Product URL if any"
+                                onChange={handleChange}
+                                ref = {refUrl}
                             />
                             <button
                                 id="create-drop-subform-1-get-started-button"
@@ -719,7 +792,7 @@ const CreateDrop = () => {
                                         <div className="create-drop-form-subform-2-inputs-container">
                                             <div className="create-drop-form-input-fields-container">
                                                 <label
-                                                    htmlFor="productUrl"
+                                                    htmlFor="url"
                                                     className="create-drop-form-input-field-labels"
                                                 >
                                                     URL
@@ -730,6 +803,7 @@ const CreateDrop = () => {
                                                     id=""
                                                     placeholder="Enter Product URL if any"
                                                     className="create-drop-form-text-inputs"
+                                                    ref = {ref2Url}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -741,25 +815,27 @@ const CreateDrop = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="productName"
+                                                    name="product_name"
                                                     id=""
                                                     placeholder="Enter Name"
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
                                                 <label
-                                                    htmlFor="productDescription"
+                                                    htmlFor="short_desc"
                                                     className="create-drop-form-input-field-labels"
                                                 >
                                                     Description
                                                 </label>
                                                 <textarea
-                                                    name="productDesctiption"
-                                                    id=""
+                                                    name="short_desc"
+                                                    id="short_desc"
                                                     rows="6"
                                                     placeholder="Describe your product"
                                                     className="create-drop-form-textarea-inputs"
+                                                    onChange={handleChange}
                                                 ></textarea>
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -775,6 +851,7 @@ const CreateDrop = () => {
                                                     id=""
                                                     placeholder="Enter a catchy tagline"
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -790,6 +867,7 @@ const CreateDrop = () => {
                                                     id=""
                                                     placeholder="Enter Tags"
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-navigation-buttons-container">
@@ -825,11 +903,12 @@ const CreateDrop = () => {
                                                 </span>
                                                 <label className="create-drop-form-file-input-containers">
                                                     <input
-                                                        type="text"
-                                                        name="productThumbnail"
+                                                        type="file"
+                                                        name="productPic"
                                                         className="create-drop-form-file-inputs"
                                                         id=""
                                                         placeholder="Select Image file to upload"
+                                                        onChange={handleProductPicChange}
                                                     />
                                                     <img
                                                         src={
@@ -851,11 +930,12 @@ const CreateDrop = () => {
                                                 </span>
                                                 <label className="create-drop-form-file-input-containers">
                                                     <input
-                                                        type="text"
-                                                        name="productThumbnail"
+                                                        type="file"
+                                                        name="relatedImg"
                                                         className="create-drop-form-file-inputs"
                                                         id=""
                                                         placeholder="Select Image file to upload"
+                                                        onChange={handleImagesChange}
                                                     />
                                                     <img
                                                         src={
@@ -908,10 +988,11 @@ const CreateDrop = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="ownerName"
+                                                    name="owners_name"
                                                     id=""
                                                     placeholder="Enter Name"
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -923,10 +1004,11 @@ const CreateDrop = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="orgEmail"
+                                                    name="org_email"
                                                     id=""
                                                     placeholder="Enter email"
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                                 <div
                                                     className="create-drop-form-button"
@@ -949,6 +1031,7 @@ const CreateDrop = () => {
                                                         id=""
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
+                                                        onChange={handleChange}
                                                     />
                                                     <input
                                                         type="number"
@@ -956,6 +1039,7 @@ const CreateDrop = () => {
                                                         id=""
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
+                                                        onChange={handleChange}
                                                     />
                                                     <input
                                                         type="number"
@@ -963,6 +1047,7 @@ const CreateDrop = () => {
                                                         id=""
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
+                                                        onChange={handleChange}
                                                     />
                                                     <input
                                                         type="number"
@@ -970,6 +1055,7 @@ const CreateDrop = () => {
                                                         id=""
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
+                                                        onChange={handleChange}
                                                     />
                                                     <input
                                                         type="number"
@@ -977,6 +1063,7 @@ const CreateDrop = () => {
                                                         id=""
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
+                                                        onChange={handleChange}
                                                     />
                                                     <input
                                                         type="number"
@@ -984,6 +1071,7 @@ const CreateDrop = () => {
                                                         id=""
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
+                                                        onChange={handleChange}
                                                     />
                                                 </div>
                                             </div>
@@ -1025,10 +1113,11 @@ const CreateDrop = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="productPrice"
+                                                    name="value"
                                                     id=""
                                                     placeholder="Enter Price at which the product will be sold."
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
 
                                                 <label
@@ -1041,6 +1130,7 @@ const CreateDrop = () => {
                                                     name="currency"
                                                     id=""
                                                     className="create-drop-form-select-inputs"
+                                                    onChange={handleChange}
                                                 >
                                                     <option value="inr">
                                                         INR
@@ -1063,6 +1153,7 @@ const CreateDrop = () => {
                                                     id=""
                                                     placeholder="The percentage of each sale that will be given to affiliates as commission."
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -1078,6 +1169,7 @@ const CreateDrop = () => {
                                                     rows="6"
                                                     placeholder="A brief description of the ideal audience for the product."
                                                     className="create-drop-form-textarea-inputs"
+                                                    onChange={handleChange}
                                                 ></textarea>
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -1091,6 +1183,7 @@ const CreateDrop = () => {
                                                     name="campaignDate"
                                                     id=""
                                                     className="create-drop-form-date-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -1106,6 +1199,7 @@ const CreateDrop = () => {
                                                     id=""
                                                     placeholder=""
                                                     className="create-drop-form-text-inputs"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="create-drop-form-navigation-buttons-container">
@@ -1139,7 +1233,7 @@ const CreateDrop = () => {
 
                                         <div className="create-drop-form-subform-2-inputs-container">
                                             <div className="create-drop-form-navigation-buttons-container">
-                                                <button className="create-drop-form-navigation-next-subform-buttons next">
+                                                <button className="create-drop-form-navigation-next-subform-buttons next" onClick={handleSubmit}>
                                                     Publish the Drop
                                                 </button>
                                             </div>
@@ -1157,6 +1251,7 @@ const CreateDrop = () => {
                                 <button
                                     type="submit"
                                     id="create-drop-form-submit-button"
+                                    onClick={handleSubmit}
                                 >
                                     Drop!
                                 </button>
