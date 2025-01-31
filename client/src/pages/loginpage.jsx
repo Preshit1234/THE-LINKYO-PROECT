@@ -25,6 +25,7 @@ export default function LoginPageX() {
     }, [user, navigate]);
 
     const handleLogin = async () => {
+        console.log("Backend URL: ", process.env.REACT_APP_BACKEND_URL);
         try {
             const login = await axios.post(
                 `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
@@ -64,6 +65,8 @@ export default function LoginPageX() {
             }
         } catch (err) {
             console.log(err);
+            if (err.response.data === "User not found")
+                alert("Incorrect email: Please check your email again");
         }
     };
 

@@ -57,6 +57,9 @@ export default function SignupPage() {
             });
         } catch (err) {
             console.log(err);
+            if (err.response.data.message === "email already registered") {
+                alert("Email already in use");
+            }
         }
     };
 

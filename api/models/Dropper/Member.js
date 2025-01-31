@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const MemberSchema = new mongoose.Schema(
     {
-        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        organization: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Organization",
+        },
         role: { type: String, default: null },
     },
     { timestamps: true }

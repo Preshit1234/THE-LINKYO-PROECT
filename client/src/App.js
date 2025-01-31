@@ -39,6 +39,7 @@ import DropperDeveloperConsolePage from "./pages/dropper/developer/view";
 import DropperCredentialsPage from "./pages/dropper/developer/credentials/view";
 import DropperCredentialRegistrationPage from "./pages/dropper/developer/credentials/register";
 import FetcherLayout from "./layouts/fetcher";
+import DropperLayout from "./layouts/dropper";
 
 function Test() {
     return <h1>Test</h1>;
@@ -67,14 +68,20 @@ export default function App() {
             </Route>
 
             <Route path="user">
-                <Route path="welcome" element={<Finalise />} /> 
+                <Route path="welcome" element={<Finalise />} />
                 <Route path="home" element={<BrowseDrops />} />
 
                 {/* //For future Development */}
                 <Route exact path="homedrop">
                     <Route index element={<BrowseDrops />} />
-                    <Route path="paiddrops" element={<BrowseDrops type="paid" />} />
-                    <Route path="freedrops" element={<BrowseDrops type="free" />} />
+                    <Route
+                        path="paiddrops"
+                        element={<BrowseDrops type="paid" />}
+                    />
+                    <Route
+                        path="freedrops"
+                        element={<BrowseDrops type="free" />}
+                    />
                 </Route>
 
                 <Route path="drops">
@@ -93,7 +100,7 @@ export default function App() {
                 <Route path="fakeURL/fakeProduct" element={<FakeProduct />} />
             </Route>
 
-            <Route path="dropper">
+            <Route path="dropper" element={<DropperLayout />}>
                 <Route path="signup" element={<DropperSignup />} />
                 <Route path="dashboard" element={<DropperDashboard />} />
 

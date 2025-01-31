@@ -25,7 +25,6 @@ organizationRouter.post("/create", verify, async (req, res) => {
     });
     try {
         let res = await newOrganizationRequest.save();
-        console.log("New organization request response: ", res);
         newOrganization = res;
     } catch (err) {
         res.status(500).json({
@@ -38,6 +37,7 @@ organizationRouter.post("/create", verify, async (req, res) => {
 
     // Create a new Member
     const newMemberRequest = new Member({
+        organization: newOrganization._id,
         user: req.user.id,
         role: "admin",
     });

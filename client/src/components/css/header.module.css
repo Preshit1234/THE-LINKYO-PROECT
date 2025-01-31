@@ -114,6 +114,15 @@
     align-content: center;
     flex-shrink: 0;
 }
+
+.switchAccounts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
 .notificationsIconContainer {
     display: flex;
     flex-direction: row;
@@ -127,7 +136,8 @@
     padding-top: 2px;
 }
 
-.dropButton {
+.dropButton,
+.switchAccounts {
     right: 64px;
     display: inline-flex;
     align-content: center;
@@ -150,6 +160,53 @@
 
 .dropButton.mobile {
     display: none;
+}
+
+.switchAccountsDialog {
+    background-color: #30363d;
+    left: unset;
+    right: 129px;
+    top: 52px;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 250px;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.title {
+    padding: 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+}
+
+.listItem {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.listItem:hover {
+    background-color: #3b424a;
+}
+
+.listIcon {
+    flex-shrink: 0;
+    flex-grow: 0;
+    pointer-events: none;
+}
+
+.listName {
+    width: 100%;
+    pointer-events: none;
 }
 
 .profilePicDialog {
@@ -248,8 +305,19 @@
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.backToMainAccount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 430px) {
-    .header-container {
+    .container {
         height: 50px;
     }
 
