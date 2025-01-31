@@ -2,6 +2,7 @@ import "./css/signup.css";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "./form-input";
+import axios from "axios";
 
 /**
  * Signup Component.
@@ -14,13 +15,29 @@ export default function Signup() {
     // Refs
     const usernameInput = useRef();
 
-    const handleSignupButton = () => {
+    const handleSignupButton = async () => {
         if (!!usernameInput.current.value) {
-            navigate("/signup", {
-                state: {
-                    usernameInputValue: usernameInput.current.value,
-                },
-            });
+            try {
+                let checkUsername = await axios.post(
+                    `${process.env.REACT_APP_BACKEND_URL}/api/users/check/username`,
+                    {
+                        username: usernameInput.current.value,
+                    }
+                );
+                if (checkUsername.data.message === "username exists") {
+                    alert("Username already in use");
+                } else if (
+                    checkUsername.data.message === "username does not exists"
+                ) {
+                    navigate("/signup", {
+                        state: {
+                            usernameInputValue: usernameInput.current.value,
+                        },
+                    });
+                }
+            } catch (err) {
+                console.log("Error: ", err);
+            }
         }
     };
 

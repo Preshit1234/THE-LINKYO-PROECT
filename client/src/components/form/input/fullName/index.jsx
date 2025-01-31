@@ -52,7 +52,7 @@ export default function FullName(props) {
             <input
                 type="text"
                 id={componentIdPrefix + "input-fullName"}
-                className={styles.wrap + " " + styles.fullName}
+                className={styles.wrap + " " + styles.input}
                 placeholder="..."
                 value={componentValue}
                 onChange={(e) => setComponentValue(e.target.value)}

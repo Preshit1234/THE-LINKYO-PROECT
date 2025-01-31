@@ -110,7 +110,9 @@ router.get("/register/google", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email }).populate(
+            "belongsToOrg"
+        );
 
         // If user not found return err
         if (!user) {
@@ -157,7 +159,9 @@ router.post("/user/login/data", async (req, res) => {
     });
 
     try {
-        let userData = await User.findOne({ _id: userId });
+        let userData = await User.findOne({ _id: userId }).populate(
+            "belongsToOrg"
+        );
         if (!userData) {
             res.status(404).json("User not found");
             return;
@@ -195,6 +199,23 @@ router.post("/user/login/data", async (req, res) => {
 router.post("/email", async (req, res) => {
     // data
     const data = req.body;
+
+    // check if email already used
+    try {
+        let existingUser = await User.findOne({ email: data.email }).exec();
+        if (existingUser) {
+            res.status(401).json({
+                message: "email already registered",
+                user: { _id: existingUser._id },
+            });
+            return;
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+        return;
+    }
+
     // create a temporary user
     const tempUser = new TempUser({
         username: data.username,

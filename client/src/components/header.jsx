@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import useClickDetector from "./hooks/clickDetector";
+import axios from "axios";
 
 /**
  * A react component that renders the website header
@@ -34,11 +35,15 @@ export default function Header(props) {
     const [isNotificationsDialogOpen, setIsNotificationsDialogOpen] =
         useState(false);
     const [haveNewNotifications, setHaveNewNotifications] = useState(true);
+    const [isSwitchAccountsDialogOpen, setIsSwitchAccountsDialogOpen] =
+        useState(false);
     const navigate = useNavigate();
     const profilePicRef = useRef();
     const notificationsIconRef = useRef();
+    const switchAccountsRef = useRef();
     const profilePicDialogRef = useRef();
     const notificationsDialogRef = useRef();
+    const switchAccountsDialogRef = useRef();
     const cancelButtonRef = useRef();
     const searchInputRef = useRef();
     const [clickedElement, setClickedElement] = useClickDetector();
@@ -79,6 +84,21 @@ export default function Header(props) {
             setIsProfilePicDialogOpen(false);
         }
 
+        // If user clicked on switch accounts or switch accounts modal
+        if (
+            !!switchAccountsRef.current &&
+            clickedElement === switchAccountsRef.current
+        ) {
+            setIsSwitchAccountsDialogOpen(!isSwitchAccountsDialogOpen);
+        } else if (
+            !!switchAccountsDialogRef.current &&
+            switchAccountsDialogRef.current.contains(clickedElement)
+        ) {
+            setIsSwitchAccountsDialogOpen(true);
+        } else {
+            setIsSwitchAccountsDialogOpen(false);
+        }
+
         // Setting clicked element to null to avoid an infinite loop
         setClickedElement(null);
     }, [
@@ -86,6 +106,7 @@ export default function Header(props) {
         setClickedElement,
         isNotificationsDialogOpen,
         isProfilePicDialogOpen,
+        isSwitchAccountsDialogOpen,
     ]);
 
     useEffect(() => {
@@ -112,6 +133,20 @@ export default function Header(props) {
                 ? notificationsDialogRef.current.show()
                 : notificationsDialogRef.current.close();
     }, [isNotificationsDialogOpen]);
+
+    useEffect(() => {
+        if (!!switchAccountsDialogRef.current) {
+            !!isSwitchAccountsDialogOpen
+                ? switchAccountsDialogRef.current.show()
+                : switchAccountsDialogRef.current.close();
+        }
+        // When modal functions doesn't work
+        if (!!switchAccountsDialogRef.current) {
+            !!isSwitchAccountsDialogOpen
+                ? (switchAccountsDialogRef.current.style.display = "flex")
+                : (switchAccountsDialogRef.current.style.display = "none");
+        }
+    }, [isSwitchAccountsDialogOpen]);
 
     const svgs = importAll(
         require.context("../assets/svgs/", false, /\.(png|jpe?g|svg)$/)
@@ -141,6 +176,28 @@ export default function Header(props) {
 
     const handleSearchInputFocusEvent = () => {
         cancelButtonRef.current.style.display = "flex";
+    };
+
+    const handleOrgListItemClick = async (e) => {
+        let orgId = e.target.getAttribute("data-orgid");
+        let accessToken = localStorage.getItem("accessToken");
+        try {
+            let res = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/api/dropper/member/login`,
+                {
+                    orgId: orgId,
+                },
+                {
+                    headers: {
+                        token: `Bearer ${accessToken}`,
+                    },
+                }
+            );
+            localStorage.setItem("memberAccessToken", res.data.accessToken);
+        } catch (err) {
+            console.log(err);
+        }
+        navigate("/dropper/dashboard", { state: { orgId: orgId } });
     };
 
     if (type === "loggingin") {
@@ -237,20 +294,35 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <div className={styles.right}>
-                    <Link
-                        to="/dropper/signup"
-                        className={styles.dropButton + " " + styles.default}
-                        id="header-create-drop-button"
-                    >
-                        Drop Product
-                    </Link>
-                    <Link
-                        to="/dropper/signup"
-                        className={styles.dropButton + " " + styles.mobile}
-                        id="header-create-drop-button"
-                    >
-                        Drop
-                    </Link>
+                    {!!userData.belongsToOrgs ? (
+                        <div
+                            className={styles.switchAccounts}
+                            ref={switchAccountsRef}
+                        >
+                            Switch Account
+                        </div>
+                    ) : (
+                        <>
+                            <Link
+                                to="/dropper/signup"
+                                className={
+                                    styles.dropButton + " " + styles.default
+                                }
+                                id="header-create-drop-button"
+                            >
+                                Drop Product
+                            </Link>
+                            <Link
+                                to="/dropper/signup"
+                                className={
+                                    styles.dropButton + " " + styles.mobile
+                                }
+                                id="header-create-drop-button"
+                            >
+                                Drop
+                            </Link>
+                        </>
+                    )}
                     <div
                         style={{ width: "30px", height: "30px" }}
                         className={styles.notificationsIconContainer}
@@ -298,6 +370,28 @@ export default function Header(props) {
                         ref={profilePicRef}
                     />
                 </div>
+                <dialog
+                    className={styles.switchAccountsDialog}
+                    ref={switchAccountsDialogRef}
+                >
+                    <span className={styles.title}>Your Teams:</span>
+                    {userData.belongsToOrgs.map((org) => (
+                        <div
+                            className={styles.listItem}
+                            key={org._id}
+                            data-orgid={org._id}
+                            onClick={handleOrgListItemClick}
+                        >
+                            <span className={styles.listName}>{org.name}</span>
+                            <Icon
+                                icon="fluent-mdl2:navigate-forward"
+                                width="18"
+                                height="18"
+                                className={styles.listIcon}
+                            />
+                        </div>
+                    ))}
+                </dialog>
                 <dialog
                     className={styles.notificationsDialog}
                     ref={notificationsDialogRef}
