@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import useClickDetector from "./hooks/clickDetector";
 import axios from "axios";
+import { useUser } from "../contexts/UserContext";
 
 /**
  * A react component that renders the website header
@@ -47,6 +48,7 @@ export default function Header(props) {
     const cancelButtonRef = useRef();
     const searchInputRef = useRef();
     const [clickedElement, setClickedElement] = useClickDetector();
+    const { setUser } = useUser();
 
     // Effect to control modals
     useEffect(() => {
@@ -196,6 +198,19 @@ export default function Header(props) {
         navigate("/dropper/dashboard", { state: { orgId: orgId } });
     };
 
+    const handleBackToMainAccount = async (e) => {
+        e.preventDefault();
+
+        localStorage.removeItem("memberAccessToken");
+        navigate("/user/home");
+    };
+
+    const handleSignOutClick = () => {
+        localStorage.removeItem("accessToken");
+        setUser(null);
+        navigate("/");
+    };
+
     if (type === "loggingin") {
         return (
             <div className={styles.container}>
@@ -290,7 +305,7 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <div className={styles.right}>
-                    {!!userData.belongsToOrgs ? (
+                    {!!userData.belongsToOrgs.length > 0 ? (
                         <div
                             className={styles.switchAccounts}
                             ref={switchAccountsRef}
@@ -454,7 +469,11 @@ export default function Header(props) {
                             />
                             Account
                         </div>
-                        <div to="" className={styles.links}>
+                        <div
+                            to=""
+                            className={styles.links}
+                            onClick={handleSignOutClick}
+                        >
                             <Icon
                                 icon="ic:sharp-exit-to-app"
                                 width="24"
@@ -474,6 +493,41 @@ export default function Header(props) {
                         </div>
                     </div>
                 </dialog>
+            </div>
+        );
+    } else if (type === "memberLogin") {
+        return (
+            <div className={styles.container}>
+                {/* Left Hand Side */}
+                <div className={styles.left}>
+                    <img
+                        src={svgs["app-logo.svg"]}
+                        alt="App Logo"
+                        className=""
+                        id="app-logo-img"
+                        onClick={handleLogoClick}
+                    />
+                    <span
+                        className=""
+                        id="app-logo-text"
+                        onClick={handleLogoClick}
+                    >
+                        {APP_NAME}
+                    </span>
+                </div>
+
+                {/* Center */}
+
+                {/* Right Hand Side */}
+                <div className={styles.right}>
+                    <Link
+                        to="/user/home"
+                        className={styles.backToMainAccount}
+                        onClick={handleBackToMainAccount}
+                    >
+                        Back to Main Account
+                    </Link>
+                </div>
             </div>
         );
     } else {
@@ -513,7 +567,7 @@ export default function Header(props) {
                     </Link>
                     <Link
                         to={"/signin"}
-                        className=""
+                        className={styles.dropButton}
                         id="header-create-drop-button"
                     >
                         Drop Product

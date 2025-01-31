@@ -1,17 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import { useUser } from "../contexts/UserContext";
 
 export default function VerifyEmailToken() {
     let params = useParams();
     let token = params.token;
     let navigate = useNavigate();
-
-    // const [tempUser, setTempUser] = useState();
-    // const [loginUserData, setLoginUserData] = useState();
-
-    const { setUser } = useUser();
 
     useEffect(() => {
         const verifyEmail = async () => {
@@ -29,8 +23,6 @@ export default function VerifyEmailToken() {
                 // setLoginUserData(res.data.user);
                 const loginUserData = res.data.user;
                 if (loginUserData) {
-                    setUser(loginUserData);
-                    console.log("Login User Data: ", loginUserData);
                     !loginUserData.isWelcomed
                         ? navigate("/signin")
                         : navigate("/user/home");
@@ -40,18 +32,8 @@ export default function VerifyEmailToken() {
             }
         };
 
-        // if (!tempUser === true) verifyEmail();
         verifyEmail();
     });
-
-    // useEffect(() => {
-    //     if (loginUserData) {
-    //         setUser(loginUserData);
-    //         !loginUserData.isWelcomed
-    //             ? navigate("/login")
-    //             : navigate("/browse/drops");
-    //     }
-    // });
 
     return <>Verifying your email...</>;
 }

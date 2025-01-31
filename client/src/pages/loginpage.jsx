@@ -65,6 +65,8 @@ export default function LoginPageX() {
             }
         } catch (err) {
             console.log(err);
+            if (err.response.data === "User not found")
+                alert("Incorrect email: Please check your email again");
         }
     };
 

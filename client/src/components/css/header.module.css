@@ -305,8 +305,19 @@
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.backToMainAccount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 430px) {
-    .header-container {
+    .container {
         height: 50px;
     }
 
