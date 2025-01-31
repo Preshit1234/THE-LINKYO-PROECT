@@ -32,7 +32,8 @@ router.post("/upload", upload.single("image"), async (req, res) => {
             fs.unlinkSync(file.path);
             return res.status(400).json({
                 message: "Duplicate image detected.",
-                existingImagePath: existingImage.path,
+                existingImagePath:
+                    process.env.BACKEND_URL + "/" + existingImage.path,
             });
         }
 
@@ -43,7 +44,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
         // Save metadata in the database
         const newImage = new Image({
             name: file.originalname,
-            path: processedPath,
+            path: process.env.BACKEND_URL + "/" + processedPath,
             size: file.size,
             mimetype: file.mimetype,
             hash,

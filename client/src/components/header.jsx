@@ -113,11 +113,7 @@ export default function Header(props) {
         setType(props.type);
         setUserData(props.userData);
         if (!!props.userData && !!props.userData.profilepic)
-            setProfilePic(
-                process.env.REACT_APP_BACKEND_URL +
-                    "/" +
-                    props.userData.profilepic
-            );
+            setProfilePic(props.userData.profilepic);
     }, [props.type, props.userData]);
 
     useEffect(() => {
