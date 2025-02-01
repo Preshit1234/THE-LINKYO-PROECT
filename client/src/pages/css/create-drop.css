@@ -66,6 +66,18 @@ body {
     line-height: 20px;
 }
 
+.create-drop-form-date-inputs{
+    box-sizing: border-box;
+    width: 699px;
+    height: 48px;
+    padding-left: 38px;
+    background-color: #0d0d0d;
+    border: 1px solid rgba(96, 96, 96, 50%);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
 #create-drop-form-main-display-container {
     display: none;
     opacity: 0;
@@ -234,6 +246,7 @@ body {
 }
 
 .subform-description {
+    padding-top: 15px;
     font-size: 14px;
     line-height: 16px;
 }
@@ -309,7 +322,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #0d0d0d;
-    border: 1px solid rgba(96, 96, 96, 50%);
+    border: 1px dashed rgba(96, 96, 96, 50%);
     border-radius: 8px;
     font-size: 14px;
     color: #ffffff;
@@ -322,6 +335,11 @@ body {
 
 .create-drop-form-file-inputs {
     display: none;
+    cursor: pointer;
+}
+
+.create-drop-form-file-input-containers:hover {
+    cursor: pointer;
 }
 
 .create-drop-form-file-input-containers img {

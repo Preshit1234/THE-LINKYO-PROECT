@@ -40,9 +40,9 @@ router.post(
         { name: "relatedImg", maxCount: 3 }, // Up to 3 files for images
     ]),
     async (req, res) => {
-        // console.log("Request body: ", req.body);
-        // res.status(200).json({message: "Testing"});
-        // return;
+        console.log("Request body: ", req.body);
+        //res.status(200).json({message: "Testing"});
+        //return;
         const {
             userId,
             product_name,
@@ -65,13 +65,15 @@ router.post(
               )
             : [];
         try {
+            const tagsArray = tags.split(",").map(tag => tag.trim());
+            //const tagsArray = tags.map(tag => tag.trim());
             const newDrop = new Drop({
                 userId,
                 product_name,
                 url,
                 short_desc,
                 tagline,
-                tags,
+                tags: tagsArray,
                 owners_name,
                 org_email,
                 pin,
