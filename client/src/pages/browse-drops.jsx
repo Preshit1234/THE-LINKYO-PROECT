@@ -2,7 +2,7 @@
 import "./css/browse-drops.css";
 import styles from "./css/BrowseDrops.module.css";
 import MultipleDropCards from "../components/multiple-drop-cards.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, Suspense } from "react";
 import Header from "../components/header.jsx";
 // import { importAll } from "../components/js/import-data.js";
 import Sidebar from "../components/sidebar.jsx";
@@ -12,6 +12,7 @@ import TogglePaid from "./testDropperpage/browsedroppaid";
 import axios from "axios";
 import List from "../components/testListComponent/test-list-component";
 import DefList from "../components/testListComponent/default-list-component";
+import { Icon } from "@iconify/react";
 
 // Mock API response data
 const categoryTagsList = [
@@ -33,12 +34,13 @@ const categoryTagsList = [
  * A react component that renders the browse drops page.
  * @returns {ReactNode}
  */
-export default function BrowseDrops({ type }) {
+const BrowseDrops = memo(function BrowseDrops({ type }) {
     const [categoryTags, setCategoryTags] = useState([]);
     const { user } = useUser();
     const [lists, setLists] = useState([]);
     const [tags, setTags] = useState([null]);
     const [newDrops, setNewDrops] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getRandomLists = async () => {
@@ -65,20 +67,28 @@ export default function BrowseDrops({ type }) {
 
     useEffect(() => {
         const fetchNewDrops = async () => {
-          try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/dropper/lists/defaultlist`,
-            {
-                headers: {
-                    token: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-            },);
-            setNewDrops(response.data);
-          } catch (error) {
-            console.error('Error fetching new products:', error);
-          }
+            try {
+                const response = await axios.get(
+                    `${process.env.REACT_APP_BACKEND_URL}/api/dropper/lists/defaultlist`,
+                    {
+                        headers: {
+                            token: `Bearer ${localStorage.getItem(
+                                "accessToken"
+                            )}`,
+                        },
+                    }
+                );
+                setNewDrops(response.data);
+            } catch (error) {
+                console.error("Error fetching new products:", error);
+            }
         };
         fetchNewDrops();
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        if (lists.length > 0 && newDrops.length > 0) setIsLoading(false);
+    }, [lists, newDrops]);
 
     // Initializing with mock data
     if (categoryTags.length < 1) {
@@ -99,32 +109,45 @@ export default function BrowseDrops({ type }) {
             {/* <Header type="login" /> */}
             <Sidebar />
             <div id="browse-drops-container">
-                <div className={styles.categoryWrapper}>
-                    <div
-                        id="category-tags-container"
-                        className={styles.categoryContainer}
-                    >
-                        <div className={"category-tags " + styles.activeTag}>
-                            All
-                        </div>
-                        {cpyCategoryTags.map((ct, index) => (
-                            <div className="category-tags" key={index}>
-                                {ct}
+                {isLoading ? (
+                    <Icon
+                        icon="svg-spinners:3-dots-scale"
+                        width="50"
+                        height="50"
+                    />
+                ) : (
+                    <>
+                        <div className={styles.categoryWrapper}>
+                            <div
+                                id="category-tags-container"
+                                className={styles.categoryContainer}
+                            >
+                                <div
+                                    className={
+                                        "category-tags " + styles.activeTag
+                                    }
+                                >
+                                    All
+                                </div>
+                                {cpyCategoryTags.map((ct, index) => (
+                                    <div className="category-tags" key={index}>
+                                        {ct}
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </div>
-                </div>
-                <div id="drops-container">
-                    <TogglePaid typePaid={type} />
+                        </div>
+                        <div id="drops-container">
+                            <Suspense fallback={<div>Loading</div>}>
+                                <TogglePaid typePaid={type} />
 
-                    {lists.map((list, index) => (
-                        <List list={list} key={index} />
-                    ))}
+                                {lists.map((list, index) => (
+                                    <List list={list} key={index} />
+                                ))}
 
-                    <DefList deflist={newDrops} />
+                                <DefList deflist={newDrops} />
+                            </Suspense>
 
-
-                    {/* <div>
+                            {/* <div>
                         <h2>Newly Added Products</h2>
                         <div className="product-list">
                             {newDrops.length > 9 ? (
@@ -140,9 +163,8 @@ export default function BrowseDrops({ type }) {
                             )}
                         </div>
                     </div> */}
-                    
 
-                    {/* <div id="drops-type-1" className="drops-types">
+                            {/* <div id="drops-type-1" className="drops-types">
                         <p className="drops-type-text">Top products dropped recently</p>
                         <MultipleDropCards />
                     </div>
@@ -150,11 +172,15 @@ export default function BrowseDrops({ type }) {
                         <p className="drops-type-text">Products with high {APP_NAME} Score</p>
                         <MultipleDropCards />
                     </div> */}
-                    <div id="drops-type-2" className="drops-types">
-                        {/* <MultipleDropCards /> */}
-                    </div>
-                </div>
+                            <div id="drops-type-2" className="drops-types">
+                                {/* <MultipleDropCards /> */}
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
-}
+});
+
+export default BrowseDrops;

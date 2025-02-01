@@ -13,11 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <React.StrictMode>
-        <UserProvider>
-            <GoogleOAuthProvider
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            >
-                <HelmetProvider>
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            <HelmetProvider>
+                <UserProvider>
                     <BrowserRouter
                         future={{
                             v7_startTransition: true,
@@ -26,9 +24,9 @@ root.render(
                     >
                         <App />
                     </BrowserRouter>
-                </HelmetProvider>
-            </GoogleOAuthProvider>
-        </UserProvider>
+                </UserProvider>
+            </HelmetProvider>
+        </GoogleOAuthProvider>
     </React.StrictMode>
 );
 

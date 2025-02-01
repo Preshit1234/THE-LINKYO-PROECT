@@ -40,6 +40,7 @@ import DropperCredentialsPage from "./pages/dropper/developer/credentials/view";
 import DropperCredentialRegistrationPage from "./pages/dropper/developer/credentials/register";
 import FetcherLayout from "./layouts/fetcher";
 import DropperLayout from "./layouts/dropper";
+import UserAuthProvider from "./contexts/UserAuthContext";
 
 function Test() {
     return <h1>Test</h1>;
@@ -67,104 +68,115 @@ export default function App() {
                 <Route path="home3" element={<h1>Test 3</h1>} />
             </Route>
 
-            <Route path="user">
-                <Route path="welcome" element={<Finalise />} />
-                <Route path="home" element={<BrowseDrops />} />
-
-                {/* //For future Development */}
-                <Route exact path="homedrop">
-                    <Route index element={<BrowseDrops />} />
-                    <Route
-                        path="paiddrops"
-                        element={<BrowseDrops type="paid" />}
-                    />
-                    <Route
-                        path="freedrops"
-                        element={<BrowseDrops type="free" />}
-                    />
-                </Route>
-
-                <Route path="drops">
-                    <Route path=":drop" element={<ViewDrop />} />
-                    <Route path="create" element={<CreateDrop />} />
-                </Route>
-
-                <Route path="confirmemail" element={<CheckEmail />} />
-                <Route path="graphset1" element={<GraphSet1 />} />
-                <Route path="edit/user" element={<EditUser />} />
-                <Route path="landinghomepage" element={<LandingUserPage />} />
-            </Route>
-
             <Route path="prototype">
                 <Route path="affiliateLink" element={<CreateAffiliateLink />} />
                 <Route path="fakeURL/fakeProduct" element={<FakeProduct />} />
             </Route>
 
-            <Route path="dropper" element={<DropperLayout />}>
-                <Route path="signup" element={<DropperSignup />} />
-                <Route path="dashboard" element={<DropperDashboard />} />
+            <Route element={<UserAuthProvider />}>
+                <Route path="user">
+                    <Route path="welcome" element={<Finalise />} />
+                    <Route path="home" element={<BrowseDrops />} />
 
-                <Route path="products">
-                    <Route index element={<DropperProductsPage />} />
+                    {/* //For future Development */}
+                    <Route exact path="homedrop">
+                        <Route index element={<BrowseDrops />} />
+                        <Route
+                            path="paiddrops"
+                            element={<BrowseDrops type="paid" />}
+                        />
+                        <Route
+                            path="freedrops"
+                            element={<BrowseDrops type="free" />}
+                        />
+                    </Route>
+
+                    <Route path="drops">
+                        <Route path=":drop" element={<ViewDrop />} />
+                        <Route path="create" element={<CreateDrop />} />
+                    </Route>
+
+                    <Route path="confirmemail" element={<CheckEmail />} />
+                    <Route path="graphset1" element={<GraphSet1 />} />
+                    <Route path="edit/user" element={<EditUser />} />
                     <Route
-                        path="register"
-                        element={<ProductRegistrationPage />}
+                        path="landinghomepage"
+                        element={<LandingUserPage />}
                     />
                 </Route>
 
-                <Route path="offers">
-                    <Route index element={<DropperOffersPage />} />
-                    <Route
-                        path="register"
-                        element={<OfferRegistrationPage />}
-                    />
-                </Route>
+                <Route path="dropper" element={<DropperLayout />}>
+                    <Route path="signup" element={<DropperSignup />} />
+                    <Route path="dashboard" element={<DropperDashboard />} />
 
-                <Route path="campaigns">
-                    <Route index element={<DropperCampaignPage />} />
-                    <Route
-                        path="register"
-                        element={<DropperCampaignRegistrationPage />}
-                    />
-                </Route>
-
-                <Route path="drops">
-                    <Route index element={<DropperDropsPage />} />
-                    <Route path="register" element={<DropRegistrationPage />} />
-                </Route>
-
-                <Route path="users">
-                    <Route index element={<DropperUsersPage />} />
-                    <Route
-                        path="register"
-                        element={<DropperUserRegistrationPage />}
-                    />
-                </Route>
-
-                <Route path="roles">
-                    <Route index element={<DropperRolesPage />} />
-                    <Route
-                        path="register"
-                        element={<DropperRoleRegistrationPage />}
-                    />
-                </Route>
-
-                <Route path="drop">
-                    <Route path="register" element={<DropRegistrationPage />} />
-                </Route>
-
-                <Route path="developer">
-                    <Route
-                        path="console"
-                        element={<DropperDeveloperConsolePage />}
-                    />
-
-                    <Route path="credentials">
-                        <Route index element={<DropperCredentialsPage />} />
+                    <Route path="products">
+                        <Route index element={<DropperProductsPage />} />
                         <Route
                             path="register"
-                            element={<DropperCredentialRegistrationPage />}
+                            element={<ProductRegistrationPage />}
                         />
+                    </Route>
+
+                    <Route path="offers">
+                        <Route index element={<DropperOffersPage />} />
+                        <Route
+                            path="register"
+                            element={<OfferRegistrationPage />}
+                        />
+                    </Route>
+
+                    <Route path="campaigns">
+                        <Route index element={<DropperCampaignPage />} />
+                        <Route
+                            path="register"
+                            element={<DropperCampaignRegistrationPage />}
+                        />
+                    </Route>
+
+                    <Route path="drops">
+                        <Route index element={<DropperDropsPage />} />
+                        <Route
+                            path="register"
+                            element={<DropRegistrationPage />}
+                        />
+                    </Route>
+
+                    <Route path="users">
+                        <Route index element={<DropperUsersPage />} />
+                        <Route
+                            path="register"
+                            element={<DropperUserRegistrationPage />}
+                        />
+                    </Route>
+
+                    <Route path="roles">
+                        <Route index element={<DropperRolesPage />} />
+                        <Route
+                            path="register"
+                            element={<DropperRoleRegistrationPage />}
+                        />
+                    </Route>
+
+                    <Route path="drop">
+                        <Route
+                            path="register"
+                            element={<DropRegistrationPage />}
+                        />
+                    </Route>
+
+                    <Route path="developer">
+                        <Route
+                            path="console"
+                            element={<DropperDeveloperConsolePage />}
+                        />
+
+                        <Route path="credentials">
+                            <Route index element={<DropperCredentialsPage />} />
+                            <Route
+                                path="register"
+                                element={<DropperCredentialRegistrationPage />}
+                            />
+                        </Route>
                     </Route>
                 </Route>
             </Route>

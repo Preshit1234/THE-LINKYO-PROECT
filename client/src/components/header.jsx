@@ -3,7 +3,7 @@ import { importAll } from "./js/import-data";
 import "./css/header.css";
 import styles from "./css/header.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { Icon } from "@iconify/react";
 import useClickDetector from "./hooks/clickDetector";
 import axios from "axios";
@@ -19,7 +19,7 @@ import { useUser } from "../contexts/UserContext";
  * - userData: Login user data.
  * @returns {ReactNode}
  */
-export default function Header(props) {
+const Header = memo(function Header(props) {
     // Environment Variables
     const APP_NAME = process.env.REACT_APP_NAME;
 
@@ -28,7 +28,6 @@ export default function Header(props) {
      * Values: logout, signingIn, loggingIn, login
      */
     const [type, setType] = useState();
-    const [userData, setUserData] = useState({});
     const [profilePic, setProfilePic] = useState(
         "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
     );
@@ -48,7 +47,7 @@ export default function Header(props) {
     const cancelButtonRef = useRef();
     const searchInputRef = useRef();
     const [clickedElement, setClickedElement] = useClickDetector();
-    const { setUser } = useUser();
+    const { user, setUser } = useUser();
 
     // Effect to control modals
     useEffect(() => {
@@ -103,20 +102,12 @@ export default function Header(props) {
 
         // Setting clicked element to null to avoid an infinite loop
         setClickedElement(null);
-    }, [
-        clickedElement,
-        setClickedElement,
-        isNotificationsDialogOpen,
-        isProfilePicDialogOpen,
-        isSwitchAccountsDialogOpen,
-    ]);
+    }, [clickedElement, setClickedElement, isNotificationsDialogOpen, isProfilePicDialogOpen, isSwitchAccountsDialogOpen]);
 
     useEffect(() => {
         setType(props.type);
-        setUserData(props.userData);
-        if (!!props.userData && !!props.userData.profilepic)
-            setProfilePic(props.userData.profilepic);
-    }, [props.type, props.userData]);
+        if (!!user && !!user.profilepic) setProfilePic(user.profilepic);
+    }, [props.type, user]);
 
     useEffect(() => {
         if (!!profilePicDialogRef.current)
@@ -238,7 +229,7 @@ export default function Header(props) {
                 <div></div>
             </div>
         );
-    } else if (type === "login" && !!userData) {
+    } else if (type === "login" && !!user) {
         return (
             <div className={styles.container + " " + styles.login}>
                 {/* Left Hand Side */}
@@ -305,7 +296,7 @@ export default function Header(props) {
 
                 {/* Right Hand Side */}
                 <div className={styles.right}>
-                    {!!userData.belongsToOrgs.length > 0 ? (
+                    {!!user.belongsToOrgs.length > 0 ? (
                         <div
                             className={styles.switchAccounts}
                             ref={switchAccountsRef}
@@ -386,7 +377,7 @@ export default function Header(props) {
                     ref={switchAccountsDialogRef}
                 >
                     <span className={styles.title}>Your Teams:</span>
-                    {userData.belongsToOrgs.map((org) => (
+                    {user.belongsToOrgs.map((org) => (
                         <div
                             className={styles.listItem}
                             key={org._id}
@@ -434,11 +425,9 @@ export default function Header(props) {
                         </div>
                         <div className={styles.col2}>
                             <span className={styles.fullName}>
-                                {userData.fullName}
+                                {user.fullName}
                             </span>
-                            <span className={styles.email}>
-                                {userData.email}
-                            </span>
+                            <span className={styles.email}>{user.email}</span>
                         </div>
                     </div>
                     <div className={styles.row2}>
@@ -576,4 +565,6 @@ export default function Header(props) {
             </div>
         );
     }
-}
+});
+
+export default Header;
