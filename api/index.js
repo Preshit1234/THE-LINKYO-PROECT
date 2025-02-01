@@ -1,6 +1,7 @@
 // const dotenv = require("dotenv");
 require("dotenv").config();
 const express = require("express");
+require('./routes/dropper/lists/cron');
 const app = express();
 const helmet = require("helmet");
 const morgan = require("morgan");

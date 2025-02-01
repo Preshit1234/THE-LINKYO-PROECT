@@ -10,6 +10,7 @@ import axios from 'axios';
  * @returns {ReactNode} A react element that renders a Drop
  */
 export default function DropCard({item}) {
+    console.log(item);
     /**
      * All images with png, jpg and jpeg extensions from assets/images/ folder
      */
