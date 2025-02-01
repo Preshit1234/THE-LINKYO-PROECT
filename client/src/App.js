@@ -41,6 +41,7 @@ import DropperCredentialRegistrationPage from "./pages/dropper/developer/credent
 import FetcherLayout from "./layouts/fetcher";
 import DropperLayout from "./layouts/dropper";
 import UserAuthProvider from "./contexts/UserAuthContext";
+import ProductDashboard from "./pages/dropper-dashboard";
 
 function Test() {
     return <h1>Test</h1>;
@@ -107,7 +108,7 @@ export default function App() {
 
                 <Route path="dropper/signup" element={<DropperSignup />} />
                 <Route path="dropper" element={<DropperLayout />}>
-                    <Route path="dashboard" element={<DropperDashboard />} />
+                    <Route path="dashboard" element={<ProductDashboard />} />
 
                     <Route path="products">
                         <Route index element={<DropperProductsPage />} />

@@ -39,7 +39,7 @@ export default function DropperSignup() {
             );
             console.log("Registered organization data: ", res);
             setUser(res.data.user);
-            navigate("/dropper/product/register");
+            navigate("/dropper/dashboard");
         } catch (err) {
             console.log("Dropper organization registration error: ", err);
         }
