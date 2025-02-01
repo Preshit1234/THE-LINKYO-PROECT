@@ -10,7 +10,7 @@ const DropSchema = new mongoose.Schema({
     relatedImg: { type: Array, default : "[]" },
     likes: { type: Array, default: "[]" },
     score: { type: String, },
-    tags: { type : Array, default: "[]" },
+    tags: [String],
     org_name : { type : String, default: "" },
     org_email : { type : String, default : "" },
     pin: {type: Number},
