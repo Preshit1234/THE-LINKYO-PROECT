@@ -105,8 +105,8 @@ export default function App() {
                     />
                 </Route>
 
+                <Route path="dropper/signup" element={<DropperSignup />} />
                 <Route path="dropper" element={<DropperLayout />}>
-                    <Route path="signup" element={<DropperSignup />} />
                     <Route path="dashboard" element={<DropperDashboard />} />
 
                     <Route path="products">
