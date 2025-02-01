@@ -72,7 +72,6 @@ export default function BrowseDrops({ type }) {
                     token: `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             },);
-            console.log(response.data);
             setNewDrops(response.data);
           } catch (error) {
             console.error('Error fetching new products:', error);
@@ -122,7 +121,7 @@ export default function BrowseDrops({ type }) {
                         <List list={list} key={index} />
                     ))}
 
-                        <DefList deflist={newDrops} />
+                    <DefList deflist={newDrops} />
 
 
                     {/* <div>

@@ -455,7 +455,7 @@ const CreateDrop = () => {
     const ref2Url = useRef();
     const {user, setUser} = useUser();
     const [drop, setDrop] = useState({product_name: '', short_desc: '', productPic: null, relatedImg: [], tagline : '', tags: [],
-    owners_name:'', org_email:'', pin:'', value:'', discount:''});
+    org_name:'', org_email:'', pin:'', value:'', discount:''});
 
     const navigate = useNavigate();
   
@@ -492,7 +492,7 @@ const CreateDrop = () => {
             data.append('productPic', drop.productPic);
             data.append('tagline', drop.tagline);
             data.append('tags', drop.tags);
-            data.append('owners_name', drop.owners_name);
+            data.append('org_name', drop.org_name);
             data.append('org_email', drop.org_email);
             data.append('pin', drop.pin);
             data.append('value', drop.value);
@@ -507,7 +507,7 @@ const CreateDrop = () => {
           // You can add additional logic here, such as showing a success message or redirecting the user
           console.log(res);
           setDrop({ product_name: '', short_desc: '', productPic: null, relatedImg: [], tagline : '', tags: [],
-          owners_name:'', org_email:'', pin:'', value:'', discount:''
+          org_name:'', org_email:'', pin:'', value:'', discount:''
         });
         } catch (error) {
           console.error('There was an error submitting the form:', error);
@@ -981,14 +981,14 @@ const CreateDrop = () => {
                                         <div className="create-drop-form-subform-2-inputs-container">
                                             <div className="create-drop-form-input-fields-container">
                                                 <label
-                                                    htmlFor="ownerName"
+                                                    htmlFor="org_name"
                                                     className="create-drop-form-input-field-labels"
                                                 >
                                                     Name of the owner
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="owners_name"
+                                                    name="org_name"
                                                     id=""
                                                     placeholder="Enter Name"
                                                     className="create-drop-form-text-inputs"

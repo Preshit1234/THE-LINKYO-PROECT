@@ -10,7 +10,6 @@ import axios from 'axios';
  * @returns {ReactNode} A react element that renders a Drop
  */
 export default function DropCard({item}) {
-    console.log(item);
     /**
      * All images with png, jpg and jpeg extensions from assets/images/ folder
      */
@@ -41,7 +40,6 @@ export default function DropCard({item}) {
                         token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWI5ZDQxZWVhODJkZTZkZWE1ZTlhMCIsImlhdCI6MTczODI1MTY4MSwiZXhwIjoxNzM4NjgzNjgxfQ.ofwJ_raJk8kGTU4FekSHncPs1KTGaiSQ3CjhJJW6XRw"
                     },
                 });
-                console.log(res);
                 setDrop(res.data)
             }catch(err){
                 console.log(err);
@@ -65,7 +63,7 @@ export default function DropCard({item}) {
                     </p>
                     <div className={styles.wrap1a1}>
                         <div className={styles.pAutherWrapper}>
-                            <span className={styles.pAuthor}>{drop.org_name}</span>
+                            <span className={styles.pAuthor}>By {drop.org_name}</span>
                             <img
                                 src={svgs["verification-tick.svg"]}
                                 alt="verification tick"

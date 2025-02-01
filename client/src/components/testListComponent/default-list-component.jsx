@@ -10,7 +10,7 @@ export default function DefList({deflist}){
             <span className={ ListStyles.ListNamaes }>Newly Added Drops </span>
             <div className={ ListStyles.ListDropCards} ref={listRef}>
                 {deflist.map((item, i)=>(
-                    <DropCard item={item._id} />
+                    <DropCard item={item._id} key={i} />
                 ))}
             </div>
         </div>

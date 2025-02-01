@@ -12,7 +12,7 @@ export default function List({list}){
             <span className={ ListStyles.ListNamaes }>{list.title} </span>
             <div className={ ListStyles.ListDropCards} ref={listRef}>
                 {list.content.map((item, i)=>(
-                    <DropCard item={item} />
+                    <DropCard item={item} key={i} />
                 ))}
             </div>
         </div>
