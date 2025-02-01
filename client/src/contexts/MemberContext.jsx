@@ -55,7 +55,7 @@ export default function MemberProvider({ children }) {
             };
             try {
                 let res = await axios.post(
-                    `${process.env.REACT_APP_BACKEND_URL}/api/auth/member/login/data`,
+                    `${process.env.REACT_APP_BACKEND_URL}/api/dropper/member/login/data`,
                     reqBody
                 );
                 setMember(res.data);
