@@ -18,7 +18,7 @@ export default function Name(props) {
     /**
      * Value of the input element and its setter.
      */
-    const [componentValue, setComponentValue] = useState(false);
+    const [componentValue, setComponentValue] = useState("");
 
     /**
      * Prefix of the `id` attribute of input element and its setter.
