@@ -8,6 +8,7 @@
     /* padding-left: 260px; */
     padding-top: 68px;
     padding-left: 205px;
+    min-height: 100vh;
 }
 
 /* Hide Scrollbar */

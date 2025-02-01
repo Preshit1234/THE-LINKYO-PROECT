@@ -43,7 +43,7 @@
     line-height: 21px;
     font-weight: 400;
     color: #a5bee1;
-    height : 42px;
+    height: 42px;
     overflow: hidden;
 }
 
@@ -84,26 +84,26 @@
 .wrap1a1 {
     display: flex;
     flex-direction: row;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     width: 350px;
     overflow-x: hidden;
     position: relative;
 }
 
 .wrap1a1::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
     width: 30px; /* Width of the fade effect */
     height: 100%;
     background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgb(7 14 21 / 78%)
+        to right,
+        rgba(255, 255, 255, 0),
+        rgb(7 14 21 / 78%)
     ); /* Gradient for fade effect */
     pointer-events: none; /* Ensure the overlay doesn't block interactions */
-  }
+}
 
 .pAutherWrapper {
     display: flex;

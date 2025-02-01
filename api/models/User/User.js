@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema(
         lastName: { type: String, default: "" },
         fullName: { type: String, default: "" },
         profilepic: { type: String, default: "" },
-        isAdmin : {type: Boolean, default: false},
+        isAdmin: { type: Boolean, default: false },
         followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         followings: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         googleSubId: { type: String, default: null },
@@ -26,8 +26,8 @@ const UserSchema = new mongoose.Schema(
             },
             {
                 type: Number,
-                default : 0,
-            }
+                default: 0,
+            },
         ],
     },
     { timestamps: true }

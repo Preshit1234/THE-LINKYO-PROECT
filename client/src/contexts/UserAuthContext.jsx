@@ -4,7 +4,6 @@ import { createContext, useEffect } from "react";
 import { useUser } from "./UserContext";
 import { useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
-import { Icon } from "@iconify/react";
 
 const UserAuthContext = createContext();
 

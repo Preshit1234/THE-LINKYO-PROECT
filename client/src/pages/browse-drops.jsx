@@ -2,12 +2,11 @@
 import "./css/browse-drops.css";
 import styles from "./css/BrowseDrops.module.css";
 import MultipleDropCards from "../components/multiple-drop-cards.jsx";
-import { useState, useEffect, memo, Suspense } from "react";
+import { useState, useEffect, memo } from "react";
 import Header from "../components/header.jsx";
 // import { importAll } from "../components/js/import-data.js";
 import Sidebar from "../components/sidebar.jsx";
 import { useUser } from "../contexts/UserContext.jsx";
-import { Outlet } from "react-router-dom";
 import TogglePaid from "./testDropperpage/browsedroppaid";
 import axios from "axios";
 import List from "../components/testListComponent/test-list-component";
@@ -110,11 +109,22 @@ const BrowseDrops = memo(function BrowseDrops({ type }) {
             <Sidebar />
             <div id="browse-drops-container">
                 {isLoading ? (
-                    <Icon
-                        icon="svg-spinners:3-dots-scale"
-                        width="50"
-                        height="50"
-                    />
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            // height: "100%",
+                            width: "100%",
+                            padding: "100px",
+                        }}
+                    >
+                        <Icon
+                            icon="svg-spinners:3-dots-scale"
+                            width="100"
+                            height="100"
+                        />
+                    </div>
                 ) : (
                     <>
                         <div className={styles.categoryWrapper}>
@@ -137,15 +147,13 @@ const BrowseDrops = memo(function BrowseDrops({ type }) {
                             </div>
                         </div>
                         <div id="drops-container">
-                            <Suspense fallback={<div>Loading</div>}>
-                                <TogglePaid typePaid={type} />
+                            <TogglePaid typePaid={type} />
 
-                                {lists.map((list, index) => (
-                                    <List list={list} key={index} />
-                                ))}
+                            {lists.map((list, index) => (
+                                <List list={list} key={index} />
+                            ))}
 
-                                <DefList deflist={newDrops} />
-                            </Suspense>
+                            <DefList deflist={newDrops} />
 
                             {/* <div>
                         <h2>Newly Added Products</h2>
