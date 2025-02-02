@@ -40,31 +40,6 @@ export default function UserProvider({ children }) {
         // if (!user) getLoginData();
     }, [user]);
 
-    /**
-     * A function to get missing login data.
-     * In case if the user state is reset, the missing data will be retreived with the access token
-     * stored in the localStorage.
-     *
-     * The retrieved data will be stored in the user state to access it throughout our application.
-     */
-    // const getLoginData = async () => {
-    //     let accessToken = localStorage.getItem("accessToken");
-    //     if (!!accessToken) {
-    //         let reqBody = {
-    //             accessToken: accessToken,
-    //         };
-    //         try {
-    //             let res = await axios.post(
-    //                 `${process.env.REACT_APP_BACKEND_URL}/api/auth/user/login/data`,
-    //                 reqBody
-    //             );
-    //             setUser(res.data);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     }
-    // };
-
     return (
         <UserContext.Provider value={{ user, setUser }}>
             {children}

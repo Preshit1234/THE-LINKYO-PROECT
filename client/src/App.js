@@ -9,7 +9,6 @@ import CreateAffiliateLink from "./prototype/create-affiliate-link";
 import FakeProduct from "./prototype/fake-product";
 import SignupPage from "./pages/signup-page";
 import Finalise from "./pages/final-form";
-import EmailConfirmation from "./components/email-confirmation";
 import UserCard from "./components/usercards";
 import ViewDrop from "./pages/view-drop";
 import GraphSet1 from "./components/graph-set-1";
@@ -41,6 +40,7 @@ import DropperCredentialRegistrationPage from "./pages/dropper/developer/credent
 import FetcherLayout from "./layouts/fetcher";
 import DropperLayout from "./layouts/dropper";
 import UserAuthProvider from "./contexts/UserAuthContext";
+import MemberProvider from "./contexts/MemberContext";
 import ProductDashboard from "./pages/dropper-dashboard";
 
 function Test() {
@@ -55,9 +55,9 @@ export default function App() {
                 element={<LandingPage title="Linkyo | 10x growth for SaaS" />}
             />
             <Route path="signup" element={<SignupPage />} />
-            <Route path="emailcomponent" element={<EmailConfirmation />} />
             <Route path="usercardtest" element={<UserCard />} />
             <Route path="signin" element={<LoginPageX />} />
+            <Route path="confirmemail" element={<CheckEmail />} />
             <Route
                 path="verify/email/token/:token"
                 element={<VerifyEmailToken />}
@@ -96,8 +96,6 @@ export default function App() {
                         <Route path=":drop" element={<ViewDrop />} />
                         <Route path="create" element={<CreateDrop />} />
                     </Route>
-
-                    <Route path="confirmemail" element={<CheckEmail />} />
                     <Route path="graphset1" element={<GraphSet1 />} />
                     <Route path="edit/user" element={<EditUser />} />
                     <Route
@@ -107,76 +105,86 @@ export default function App() {
                 </Route>
 
                 <Route path="dropper/signup" element={<DropperSignup />} />
-                <Route path="dropper" element={<DropperLayout />}>
-                    <Route path="dashboard" element={<ProductDashboard />} />
-
-                    <Route path="products">
-                        <Route index element={<DropperProductsPage />} />
+                <Route element={<MemberProvider />}>
+                    <Route path="dropper" element={<DropperLayout />}>
                         <Route
-                            path="register"
-                            element={<ProductRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="offers">
-                        <Route index element={<DropperOffersPage />} />
-                        <Route
-                            path="register"
-                            element={<OfferRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="campaigns">
-                        <Route index element={<DropperCampaignPage />} />
-                        <Route
-                            path="register"
-                            element={<DropperCampaignRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="drops">
-                        <Route index element={<DropperDropsPage />} />
-                        <Route
-                            path="register"
-                            element={<DropRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="users">
-                        <Route index element={<DropperUsersPage />} />
-                        <Route
-                            path="register"
-                            element={<DropperUserRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="roles">
-                        <Route index element={<DropperRolesPage />} />
-                        <Route
-                            path="register"
-                            element={<DropperRoleRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="drop">
-                        <Route
-                            path="register"
-                            element={<DropRegistrationPage />}
-                        />
-                    </Route>
-
-                    <Route path="developer">
-                        <Route
-                            path="console"
-                            element={<DropperDeveloperConsolePage />}
+                            path="dashboard"
+                            element={<ProductDashboard />}
                         />
 
-                        <Route path="credentials">
-                            <Route index element={<DropperCredentialsPage />} />
+                        <Route path="products">
+                            <Route index element={<DropperProductsPage />} />
                             <Route
                                 path="register"
-                                element={<DropperCredentialRegistrationPage />}
+                                element={<ProductRegistrationPage />}
                             />
+                        </Route>
+
+                        <Route path="offers">
+                            <Route index element={<DropperOffersPage />} />
+                            <Route
+                                path="register"
+                                element={<OfferRegistrationPage />}
+                            />
+                        </Route>
+
+                        <Route path="campaigns">
+                            <Route index element={<DropperCampaignPage />} />
+                            <Route
+                                path="register"
+                                element={<DropperCampaignRegistrationPage />}
+                            />
+                        </Route>
+
+                        <Route path="drops">
+                            <Route index element={<DropperDropsPage />} />
+                            <Route
+                                path="register"
+                                element={<DropRegistrationPage />}
+                            />
+                        </Route>
+
+                        <Route path="users">
+                            <Route index element={<DropperUsersPage />} />
+                            <Route
+                                path="register"
+                                element={<DropperUserRegistrationPage />}
+                            />
+                        </Route>
+
+                        <Route path="roles">
+                            <Route index element={<DropperRolesPage />} />
+                            <Route
+                                path="register"
+                                element={<DropperRoleRegistrationPage />}
+                            />
+                        </Route>
+
+                        <Route path="drop">
+                            <Route
+                                path="register"
+                                element={<DropRegistrationPage />}
+                            />
+                        </Route>
+
+                        <Route path="developer">
+                            <Route
+                                path="console"
+                                element={<DropperDeveloperConsolePage />}
+                            />
+
+                            <Route path="credentials">
+                                <Route
+                                    index
+                                    element={<DropperCredentialsPage />}
+                                />
+                                <Route
+                                    path="register"
+                                    element={
+                                        <DropperCredentialRegistrationPage />
+                                    }
+                                />
+                            </Route>
                         </Route>
                     </Route>
                 </Route>

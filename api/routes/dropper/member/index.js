@@ -3,8 +3,8 @@ const Organization = require("../../../models/Dropper/Organization");
 const Member = require("../../../models/Dropper/Member");
 const User = require("../../../models/User/User");
 const verify = require("../../../verifyToken");
+const verifyMember = require("../../../verifyMemberToken");
 const jwt = require("jsonwebtoken");
-const { default: mongoose } = require("mongoose");
 
 memberRouter.post("/login", verify, async (req, res) => {
     const reqUser = req.user;
@@ -44,6 +44,33 @@ memberRouter.post("/login", verify, async (req, res) => {
         message: "Member login successfull",
         accessToken: accessToken,
     });
+});
+
+memberRouter.get("/login/data", verifyMember, async (req, res) => {
+    try {
+        let member = await Member.findOne({
+            _id: req.member.memberId,
+        }).populate("organization");
+
+        response = {
+            id: member.id,
+            role: member.role,
+            organization: {
+                id: member.organization._id,
+                name: member.organization.name,
+                email: member.organization.email,
+                createdBy: member.organization.createdBy,
+                members: member.organization.members,
+            },
+        };
+
+        res.status(200).json(response);
+        return;
+    } catch (err) {
+        res.status(500).json("Internal server error");
+        console.log(err);
+        return;
+    }
 });
 
 module.exports = memberRouter;

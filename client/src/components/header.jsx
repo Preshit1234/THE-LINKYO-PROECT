@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import useClickDetector from "./hooks/clickDetector";
 import axios from "axios";
 import { useUser } from "../contexts/UserContext";
+import { useMember } from "../contexts/MemberContext";
 
 /**
  * A react component that renders the website header
@@ -48,6 +49,7 @@ const Header = memo(function Header(props) {
     const searchInputRef = useRef();
     const [clickedElement, setClickedElement] = useClickDetector();
     const { user, setUser } = useUser();
+    const { member } = useMember();
 
     // Effect to control modals
     useEffect(() => {
@@ -506,6 +508,11 @@ const Header = memo(function Header(props) {
                 </div>
 
                 {/* Center */}
+                <div>
+                    <span style={{ fontSize: "25px" }}>
+                        {!!member ? member.organization.name : ""}
+                    </span>
+                </div>
 
                 {/* Right Hand Side */}
                 <div className={styles.right}>

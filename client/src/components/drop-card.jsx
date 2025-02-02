@@ -1,15 +1,15 @@
 import "./css/drop-card.css";
 import { importAll } from "./js/import-data";
 import styles from "./css/DropCard.module.css";
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 /**
  * A react component that renders a Drop
  * @param {Object{drop: object}} props Data is passed through custom attributes called props
  * @returns {ReactNode} A react element that renders a Drop
  */
-export default function DropCard({item}) {
+export default function DropCard({ item }) {
     /**
      * All images with png, jpg and jpeg extensions from assets/images/ folder
      */
@@ -30,30 +30,32 @@ export default function DropCard({item}) {
 
     const handleTagClick = (tag) => {
         alert(`You clicked on: ${tag}`);
-      };
+    };
 
-    useEffect(()=>{
-        const getDrops = async ()=>{
-            try{
-                const res = await axios.get("http://localhost:8800/api/drops/"+item,{
-                    headers: {
-                        token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWI5ZDQxZWVhODJkZTZkZWE1ZTlhMCIsImlhdCI6MTczODI1MTY4MSwiZXhwIjoxNzM4NjgzNjgxfQ.ofwJ_raJk8kGTU4FekSHncPs1KTGaiSQ3CjhJJW6XRw"
-                    },
-                });
-                setDrop(res.data)
-            }catch(err){
+    useEffect(() => {
+        const getDrops = async () => {
+            try {
+                const res = await axios.get(
+                    "http://localhost:8800/api/drops/" + item,
+                    {
+                        headers: {
+                            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWI5ZDQxZWVhODJkZTZkZWE1ZTlhMCIsImlhdCI6MTczODI1MTY4MSwiZXhwIjoxNzM4NjgzNjgxfQ.ofwJ_raJk8kGTU4FekSHncPs1KTGaiSQ3CjhJJW6XRw",
+                        },
+                    }
+                );
+                setDrop(res.data);
+            } catch (err) {
                 console.log(err);
             }
-        }; getDrops();
-    },[item])
+        };
+        getDrops();
+    }, [item]);
 
     return (
         <div className={styles.container}>
             <div className={styles.wrap1}>
                 <div className={styles.wrap1a}>
-                    <p className={styles.pDescription}>
-                        {drop.short_desc}
-                    </p>
+                    <p className={styles.pDescription}>{drop.short_desc}</p>
                     <p className={styles.pOffer}>
                         <span className={styles.potext1}>Earn</span>
                         <span className={styles.potext2}>{drop.value}</span>
@@ -63,30 +65,32 @@ export default function DropCard({item}) {
                     </p>
                     <div className={styles.wrap1a1}>
                         <div className={styles.pAutherWrapper}>
-                            <span className={styles.pAuthor}>By {drop.org_name}</span>
+                            <span className={styles.pAuthor}>
+                                By {drop.org_name}
+                            </span>
                             <img
                                 src={svgs["verification-tick.svg"]}
                                 alt="verification tick"
                             />
                         </div>
                         {drop.tags?.map((tag, i) => (
-                            <span className={styles.pTags}key={i}>
+                            <span className={styles.pTags} key={i}>
                                 {tag}
                             </span>
-                            ))}
+                        ))}
                     </div>
                 </div>
                 <div className={styles.wrap1b}>
-                    {drop.productPic && <img
-                        src={`data:image/jpeg;base64,${drop.productPic}`}
-                        alt="product cover"
-                        className={styles.pCover}
-                    />}
+                    {drop.productPic && (
+                        <img
+                            src={`data:image/jpeg;base64,${drop.productPic}`}
+                            alt="product cover"
+                            className={styles.pCover}
+                        />
+                    )}
                     <div className={styles.wrap1b1}>
                         <p className={styles.pTitle}>{drop.product_name}</p>
-                        <p className={styles.pSubtitle}>
-                            {drop.tagline}
-                        </p>
+                        <p className={styles.pSubtitle}>{drop.tagline}</p>
                     </div>
                 </div>
             </div>

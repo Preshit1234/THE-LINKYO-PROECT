@@ -2,6 +2,8 @@
 
 import { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 const MemberContext = createContext();
 
@@ -30,15 +32,28 @@ export function useMember() {
  * @param {*} param0
  * @returns MemberProvider ReactNode
  */
-export default function MemberProvider({ children }) {
+export default function MemberProvider() {
     /**
      * A state variable to store logged in member data
      */
     const [member, setMember] = useState();
+    let navigate = useNavigate();
 
     useEffect(() => {
-        if (!member) getLoginData();
+        if (!member) {
+            getMemberData();
+        } else {
+            return;
+        }
     }, [member]);
+
+    useEffect(() => {
+        let memberAccessToken = localStorage.getItem("memberAccessToken");
+        if (!memberAccessToken) {
+            navigate("/user/home");
+            return;
+        }
+    });
 
     /**
      * A function to get missing login data.
@@ -47,17 +62,22 @@ export default function MemberProvider({ children }) {
      *
      * The retrieved data will be stored in the member state to access it throughout our application.
      */
-    const getLoginData = async () => {
+    const getMemberData = async () => {
+        let accessToken = localStorage.getItem("accessToken");
         let memberAccessToken = localStorage.getItem("memberAccessToken");
         if (!!memberAccessToken) {
-            let reqBody = {
-                memberAccessToken: memberAccessToken,
+            let authHeaders = {
+                token: `Bearer ${accessToken}`,
+                membertoken: `Bearer ${memberAccessToken}`,
             };
             try {
-                let res = await axios.post(
+                let res = await axios.get(
                     `${process.env.REACT_APP_BACKEND_URL}/api/dropper/member/login/data`,
-                    reqBody
+                    {
+                        headers: authHeaders,
+                    }
                 );
+                console.log(res.data);
                 setMember(res.data);
             } catch (err) {
                 console.log(err);
@@ -67,7 +87,25 @@ export default function MemberProvider({ children }) {
 
     return (
         <MemberContext.Provider value={{ member, setMember }}>
-            {children}
+            {!!member ? (
+                <Outlet />
+            ) : (
+                <div
+                    style={{
+                        width: "100vw",
+                        height: "100vh",
+                        diaplay: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <Icon
+                        icon="svg-spinners:3-dots-scale"
+                        width="100"
+                        height="100"
+                    />
+                </div>
+            )}
         </MemberContext.Provider>
     );
 }

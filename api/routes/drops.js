@@ -50,7 +50,7 @@ router.post(
             short_desc,
             tagline,
             tags,
-            owners_name,
+            org_name,
             org_email,
             pin,
             value,
@@ -65,7 +65,7 @@ router.post(
               )
             : [];
         try {
-            const tagsArray = tags.split(",").map(tag => tag.trim());
+            const tagsArray = tags.split(",").map((tag) => tag.trim());
             //const tagsArray = tags.map(tag => tag.trim());
             const newDrop = new Drop({
                 userId,
@@ -74,7 +74,7 @@ router.post(
                 short_desc,
                 tagline,
                 tags: tagsArray,
-                owners_name,
+                org_name,
                 org_email,
                 pin,
                 value,

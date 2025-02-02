@@ -1,7 +1,7 @@
 // const dotenv = require("dotenv");
 require("dotenv").config();
 const express = require("express");
-require('./routes/dropper/lists/cron');
+require("./routes/dropper/lists/cron");
 const app = express();
 const helmet = require("helmet");
 const morgan = require("morgan");
@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
         res.header("Access-Control-Allow-Origin", origin); // update to match the domain you will make the request from
         res.header(
             "Access-Control-Allow-Headers",
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization, Token, User-Agent, Referrer"
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization, Token, User-Agent, Referrer, MemberToken"
         );
         res.header(
             "Access-Control-Allow-Methods",
