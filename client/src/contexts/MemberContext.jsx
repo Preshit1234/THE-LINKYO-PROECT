@@ -77,7 +77,6 @@ export default function MemberProvider() {
                         headers: authHeaders,
                     }
                 );
-                console.log(res.data);
                 setMember(res.data);
             } catch (err) {
                 console.log(err);

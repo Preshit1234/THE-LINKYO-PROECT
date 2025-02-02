@@ -2,11 +2,14 @@ import styles from "./index.module.css";
 import Header from "../../components/header";
 import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { useMember } from "../../contexts/MemberContext";
 
 export default function DropperLayout() {
+    const { member } = useMember();
+
     return (
         <div className={styles.container}>
-            <Header type="memberLogin" />
+            <Header type="memberLogin" member={member} />
             <div className={styles.body}>
                 <div className={styles.sidebar}>
                     <NavLink
