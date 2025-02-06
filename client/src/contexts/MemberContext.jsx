@@ -93,7 +93,7 @@ export default function MemberProvider() {
                     style={{
                         width: "100vw",
                         height: "100vh",
-                        diaplay: "flex",
+                        display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                     }}

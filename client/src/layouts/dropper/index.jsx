@@ -13,7 +13,7 @@ export default function DropperLayout() {
             <div className={styles.body}>
                 <div className={styles.sidebar}>
                     <NavLink
-                        exact
+                        exact="true"
                         to={"/dropper/dashboard"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -22,7 +22,7 @@ export default function DropperLayout() {
                         Dashboard
                     </NavLink>
                     <NavLink
-                        exact
+                        exact="true"
                         to={"/dropper/products"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -31,6 +31,7 @@ export default function DropperLayout() {
                         Products
                     </NavLink>
                     <NavLink
+                        exact="true"
                         to={"/dropper/offers"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -39,6 +40,7 @@ export default function DropperLayout() {
                         Offers
                     </NavLink>
                     <NavLink
+                        exact="true"
                         to={"/dropper/campaigns"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -47,6 +49,7 @@ export default function DropperLayout() {
                         Campaigns
                     </NavLink>
                     <NavLink
+                        exact="true"
                         to={"/dropper/drops"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -55,6 +58,7 @@ export default function DropperLayout() {
                         Drops
                     </NavLink>
                     <NavLink
+                        exact="true"
                         to={"/dropper/users"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -63,6 +67,7 @@ export default function DropperLayout() {
                         Users
                     </NavLink>
                     <NavLink
+                        exact="true"
                         to={"/dropper/roles"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -71,6 +76,7 @@ export default function DropperLayout() {
                         Roles
                     </NavLink>
                     <NavLink
+                        exact="true"
                         to={"/dropper/developer/console"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink

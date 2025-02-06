@@ -198,6 +198,7 @@ const Header = memo(function Header(props) {
         e.preventDefault();
 
         localStorage.removeItem("memberAccessToken");
+        setMember(null);
         navigate("/user/home");
     };
 
