@@ -37,7 +37,8 @@ const Header = memo(function Header(props) {
     const [haveNewNotifications, setHaveNewNotifications] = useState(true);
     const [isSwitchAccountsDialogOpen, setIsSwitchAccountsDialogOpen] =
         useState(false);
-    const navigate = useNavigate();
+    const [member, setMember] = useState();
+
     const profilePicRef = useRef();
     const notificationsIconRef = useRef();
     const switchAccountsRef = useRef();
@@ -46,9 +47,11 @@ const Header = memo(function Header(props) {
     const switchAccountsDialogRef = useRef();
     const cancelButtonRef = useRef();
     const searchInputRef = useRef();
+
     const [clickedElement, setClickedElement] = useClickDetector();
     const { user, setUser } = useUser();
-    const [member, setMember] = useState();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (type === "memberLogin") setMember(props.member);
@@ -515,7 +518,6 @@ const Header = memo(function Header(props) {
                 <div>
                     <span style={{ fontSize: "25px" }}>
                         {!!member ? member.organization.name : ""}
-                        {console.log("Member: ", member)}
                     </span>
                 </div>
 

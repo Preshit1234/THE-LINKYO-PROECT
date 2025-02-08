@@ -16,6 +16,23 @@ const imagesRoute = require("./routes/image");
 const path = require("path");
 const adminPermissionRoute = require("./routes/dropper/Roles/adminRoute");
 
+// for sockets
+const { Server } = require("socket.io");
+const http = require("http");
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: process.env.CLIENT_URL,
+    },
+});
+
+io.on("connection", (socket) => {
+    socket.on("registerUser", (data) => {
+        socket.join(data.userId);
+        console.log(`User ${data.userId} established socket connection`);
+    });
+});
+
 mongoose
     .connect(process.env.MONGO_URL, {})
     .then(() => console.log("DB Connection Successful"))
@@ -80,6 +97,6 @@ app.get("/api/test", (req, res) => {
     res.json({ success: "Hello World" });
 });
 
-app.listen(8800, () => {
+server.listen(8800, () => {
     console.log("Backend Server is running");
 });
