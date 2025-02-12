@@ -7,19 +7,17 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
-    height: 100%;
-    /* overflow-y: scroll; */
 }
 
 #create-drop-tagline-1 {
-    width: 390px;
+    max-width: 390px;
     font-size: 24px;
     line-height: 33px;
     color: #ffffff;
 }
 
 #create-drop-tagline-2 {
-    width: 1042px;
+    max-width: 1042px;
     font-size: 16px;
     line-height: 23px;
     color: #ffffff;
@@ -32,6 +30,7 @@ body {
 }
 
 #create-drop-subform-1-input {
+    width: 100%;
     width: 699px;
     height: 48px;
     padding-left: 38px;
@@ -65,11 +64,11 @@ body {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
+    cursor: pointer;
 }
 
 .create-drop-form-date-inputs {
     box-sizing: border-box;
-    width: 699px;
     height: 48px;
     padding-left: 38px;
     background-color: #0d0d0d;
@@ -85,7 +84,8 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     /* justify-content: space-between; */
-    gap: 62px;
+    gap: 40px;
+    width: 100%;
 }
 
 #create-drop-form-main-form-display {
@@ -99,8 +99,11 @@ body {
         rgba(23, 2, 12, 79%)
     );
     border-radius: 12px;
-    width: 878px;
+    flex: 1;
+    max-width: 878px;
+    min-width: 570px;
     height: 1258px;
+    align-items: stretch;
 }
 
 #create-drop-form-main-form-display-header {
@@ -126,15 +129,16 @@ body {
     flex-direction: column;
     gap: 70px;
     background-color: #0d0d0d;
-    padding: 35px 90px;
+    padding: 35px 60px;
     flex-grow: 1;
+    align-items: stretch;
 }
 
 #create-drop-form-main-form-display-body-sections {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 32px;
-    align-items: center;
+    align-items: stretch;
     align-content: center;
     font-size: 20px;
     font-weight: 500;
@@ -157,7 +161,6 @@ body {
     margin-top: 45px;
     display: flex;
     flex-direction: row;
-    width: 100%;
     align-items: center;
 }
 
@@ -223,18 +226,21 @@ body {
     font-size: 11px;
     line-height: 16px;
     color: #ffffff;
-    width: 699px;
+    max-width: 699px;
 }
 
 .create-drop-form-subforms {
     display: flex;
     flex-direction: column;
     gap: 52px;
+    height: 100%;
+    align-items: stretch;
 }
 
 .create-drop-form-subform-2-fieldset {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 30px;
     border: 0;
     margin: 0;
@@ -256,13 +262,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    align-items: stretch;
 }
 
 .create-drop-form-input-fields-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: 699px;
+    align-items: stretch;
 }
 
 .create-drop-form-input-field-labels {
@@ -273,7 +280,6 @@ body {
 
 .create-drop-form-text-inputs {
     box-sizing: border-box;
-    width: 699px;
     height: 48px;
     padding-left: 38px;
     background-color: #0d0d0d;
@@ -285,7 +291,6 @@ body {
 
 .create-drop-form-select-inputs {
     box-sizing: border-box;
-    width: 699px;
     height: 48px;
     padding-left: 38px;
     background-color: #0d0d0d;
@@ -301,7 +306,6 @@ body {
 
 .create-drop-form-textarea-inputs {
     box-sizing: border-box;
-    width: 699px;
     padding-left: 38px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -319,7 +323,6 @@ body {
 
 .create-drop-form-file-input-containers {
     box-sizing: border-box;
-    width: 699px;
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #0d0d0d;
@@ -380,6 +383,7 @@ body {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
+    cursor: pointer;
 }
 
 .create-drop-form-navigation-next-subform-buttons.next {
@@ -495,10 +499,6 @@ hr.createDrop {
 
 #create-drop-form-subform-2 {
     position: relative;
-}
-
-.create-drop-form-subform-2-fieldset {
-    position: absolute;
 }
 
 #create-drop-form-subform-2-fieldset-1 {

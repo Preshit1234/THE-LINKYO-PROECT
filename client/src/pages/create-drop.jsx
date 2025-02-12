@@ -7,6 +7,7 @@ import axios from "axios";
 import { useUser } from "../contexts/UserContext";
 // import { useNavigate } from "react-router-dom";
 import styles from "../components/css/DropCard.module.css";
+import { useMember } from "../contexts/MemberContext";
 
 /**
  * A react component that renders the create drop page.
@@ -15,6 +16,7 @@ import styles from "../components/css/DropCard.module.css";
 const CreateDrop = () => {
     const [subformStage, setSubformStage] = useState(1);
     const [subformFieldsetStage, setSubformFieldsetStage] = useState(1);
+    const { member } = useMember();
 
     /**
      * Contains all svgs from assets/svgs/ folder
@@ -463,7 +465,6 @@ const CreateDrop = () => {
     const handleChange = (e) => {
         const value = e.target.value;
         setDrop({ ...drop, [e.target.name]: value, userId: user.id });
-        console.log(drop);
     };
 
     // const handleTagChange = (e) => {
@@ -508,6 +509,7 @@ const CreateDrop = () => {
             data.append("pin", drop.pin);
             data.append("value", drop.value);
             data.append("discount", drop.discount);
+            data.append("org", member.organization.id);
             drop.relatedImg.map((i) => data.append("relatedImg", i));
             //  Append each image to the FormData object
             const res = await axios.post(
@@ -1032,7 +1034,14 @@ const CreateDrop = () => {
                                                     placeholder="Enter Name of the Organisation"
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
+                                                    value={
+                                                        member.organization.name
+                                                    }
                                                     required
+                                                    disabled
+                                                    style={{
+                                                        cursor: "not-allowed",
+                                                    }}
                                                 />
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
@@ -1049,16 +1058,28 @@ const CreateDrop = () => {
                                                     placeholder="Enter email"
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
+                                                    value={
+                                                        member.organization
+                                                            .email
+                                                    }
                                                     required
+                                                    disabled
+                                                    style={{
+                                                        cursor: "not-allowed",
+                                                    }}
                                                 />
                                                 <div
                                                     className="create-drop-form-button"
                                                     id="create-drop-form-verify-email-button"
+                                                    style={{ display: "none" }}
                                                 >
                                                     Verify
                                                 </div>
                                             </div>
-                                            <div className="create-drop-form-input-fields-container">
+                                            <div
+                                                className="create-drop-form-input-fields-container"
+                                                style={{ display: "none" }}
+                                            >
                                                 <span className="create-drop-form-input-field-labels">
                                                     Pin
                                                 </span>

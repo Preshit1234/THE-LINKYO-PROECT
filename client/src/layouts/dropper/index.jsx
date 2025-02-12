@@ -57,7 +57,7 @@ export default function DropperLayout() {
                     >
                         Drops
                     </NavLink>
-                    <NavLink
+                    {/* <NavLink
                         exact="true"
                         to={"/dropper/users"}
                         className={({ isActive }) =>
@@ -74,8 +74,8 @@ export default function DropperLayout() {
                         }
                     >
                         Roles
-                    </NavLink>
-                    <NavLink
+                    </NavLink> */}
+                    {/* <NavLink
                         exact="true"
                         to={"/dropper/developer/console"}
                         className={({ isActive }) =>
@@ -83,7 +83,7 @@ export default function DropperLayout() {
                         }
                     >
                         Developer Console
-                    </NavLink>
+                    </NavLink> */}
                 </div>
                 <div className={styles.main}>
                     <Outlet />

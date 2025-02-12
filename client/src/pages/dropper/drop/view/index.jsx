@@ -34,10 +34,6 @@ export default function DropperDropsPage() {
         getAllDrops();
     }, [drops]);
 
-    if (drops !== null) {
-        console.log("Drops: ", drops);
-    }
-
     return (
         <div className={styles.container}>
             Your Drops

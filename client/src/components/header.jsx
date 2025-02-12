@@ -516,7 +516,7 @@ const Header = memo(function Header(props) {
 
                 {/* Center */}
                 <div>
-                    <span class={styles.orgSpanStyles }>
+                    <span className={styles.orgSpanStyles}>
                         {!!member ? member.organization.name : ""}
                     </span>
                 </div>
