@@ -15,6 +15,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import {useState, useEffect} from 'react';
+import {useNavigate} from 'react';
 
 
 const Dashboard = () => {
@@ -116,6 +117,14 @@ const Dashboard = () => {
         );
     }
   };
+
+  // const DropCheck = ({ userId }) => {
+  //   const navigate = useNavigate();
+  //   try{
+  //     return
+  //     const response = await.axios.get('http://localhost:8800/api/drops')
+  //   }/
+  // }
 
   return (
     <div className={dashStyles.dashboardContainer}>

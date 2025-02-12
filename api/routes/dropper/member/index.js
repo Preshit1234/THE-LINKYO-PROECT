@@ -5,6 +5,7 @@ const User = require("../../../models/User/User");
 const verify = require("../../../verifyToken");
 const verifyMember = require("../../../verifyMemberToken");
 const jwt = require("jsonwebtoken");
+const Drop = require("../../../models/Dropper/Drop")
 
 memberRouter.post("/login", verify, async (req, res) => {
     const reqUser = req.user;
@@ -70,6 +71,16 @@ memberRouter.get("/login/data", verifyMember, async (req, res) => {
         res.status(500).json("Internal server error");
         console.log(err);
         return;
+    }
+});
+
+memberRouter.get("/userId", async (req, res) => {
+    try {
+        const drops = await Member.find({ member: req.params.id });
+        console.log(drops)
+        res.json(drops);
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
     }
 });
 

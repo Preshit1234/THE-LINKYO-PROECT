@@ -514,7 +514,6 @@ const Header = memo(function Header(props) {
                 <div>
                     <span style={{ fontSize: "25px" }}>
                         {!!member ? member.organization.name : ""}
-                        {console.log("Member: ", member)}
                     </span>
                 </div>
 

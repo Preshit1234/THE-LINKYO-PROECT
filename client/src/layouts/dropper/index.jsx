@@ -13,7 +13,7 @@ export default function DropperLayout() {
             <div className={styles.body}>
                 <div className={styles.sidebar}>
                     <NavLink
-                        exact
+                        exact="true"
                         to={"/dropper/dashboard"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
@@ -22,7 +22,7 @@ export default function DropperLayout() {
                         Dashboard
                     </NavLink>
                     <NavLink
-                        exact
+                        exact="true"
                         to={"/dropper/products"}
                         className={({ isActive }) =>
                             isActive ? styles.activeLink : styles.inactiveLink
