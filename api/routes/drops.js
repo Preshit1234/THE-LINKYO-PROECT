@@ -50,11 +50,12 @@ router.post(
             short_desc,
             tagline,
             tags,
-            org_name,
             org_email,
+            org_name,
             pin,
             value,
             discount,
+            org,
         } = req.body;
         const productPic = req.files["productPic"]
             ? req.files["productPic"][0].buffer.toString("base64")
@@ -81,6 +82,7 @@ router.post(
                 discount,
                 productPic,
                 relatedimg,
+                org,
             });
             const savedDrop = await newDrop.save();
             res.status(200).json(savedDrop);
