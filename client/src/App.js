@@ -21,7 +21,7 @@ import VerifyEmailToken from "./components/verify-email-token";
 // import OrdersPaidOrPending from "./components/recent-orders-paid";
 import LoginPageX from "./pages/loginpage";
 import DropperSignup from "./pages/dropper-signup";
-import DropperDashboard from "./pages/dropper/dashboard/view";
+// import DropperDashboard from "./pages/dropper/dashboard/view";
 import DropperProductsPage from "./pages/dropper/product/view";
 import ProductRegistrationPage from "./pages/dropper/product/register";
 import DropperOffersPage from "./pages/dropper/offer/view";
@@ -94,7 +94,6 @@ export default function App() {
 
                     <Route path="drops">
                         <Route path=":drop" element={<ViewDrop />} />
-                        <Route path="create" element={<CreateDrop />} />
                     </Route>
                     <Route path="graphset1" element={<GraphSet1 />} />
                     <Route path="edit/user" element={<EditUser />} />
@@ -142,6 +141,7 @@ export default function App() {
                                 path="register"
                                 element={<DropRegistrationPage />}
                             />
+                            <Route path="create" element={<CreateDrop />} />
                         </Route>
 
                         <Route path="users">

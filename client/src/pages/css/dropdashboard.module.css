@@ -1,4 +1,4 @@
-.dashboardContainer{
+.dashboardContainer {
     display: flex;
     flex-direction: column;
     background-color: #081028;
@@ -7,86 +7,106 @@
     padding-right: 40px;
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap:100px;
+    gap: 100px;
 }
 
-.searchContainer{
+.searchContainer {
     display: flex;
     justify-content: flex-end;
 }
 
-.statsGridContainer{
+.statsGridContainer {
     display: flex;
-    background-color:#081028;
+    background-color: #081028;
     gap: 16px;
 }
 
-.Grids{
+.Grids {
     display: flex;
     flex-direction: column;
     width: 250px;
     padding: 20px;
-    background-color: #0B1739;
-    border: 1px solid #343B4F;
+    background-color: #0b1739;
+    border: 1px solid #343b4f;
     border-radius: 8px;
     gap: 15px;
 }
 
-.chartContainer{
+.chartContainer {
     padding: 60px;
     border-radius: 8px;
-    background-color: #0B1739;
+    background-color: #0b1739;
     box-shadow: #081028;
 }
 
-.chartPrepare{
+.chartPrepare {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.chartTitle{
+.chartTitle {
     font-size: 24px;
     font-weight: 700;
-    color : gray;
+    color: gray;
 }
 
-.spaceX2{
+.spaceX2 {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.chartTypes{
+.chartTypes {
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 6px;
     text-transform: capitalize;
-    border: 1px solid #343B4F;
+    border: 1px solid #343b4f;
 }
 
-.chartTyp1{
-    background-color: #0B1739;
+.chartTyp1 {
+    background-color: #0b1739;
     color: white;
 }
 
-.chartTyp2{
+.chartTyp2 {
     background-color: gray;
     color: rgb(69, 69, 69);
 }
 
-.chartTyp2:hover{
+.chartTyp2:hover {
     background-color: gray;
     color: rgb(32, 32, 209);
 }
 
-.h96{
-    height : 200px;
+.h96 {
+    height: 200px;
+}
+
+.dropsNotFoundContainer {
+    padding: 20px;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.dropsNotFoundContainer h1 {
+    font-size: 30px;
+}
+
+.createDropLink {
+    text-decoration: none;
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 1);
 }

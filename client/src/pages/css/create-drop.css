@@ -3,11 +3,12 @@ body {
 }
 
 #create-drop-content {
-    padding: 166px 100px;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 0;
     height: 100%;
+    /* overflow-y: scroll; */
 }
 
 #create-drop-tagline-1 {
@@ -66,7 +67,7 @@ body {
     line-height: 20px;
 }
 
-.create-drop-form-date-inputs{
+.create-drop-form-date-inputs {
     box-sizing: border-box;
     width: 699px;
     height: 48px;
@@ -162,7 +163,7 @@ body {
 
 .breadcrumbs-connector {
     height: 2px;
-    background: #9CA3AF;
+    background: #9ca3af;
     flex-grow: 1;
 }
 
@@ -457,10 +458,10 @@ hr.createDrop {
 
 #create-drop-form-verify-email-button {
     display: block;
-    background-color: #0F6EFF;
+    background-color: #0f6eff;
     border: 1px solid #909090;
     border-radius: 6px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 13px;
     font-weight: 500;
     line-height: 20px;
@@ -487,7 +488,7 @@ hr.createDrop {
     align-items: center;
     height: 48px;
     width: 48px;
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     border: 1px solid #606060;
     border-radius: 8px;
 }

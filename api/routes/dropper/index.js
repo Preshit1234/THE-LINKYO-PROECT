@@ -5,14 +5,14 @@
 const dropperRouter = require("express").Router();
 const organizationRoute = require("./organization");
 const listsRoute = require("./lists/lists");
-const memberRoute = require("./member");
 const defaultListRoute = require("./lists/defaultLists");
+const memberRoute = require("./member");
+const dropRoute = require("./drop");
 
 dropperRouter.use("/organization", organizationRoute);
 dropperRouter.use("/lists", listsRoute);
-dropperRouter.use("/member/", memberRoute);
 dropperRouter.use("/lists/defaultlist", defaultListRoute);
-
-
+dropperRouter.use("/member", memberRoute);
+dropperRouter.use("/drop", dropRoute);
 
 module.exports = dropperRouter;

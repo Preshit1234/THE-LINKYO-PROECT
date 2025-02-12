@@ -8,6 +8,7 @@ const OrganizationSchema = new mongoose.Schema(
         address: { type: String, required: true },
         createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         members: [{ type: mongoose.Schema.Types.ObjectId, ref: "Member" }],
+        drops: [{ type: mongoose.Schema.Types.ObjectId, ref: "Drop" }],
     },
     { timestamps: true }
 );

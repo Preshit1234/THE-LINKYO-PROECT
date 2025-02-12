@@ -1,29 +1,12 @@
 import gsap from "gsap";
 import "./css/create-drop.css";
 import { useGSAP } from "@gsap/react";
-import Header from "../components/header";
-import DropCard from "../components/drop-card";
 import { importAll } from "../components/js/import-data";
 import { useState, useEffect, useRef } from "react";
-import axios from 'axios';
-import { useUser } from '../contexts/UserContext'
-import { useNavigate } from "react-router-dom";
-import styles from '../components/css/DropCard.module.css'
-
-/**
- * A dummy api response for rendering drop card component.
- */
-const dummyDrop = {
-    id: 3,
-    name: "CoCA",
-    publisher: "Alok",
-    is_publisher_verified: "n",
-    description: "The world's first MPC wallet with non-custodial card.",
-    thumbnail_url: "Framethumbnail-coca.png",
-    product_url: "",
-    score: "130",
-    tags: ["Fintech", "Finance", "Blockchain"],
-};
+import axios from "axios";
+import { useUser } from "../contexts/UserContext";
+// import { useNavigate } from "react-router-dom";
+import styles from "../components/css/DropCard.module.css";
 
 /**
  * A react component that renders the create drop page.
@@ -110,7 +93,9 @@ const CreateDrop = () => {
     const handleGetStarted = contextSafe((e) => {
         e.preventDefault();
         ref2Url.current.value = refUrl.current.value;
-        if(!refUrl.current.value){return;};
+        if (!refUrl.current.value) {
+            return;
+        }
         // validateURL()
         // if url is valid then
         // contextSafe(() => {
@@ -188,7 +173,7 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
-                    backgroundColor: "#34A853"
+                    backgroundColor: "#34A853",
                 },
                 {
                     height: "30px",
@@ -260,7 +245,7 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
-                    backgroundColor: "#34A853"
+                    backgroundColor: "#34A853",
                 },
                 {
                     height: "30px",
@@ -332,7 +317,7 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
-                    backgroundColor: "#34A853"
+                    backgroundColor: "#34A853",
                 },
                 {
                     height: "30px",
@@ -404,7 +389,7 @@ const CreateDrop = () => {
                     height: 0,
                     width: 0,
                     display: "flex",
-                    backgroundColor: "#34A853"
+                    backgroundColor: "#34A853",
                 },
                 {
                     height: "30px",
@@ -451,24 +436,35 @@ const CreateDrop = () => {
 
     const refUrl = useRef();
     const ref2Url = useRef();
-    const {user, setUser} = useUser();
-    const [drop, setDrop] = useState({product_name: '', short_desc: '', productPic: null, relatedImg: [], tagline : '', tags: [],
-    org_name:'', org_email:'', pin:'', value:'', discount:''});
+    const { user } = useUser();
+    const [drop, setDrop] = useState({
+        product_name: "",
+        short_desc: "",
+        productPic: null,
+        relatedImg: [],
+        tagline: "",
+        tags: [],
+        org_name: "",
+        org_email: "",
+        pin: "",
+        value: "",
+        discount: "",
+    });
     const [tagString, setTagString] = useState("");
     const [profilePicPreview, setProfilePicPreview] = useState("");
 
-    const navigate = useNavigate();
-    const tagsArray = tagString.split(",").map(tag => tag.trim());
+    // const navigate = useNavigate();
+    const tagsArray = tagString.split(",").map((tag) => tag.trim());
 
     const handleTagsChange = (e) => {
         setTagString(e.target.value);
-    }
-  
+    };
+
     const handleChange = (e) => {
         const value = e.target.value;
-        setDrop({...drop, [e.target.name]:value, userId: user.id})
+        setDrop({ ...drop, [e.target.name]: value, userId: user.id });
         console.log(drop);
-    }
+    };
 
     // const handleTagChange = (e) => {
     //     const separate = [e.target.value.split(',')];
@@ -482,60 +478,75 @@ const CreateDrop = () => {
             setProfilePicPreview(objectURL);
         }
         setDrop({
-          ...drop,
-          productPic: file,
+            ...drop,
+            productPic: file,
         });
-      };
-    
-      const handleImagesChange = (e) => {
+    };
+
+    const handleImagesChange = (e) => {
         const files = Array.from(e.target.files); // Convert FileList to an array
         setDrop({
-          ...drop,
-          relatedImg: files,
+            ...drop,
+            relatedImg: files,
         });
-      };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const data = new FormData();
-            data.append('userId', user.id);
-            data.append('url', drop.url);
-            data.append('product_name', drop.product_name);
-            data.append('short_desc', drop.short_desc);
-            data.append('productPic', drop.productPic);
-            data.append('tagline', drop.tagline);
-            data.append('tags', tagsArray);
-            data.append('org_name', drop.org_name);
-            data.append('org_email', drop.org_email);
-            data.append('pin', drop.pin);
-            data.append('value', drop.value);
-            data.append('discount', drop.discount);
-            drop.relatedImg.map((i) => data.append('relatedImg', i));
-                //  Append each image to the FormData object
-          const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/drops/add`, data, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            }});
-          console.log('Form submitted successfully:', res.data);
-        //   You can add additional logic here, such as showing a success message or redirecting the user
-          console.log(res);
-          setDrop({ product_name: '', short_desc: '', productPic: null, relatedImg: [], tagline : '', tags: tagsArray,
-          org_name:'', org_email:'', pin:'', value:'', discount:''
-        }); setTagString("");
+            data.append("userId", user.id);
+            data.append("url", drop.url);
+            data.append("product_name", drop.product_name);
+            data.append("short_desc", drop.short_desc);
+            data.append("productPic", drop.productPic);
+            data.append("tagline", drop.tagline);
+            data.append("tags", tagsArray);
+            data.append("org_name", drop.org_name);
+            data.append("org_email", drop.org_email);
+            data.append("pin", drop.pin);
+            data.append("value", drop.value);
+            data.append("discount", drop.discount);
+            drop.relatedImg.map((i) => data.append("relatedImg", i));
+            //  Append each image to the FormData object
+            const res = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/api/drops/add`,
+                data,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            console.log("Form submitted successfully:", res.data);
+            //   You can add additional logic here, such as showing a success message or redirecting the user
+            console.log(res);
+            setDrop({
+                product_name: "",
+                short_desc: "",
+                productPic: null,
+                relatedImg: [],
+                tagline: "",
+                tags: tagsArray,
+                org_name: "",
+                org_email: "",
+                pin: "",
+                value: "",
+                discount: "",
+            });
+            setTagString("");
         } catch (error) {
-          console.error('There was an error submitting the form:', error);
-          // You can add additional error handling logic here
-          return;
+            console.error("There was an error submitting the form:", error);
+            // You can add additional error handling logic here
+            return;
         }
 
         // navigate("/dropper/dashboard");
-      };
+    };
 
     return (
-        <div id="create-drop-container">
-            <Header type="login" />
+        <>
             <div id="create-drop-content">
                 <p id="create-drop-tagline-1">
                     Drop Your Product and reach out to Millions.
@@ -563,7 +574,7 @@ const CreateDrop = () => {
                                 id="create-drop-subform-1-input"
                                 placeholder="Enter Product URL if any"
                                 onChange={handleChange}
-                                ref = {refUrl}
+                                ref={refUrl}
                             />
                             <button
                                 id="create-drop-subform-1-get-started-button"
@@ -807,7 +818,7 @@ const CreateDrop = () => {
                                         <div className="create-drop-form-subform-2-inputs-container">
                                             <div className="create-drop-form-input-fields-container">
                                                 <label
-                                                    htmlFor="url"
+                                                    htmlFor="input-url"
                                                     className="create-drop-form-input-field-labels"
                                                 >
                                                     URL
@@ -815,10 +826,10 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="productUrl"
-                                                    id=""
+                                                    id="input-url"
                                                     placeholder="Enter Product URL if any"
                                                     className="create-drop-form-text-inputs"
-                                                    ref = {ref2Url}
+                                                    ref={ref2Url}
                                                     required
                                                 />
                                             </div>
@@ -832,7 +843,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="product_name"
-                                                    id=""
+                                                    id="productName"
                                                     placeholder="Enter Name"
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -866,7 +877,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="tagline"
-                                                    id=""
+                                                    id="tagline"
                                                     placeholder="Enter a catchy tagline"
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -883,7 +894,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="tags"
-                                                    id=""
+                                                    id="tags"
                                                     placeholder="Enter Tags"
                                                     className="create-drop-form-text-inputs"
                                                     value={tagString}
@@ -921,14 +932,19 @@ const CreateDrop = () => {
                                                 <span className="create-drop-form-input-field-labels">
                                                     Add Thumbnail
                                                 </span>
-                                                <label className="create-drop-form-file-input-containers">
+                                                <label
+                                                    htmlFor="image-upload-1"
+                                                    className="create-drop-form-file-input-containers"
+                                                >
                                                     <input
                                                         type="file"
                                                         name="productPic"
                                                         className="create-drop-form-file-inputs"
-                                                        id=""
+                                                        id="image-upload-1"
                                                         placeholder="Select Image file to upload"
-                                                        onChange={handleProductPicChange}
+                                                        onChange={
+                                                            handleProductPicChange
+                                                        }
                                                         required
                                                     />
                                                     <img
@@ -956,7 +972,9 @@ const CreateDrop = () => {
                                                         className="create-drop-form-file-inputs"
                                                         id=""
                                                         placeholder="Select Image file to upload"
-                                                        onChange={handleImagesChange}
+                                                        onChange={
+                                                            handleImagesChange
+                                                        }
                                                     />
                                                     <img
                                                         src={
@@ -1010,7 +1028,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="org_name"
-                                                    id=""
+                                                    id="org_name"
                                                     placeholder="Enter Name of the Organisation"
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -1019,7 +1037,7 @@ const CreateDrop = () => {
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
                                                 <label
-                                                    htmlFor="orgEmail"
+                                                    htmlFor="org_email"
                                                     className="create-drop-form-input-field-labels"
                                                 >
                                                     Organizations's email
@@ -1027,7 +1045,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="org_email"
-                                                    id=""
+                                                    id="org_email"
                                                     placeholder="Enter email"
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -1041,17 +1059,17 @@ const CreateDrop = () => {
                                                 </div>
                                             </div>
                                             <div className="create-drop-form-input-fields-container">
-                                                <label
-                                                    htmlFor="pin"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
+                                                <span className="create-drop-form-input-field-labels">
                                                     Pin
-                                                </label>
-                                                <div className="create-drop-form-pin-inputs-container">
+                                                </span>
+                                                <div
+                                                    className="create-drop-form-pin-inputs-container"
+                                                    id="pin"
+                                                >
                                                     <input
                                                         type="number"
                                                         name="pin"
-                                                        id=""
+                                                        id="pin1"
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
                                                         onChange={handleChange}
@@ -1059,7 +1077,7 @@ const CreateDrop = () => {
                                                     <input
                                                         type="number"
                                                         name="pin"
-                                                        id=""
+                                                        id="pin2"
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
                                                         onChange={handleChange}
@@ -1067,7 +1085,7 @@ const CreateDrop = () => {
                                                     <input
                                                         type="number"
                                                         name="pin"
-                                                        id=""
+                                                        id="pin3"
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
                                                         onChange={handleChange}
@@ -1075,7 +1093,7 @@ const CreateDrop = () => {
                                                     <input
                                                         type="number"
                                                         name="pin"
-                                                        id=""
+                                                        id="pin4"
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
                                                         onChange={handleChange}
@@ -1083,7 +1101,7 @@ const CreateDrop = () => {
                                                     <input
                                                         type="number"
                                                         name="pin"
-                                                        id=""
+                                                        id="pin5"
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
                                                         onChange={handleChange}
@@ -1091,7 +1109,7 @@ const CreateDrop = () => {
                                                     <input
                                                         type="number"
                                                         name="pin"
-                                                        id=""
+                                                        id="pin6"
                                                         placeholder=""
                                                         className="create-drop-form-pin-inputs"
                                                         onChange={handleChange}
@@ -1137,7 +1155,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="value"
-                                                    id=""
+                                                    id="productPrice"
                                                     placeholder="Enter Price at which the product will be sold."
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -1151,7 +1169,7 @@ const CreateDrop = () => {
                                                 </label>
                                                 <select
                                                     name="currency"
-                                                    id=""
+                                                    id="currency"
                                                     className="create-drop-form-select-inputs"
                                                     onChange={handleChange}
                                                 >
@@ -1173,7 +1191,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="commissionRate"
-                                                    id=""
+                                                    id="commissionRate"
                                                     placeholder="The percentage of each sale that will be given to affiliates as commission."
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -1188,7 +1206,7 @@ const CreateDrop = () => {
                                                 </label>
                                                 <textarea
                                                     name="audienceDesctiption"
-                                                    id=""
+                                                    id="audienceDescription"
                                                     rows="6"
                                                     placeholder="A brief description of the ideal audience for the product."
                                                     className="create-drop-form-textarea-inputs"
@@ -1204,7 +1222,7 @@ const CreateDrop = () => {
                                                 </label>
                                                 <input
                                                     name="campaignDate"
-                                                    id=""
+                                                    id="campaignDate"
                                                     className="create-drop-form-date-inputs"
                                                     onChange={handleChange}
                                                 />
@@ -1219,7 +1237,7 @@ const CreateDrop = () => {
                                                 <input
                                                     type="text"
                                                     name="paymentInfo"
-                                                    id=""
+                                                    id="paymentInfo"
                                                     placeholder=""
                                                     className="create-drop-form-text-inputs"
                                                     onChange={handleChange}
@@ -1256,7 +1274,10 @@ const CreateDrop = () => {
 
                                         <div className="create-drop-form-subform-2-inputs-container">
                                             <div className="create-drop-form-navigation-buttons-container">
-                                                <button className="create-drop-form-navigation-next-subform-buttons next" onClick={handleSubmit}>
+                                                <button
+                                                    className="create-drop-form-navigation-next-subform-buttons next"
+                                                    onClick={handleSubmit}
+                                                >
                                                     Publish the Drop
                                                 </button>
                                             </div>
@@ -1283,59 +1304,94 @@ const CreateDrop = () => {
                             <div id="create-drop-form-preview-body">
                                 {/* <DropCard drop={dummydrop} /> */}
                                 <div className={styles.container}>
-            <div className={styles.wrap1}>
-                <div className={styles.wrap1a}>
-                    <p className={styles.pDescription}>
-                        {drop.short_desc}
-                    </p>
-                    <p className={styles.pOffer}>
-                        <span className={styles.potext1}>Earn</span>
-                        <span className={styles.potext2}>{drop.value}</span>
-                        <span className={styles.potext3}>
-                            / Premium User Signup
-                        </span>
-                    </p>
-                    <div className={styles.wrap1a1}>
-                        <div className={styles.pAutherWrapper}>
-                            <span className={styles.pAuthor}>By {drop.org_name}</span>
-                            <img
-                                src={svgs["verification-tick.svg"]}
-                                alt="verification tick"
-                            />
-                        </div>
-                        {tagsArray?.map((tag, i) => (
-                            <span className={styles.pTags}key={i}>
-                                {tag}
-                            </span>
-                            ))}
-                    </div>
-                </div>
-                <div className={styles.wrap1b}>
-                    {drop.productPic && <img
-                        // src={`data:image/jpeg;base64,${drop.productPic}`}
-                        src={profilePicPreview}
-                        alt="product cover"
-                        className={styles.pCover}
-                    />}
-                    <div className={styles.wrap1b1}>
-                        <p className={styles.pTitle}>{drop.product_name}</p>
-                        <p className={styles.pSubtitle}>
-                            {drop.tagline}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.wrap2}>
-                <button className={styles.viewDropBtn}>View Drop</button>
-                <button className={styles.fetchLinkBtn}>Fetch Link</button>
-            </div>
-        </div>
+                                    <div className={styles.wrap1}>
+                                        <div className={styles.wrap1a}>
+                                            <p className={styles.pDescription}>
+                                                {drop.short_desc}
+                                            </p>
+                                            <p className={styles.pOffer}>
+                                                <span
+                                                    className={styles.potext1}
+                                                >
+                                                    Earn
+                                                </span>
+                                                <span
+                                                    className={styles.potext2}
+                                                >
+                                                    {drop.value}
+                                                </span>
+                                                <span
+                                                    className={styles.potext3}
+                                                >
+                                                    / Premium User Signup
+                                                </span>
+                                            </p>
+                                            <div className={styles.wrap1a1}>
+                                                <div
+                                                    className={
+                                                        styles.pAutherWrapper
+                                                    }
+                                                >
+                                                    <span
+                                                        className={
+                                                            styles.pAuthor
+                                                        }
+                                                    >
+                                                        By {drop.org_name}
+                                                    </span>
+                                                    <img
+                                                        src={
+                                                            svgs[
+                                                                "verification-tick.svg"
+                                                            ]
+                                                        }
+                                                        alt="verification tick"
+                                                    />
+                                                </div>
+                                                {tagsArray?.map((tag, i) => (
+                                                    <span
+                                                        className={styles.pTags}
+                                                        key={i}
+                                                    >
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className={styles.wrap1b}>
+                                            {drop.productPic && (
+                                                <img
+                                                    // src={`data:image/jpeg;base64,${drop.productPic}`}
+                                                    src={profilePicPreview}
+                                                    alt="product cover"
+                                                    className={styles.pCover}
+                                                />
+                                            )}
+                                            <div className={styles.wrap1b1}>
+                                                <p className={styles.pTitle}>
+                                                    {drop.product_name}
+                                                </p>
+                                                <p className={styles.pSubtitle}>
+                                                    {drop.tagline}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.wrap2}>
+                                        <button className={styles.viewDropBtn}>
+                                            View Drop
+                                        </button>
+                                        <button className={styles.fetchLinkBtn}>
+                                            Fetch Link
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     );
 };
 

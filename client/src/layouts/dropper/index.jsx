@@ -21,7 +21,7 @@ export default function DropperLayout() {
                     >
                         Dashboard
                     </NavLink>
-                    <NavLink
+                    {/* <NavLink
                         exact="true"
                         to={"/dropper/products"}
                         className={({ isActive }) =>
@@ -47,7 +47,7 @@ export default function DropperLayout() {
                         }
                     >
                         Campaigns
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink
                         exact="true"
                         to={"/dropper/drops"}

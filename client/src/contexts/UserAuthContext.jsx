@@ -4,11 +4,11 @@ import { createContext, useEffect } from "react";
 import { useUser } from "./UserContext";
 import { useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 
 const UserAuthContext = createContext();
 
-const socket = io(process.env.REACT_APP_BACKEND_URL);
+// const socket = io(process.env.REACT_APP_BACKEND_URL);
 
 /**
  * Provider of UserAuthContext
@@ -24,13 +24,13 @@ export default function UserAuthProvider() {
     const navigate = useNavigate();
 
     // If login establish socket connection for live updates
-    useEffect(() => {
-        if (!!user && !!accessToken) {
-            socket.emit("registerUser", {
-                userId: user.id,
-            });
-        }
-    }, [user, accessToken]);
+    // useEffect(() => {
+    //     if (!!user && !!accessToken) {
+    //         socket.emit("registerUser", {
+    //             userId: user.id,
+    //         });
+    //     }
+    // }, [user, accessToken]);
 
     useEffect(() => {
         if (!accessToken) {

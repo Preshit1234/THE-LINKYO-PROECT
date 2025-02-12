@@ -61,6 +61,7 @@ memberRouter.get("/login/data", verifyMember, async (req, res) => {
                 email: member.organization.email,
                 createdBy: member.organization.createdBy,
                 members: member.organization.members,
+                drops: member.organization.drops,
             },
         };
 
