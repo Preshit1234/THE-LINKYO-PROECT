@@ -24,6 +24,12 @@ export default function DropperLayout() {
             {/* <Header type="memberLogin" member={member} /> */}
             <div className={styles.body}>
                 <div className={styles.sidebar}>
+                <div className={styles.linkyoLogo}>
+                        <img src={svgs["app-logo.svg"]} alt="Linkyo logo"/> 
+                        <span className={ styles.linkyoLogoTextSpan }>
+                            {process.env.REACT_APP_NAME}
+                        </span>
+                    </div>
                     <div className={styles.orgName}>
                         <div className={styles.orgProfilePic}>
                             {/* {!!member ? member.organisationPic : ""} */}
@@ -119,12 +125,12 @@ export default function DropperLayout() {
                         </div>
                     </div>
                     <div style={{ flexGrow: "1" }} />
-                    <div className={styles.linkyoLogo}>
+                    {/* <div className={styles.linkyoLogo}>
                         <img src={svgs["app-logo.svg"]} alt="Linkyo logo"/> 
                         <span className={ styles.linkyoLogoTextSpan }>
                             {process.env.REACT_APP_NAME}
                         </span>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.main}>
                     <Outlet />
