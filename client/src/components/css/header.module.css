@@ -13,7 +13,7 @@
 }
 
 .container.member {
-    background-color: #081028;
+    background-color: #161B22;
 }
 
 .container.login {
@@ -315,7 +315,11 @@
     align-items: center;
     justify-content: center;
     padding: 12px;
-    background-color: #CB3CFF;
+    background-image: linear-gradient(
+        90deg,
+        rgba(198, 50, 201, 100%),
+        rgba(5, 56, 116, 100%)
+    );
     border-radius: 4px;
     text-decoration: none;
     box-shadow: 10px 10px 28px rgba(1, 5, 17, 30%);

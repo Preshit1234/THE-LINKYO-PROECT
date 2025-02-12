@@ -9,6 +9,7 @@ const OrganizationSchema = new mongoose.Schema(
         createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         members: [{ type: mongoose.Schema.Types.ObjectId, ref: "Member" }],
         drops: [{ type: mongoose.Schema.Types.ObjectId, ref: "Drop" }],
+        pic: {type: String, default: ''},
     },
     { timestamps: true }
 );

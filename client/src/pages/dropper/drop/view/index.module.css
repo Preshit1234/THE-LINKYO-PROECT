@@ -33,11 +33,33 @@
 }
 
 .createDropCard {
-    display: inline-flex;
+    display: flex;
+    width: 374px;
+    height: 196px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
     border: 2px dashed #ffffff;
+    border-radius: 10px;
     text-decoration: none;
+    padding: 0px;
+    box-shadow: 10px 10px 28px rgba(1, 5, 17, 30%);
+}
+
+.createdrops{
+    display: flex;
+    width: 374px;
+    height: 196px;
+    background-image: url("../../../../assets/svgs/dropcardimg.svg");
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    position: relative;
+}
+
+.createdropslogo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
 }

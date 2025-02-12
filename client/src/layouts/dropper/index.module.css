@@ -1,7 +1,7 @@
 .container {
     width: 100vw;
     height: 100vh;
-    padding-top: 68px;
+    /* padding-top: 68px; */
 }
 
 .body {
@@ -10,7 +10,7 @@
     align-items: stretch;
     height: 100%;
     width: 100%;
-    background-color: #081028;
+    background-color: #010409;
     gap: 45px;
 }
 
@@ -21,32 +21,111 @@
     align-items: stretch;
     gap: 10px;
     flex-shrink: 0;
-    background: #081028;
+    /* background: #161B22; */
     box-shadow: 10px 10px 28px rgba(1, 5, 17, 30%);
     stroke: 1px black;
+    width: 256px;
+    height: 100vh;
 }
 
 .activeLink,
 .inactiveLink {
-    padding: 10px 20px;
+    padding: 7px 20px;
     box-sizing: border-box;
     color: white;
     text-decoration: none;
 }
 
 .activeLink {
-    background-color: #0A1330;
+    background-color: #283342;
+    color: white;
     border-radius: 6px;
     border-left: 4px solid #CB3CFF;
     box-shadow: 5px 5px 28px rgba(1, 5, 17, 30%);
 }
 
 .inactiveLink:hover {
-    background-color: #131823;
+    background-color: #060E17;
+    border-radius: 6px;
 }
 
 .main {
     flex: 1;
     /* padding: 30px; */
     overflow: auto;
+    padding-top: 44px;
+    padding-bottom: 44px;
+}
+
+.navDropsLink{
+    display: flex;
+    flex-direction: column;
+    gap : 5px;
+}
+
+.orgName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap : 15px;
+    margin-bottom : 25px;
+    margin-top: 25px;
+}
+
+.orgProfilePic{
+    display: flex;
+    height: 56px;
+    width: 56px;
+    border: 1px solid wheat;
+    border-radius: 44px;
+}
+
+.switchBack{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    background-image: linear-gradient(
+        90deg,
+        rgba(198, 50, 201, 100%),
+        rgba(5, 56, 116, 100%)
+    );
+    border-radius: 4px;
+    text-decoration: none;
+    box-shadow: 10px 10px 28px rgba(1, 5, 17, 30%);
+    border: 0.1px solid rgba(52, 59, 79, 60%);
+}
+
+.backToMainAccount{
+    text-decoration: none;
+    display: flex;
+}
+
+.navDropsLinkContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 78px;
+    /* justify-content: space-between;
+    height: 100%; */
+}
+
+.linkyoLogoTextSpan{
+    left: 81px;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+
+    background: -webkit-linear-gradient(0deg, #c632c9 45%, #58a6ff 56%);
+    background-clip: content-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.linkyoLogo{
+    display: flex;
+    gap: 10px;
 }
