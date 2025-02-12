@@ -261,15 +261,12 @@ const Dashboard = () => {
                     name="Linkyo"
                     type="website"
                 />
-                <h1>
-                    It seems you have not created a Drop yet. Please proceed to
-                    create a Drop first.
-                </h1>
+                <h1>It seems you have not published a Drop yet.</h1>
                 <NavLink
-                    to="/dropper/drops/create"
+                    to="/dropper/drops"
                     className={dashStyles.createDropLink}
                 >
-                    + Create a drop
+                    View your Drops
                 </NavLink>
             </div>
         );
