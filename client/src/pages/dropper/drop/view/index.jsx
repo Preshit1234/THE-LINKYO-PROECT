@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 export default function DropperDropsPage() {
     const [drops, setDrops] = useState(null);
@@ -8,9 +9,8 @@ export default function DropperDropsPage() {
     useEffect(() => {
         async function getAllDrops() {
             if (drops === null) {
-                console.log("Getting all drops");
                 try {
-                    let dropLists = await axios.get(
+                    let res = await axios.get(
                         `${process.env.REACT_APP_BACKEND_URL}/api/dropper/drop/all`,
                         {
                             headers: {
@@ -23,7 +23,7 @@ export default function DropperDropsPage() {
                             },
                         }
                     );
-                    console.log(dropLists);
+                    setDrops(res.data);
                 } catch (err) {
                     console.log(
                         "Error: Error while importing organization drops"
@@ -34,10 +34,35 @@ export default function DropperDropsPage() {
         getAllDrops();
     }, [drops]);
 
+    if (drops !== null) {
+        console.log("Drops: ", drops);
+    }
+
     return (
         <div className={styles.container}>
             Your Drops
-            <div></div>
+            <div className={styles.dropsList}>
+                {drops !== null &&
+                    drops.map((drop) => {
+                        return (
+                            <div className={styles.drop}>
+                                <span className={styles.dropTitle}>
+                                    {drop.product_name}
+                                </span>
+                                <span className={styles.dropTagline}>
+                                    {drop.tagline}
+                                </span>
+                            </div>
+                        );
+                    })}
+                <NavLink
+                    to="/dropper/drops/create"
+                    className={styles.drop + " " + styles.createDropCard}
+                >
+                    <span>+</span>
+                    <span>Create</span>
+                </NavLink>
+            </div>
         </div>
     );
 }
