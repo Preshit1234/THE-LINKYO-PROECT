@@ -495,7 +495,7 @@ const Header = memo(function Header(props) {
         );
     } else if (type === "memberLogin") {
         return (
-            <div className={styles.container}>
+            <div className={styles.container + " " + styles.member}>
                 {/* Left Hand Side */}
                 <div className={styles.left}>
                     <img
@@ -516,7 +516,7 @@ const Header = memo(function Header(props) {
 
                 {/* Center */}
                 <div>
-                    <span style={{ fontSize: "25px" }}>
+                    <span class={styles.orgSpanStyles }>
                         {!!member ? member.organization.name : ""}
                     </span>
                 </div>
