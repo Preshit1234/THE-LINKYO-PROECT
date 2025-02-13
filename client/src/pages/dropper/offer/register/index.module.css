@@ -1,5 +1,336 @@
-.form {
+/* .offerWrap{
     display: flex;
     flex-direction: column;
+} */
+.offerContainer{
+    padding: 6px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+    background-color: #0d0d0d;
+}
+
+.marginBottom{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 8px;
+}
+
+.productTypeLabel{
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #BBD1F6;
+}
+
+.productTypeSelect{
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 4px;
+    padding-left: 38px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: black;
+    color: #B7BFC7;
+    border : 1px solid rgba(96, 96, 96, 50%);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.productTypeSelect option{
+    color: #B7BFC7;
+}
+
+.productTypeSelect::placeholder{
+    color: #3C3E5E;
+}
+
+.subscriptionContainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    border : 1px solid rgba(96, 96, 96, 70%);
+    background-color: #000000;
+
+    border-image: linear-gradient(
+        to bottom, 
+        #0969DA, 
+        rgba(0, 0, 0, 0)
+      ) 0.5 100%;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-bottom: 0;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    gap: 20px;
+}
+
+.tableClass{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    background-color: #000000;
+}
+
+.tableHeadColor{
+    border : 1px solid rgba(96, 96, 96, 70%);
+}
+
+.thead{
+    display: flex;
+    border: 2px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding: 20px;
+    border : 1px solid rgba(96, 96, 96, 70%);
+    justify-content: center;
+    color: #BBD1F6;
+}
+
+.thetd{
+    border: 2px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 12px;
+    padding-right: 5px;
+    font-size: medium;
+    border : 1px solid rgba(96, 96, 96, 70%);
+    color: #B7BFC7;
+}
+
+.tdRowCommissions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 10px;
+}
+
+.tdColored{
+    color: #BBD1F6;
+}
+
+.centreTd{
+    text-align: left;
+    padding-left: 20px;
+}
+
+.gapTable{
+    display : flex;
+    gap: 10px;
+}
+
+.currencySelect{
+    border-radius : 8px;
+    padding : 2px;
+    padding-left: 4px;
+    height: 36px;
+    width: 75px;
+    background-color: black;
+    color: #B7BFC7;
+    border : 1px solid rgba(96, 96, 96, 70%);
+}
+
+.commissionSelect{
+    display: flex;
+    border-radius : 8px;
+    padding : 2px;
+    padding-left: 4px;
+    height: 36px;
+    width: 150px;
+    background-color: black;
+    color: #B7BFC7;
+    align-items : center;
+    border : 1px solid rgba(96, 96, 96, 70%);
+}
+
+.commissionSelect option{
+    color : #B7BFC7;
+}
+
+.priceInput{
+    display: flex;
+    border-radius : 8px;
+    height: 36px;
+    max-width: 100px;
+    padding : 2px;
+    padding-left: 16px;
+    background-color: black;
+    color: #B7BFC7;
+    border : 1px solid rgba(96, 96, 96, 70%);
+}
+
+.priceInput::placeholder{
+    padding : 2px;
+    padding-left: 4px;
+}
+
+.tierAddorRemove{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-right: 20px;
+    background-color: black;
+    gap : 15px;
+    border: 1px solid;
+    border-image: linear-gradient(
+        to bottom, 
+        red, 
+        rgba(0, 0, 0, 0)
+      ) 0.5 100%;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-bottom: 0;
+}
+
+.removeBtn{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #B7BFC7;
+    background-color: #DB4437;
+    gap: 3px;
+    font-size: 16px;
+}
+
+.removeBtn:hover{
+    background-color: #DB4437;
+}
+
+.removeBtn:disabled{
+    opacity: -50px;
+}
+
+.addTierBtn{
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    border-radius: 4px;
+    color: #B7BFC7;
+    background-color: #0F9D58;
+    gap: 3px;
+    font-size: 16px;
+}
+
+.addTierBtn:hover{
+    background-color: #0F9D58;
+}
+
+.oneTimeContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 4px; 
+    padding : 10px;
+}
+
+.oneTimeSelectDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-right: 0.5rem;
+}
+
+.OrignalPriceDiv{
+    font-weight: 600;
+    color : #BBD1F6;
+}
+
+.oneTimePriceContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.oneTimeSelect{
+    /* border-radius: 4px;
+    padding: 10px;
+    width: 125px;
+    background-color: black; */
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 4px;
+    padding-left: 16px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 100px;
+    max-width: 500px;
+    background-color: black;
+    color: #B7BFC7;
+    border : 1px solid rgba(96, 96, 96, 50%);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.oneTimeInput{
+    display: flex;
+    border-radius : 8px;
+    height: 48px;
+    width: 100%;
+    max-width: 500px;
+    padding : 2px;
+    padding-left: 16px;
+    background-color: black;
+    color: #B7BFC7;
+    border : 1px solid rgba(96, 96, 96, 70%);
+}
+
+.commissionSpacer{
+    display : flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.commissionTypeContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.commissionTypeLabel{
+    color : #BBD1F6
+}
+
+.commissionRateContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.commissionSelectKara{
+    display: flex;
+    border-radius : 8px;
+    height: 48px;
+    width: 100%;
+    max-width: 500px;
+    padding : 2px;
+    padding-left: 16px;
+    background-color: black;
+    color: #B7BFC7;
+    border : 1px solid rgba(96, 96, 96, 70%);
+}
+
+.commissionTotalContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.commissionChargesContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.totalCommision{
+    color : #B7BFC7;
+    padding-left: 2px;
 }
