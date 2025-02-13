@@ -314,7 +314,7 @@ const PricingTable = () => {
                             value={commissionRates['onetime']}
                             onChange={(e) => handleCommissionRateChange('onetime', e.target.value)}
                             placeholder="0.00"
-                            className={ styles.oneTimeSelect }
+                            className={ styles.oneTimeInput }
                         />
                         <span style={{ color : "#B7BFC7"}}>
                         {commissionType === 'percentage' ? '%' : selectedCurrency}</span>

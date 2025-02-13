@@ -8,6 +8,7 @@ import { useUser } from "../contexts/UserContext";
 // import { useNavigate } from "react-router-dom";
 import styles from "../components/css/DropCard.module.css";
 import { useMember } from "../contexts/MemberContext";
+import PricingTable from "../pages/dropper/offer/register"
 
 /**
  * A react component that renders the create drop page.
@@ -1165,7 +1166,7 @@ const CreateDrop = () => {
                                             </p>
                                         </div>
 
-                                        <div className="create-drop-form-subform-2-inputs-container">
+                                        {/* <div className="create-drop-form-subform-2-inputs-container">
                                             <div className="create-drop-form-input-fields-container">
                                                 <label
                                                     htmlFor="productPrice"
@@ -1272,6 +1273,9 @@ const CreateDrop = () => {
                                                     Next - Drop!
                                                 </button>
                                             </div>
+                                        </div> */}
+                                        <div style={{display:"flex", justifyContent:"flex-start"}}>
+                                            <PricingTable />
                                         </div>
                                     </fieldset>
 

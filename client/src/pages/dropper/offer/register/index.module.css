@@ -4,11 +4,9 @@
 } */
 .offerContainer{
     padding: 6px;
-    max-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
     gap: 20px;
     background-color: #0d0d0d;
 }
@@ -17,7 +15,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-left: 8px;
 }
 
 .productTypeLabel{
@@ -32,7 +29,7 @@
     box-sizing: border-box;
     height: 48px;
     border-radius: 4px;
-    padding-left: 38px;
+    padding-left: 16px;
     padding-top: 2px;
     padding-bottom: 2px;
     width: 100%;
@@ -229,14 +226,13 @@
     flex-direction: column;
     gap: 30px;
     border-radius: 4px; 
-    padding : 10px;
 }
 
 .oneTimeSelectDiv{
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-right: 0.5rem;
+    width: 100%;
 }
 
 .OrignalPriceDiv{
@@ -275,8 +271,7 @@
     border-radius : 8px;
     height: 48px;
     width: 100%;
-    max-width: 500px;
-    padding : 2px;
+    /* max-width: 500px; */
     padding-left: 16px;
     background-color: black;
     color: #B7BFC7;
@@ -287,16 +282,20 @@
     display : flex;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 .commissionTypeContainer{
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 }
 
 .commissionTypeLabel{
-    color : #BBD1F6
+    color : #BBD1F6;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .commissionRateContainer{
@@ -310,7 +309,6 @@
     border-radius : 8px;
     height: 48px;
     width: 100%;
-    max-width: 500px;
     padding : 2px;
     padding-left: 16px;
     background-color: black;
