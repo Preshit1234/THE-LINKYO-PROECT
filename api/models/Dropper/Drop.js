@@ -24,6 +24,7 @@ const DropSchema = new mongoose.Schema(
         discount: { type: String, default: "" },
         isPaid: { type: Boolean, default: false },
         org: { type: mongoose.Schema.Types.ObjectId, ref: "Organization" },
+        offer : {type : mongoose.Schema.Types.ObjectId, ref : "Offer" },
     },
     { timestamps: true }
 );

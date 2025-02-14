@@ -455,6 +455,7 @@ const CreateDrop = () => {
     });
     const [tagString, setTagString] = useState("");
     const [profilePicPreview, setProfilePicPreview] = useState("");
+    // const [tiersData, setTiersData] = useState({});
 
     // const navigate = useNavigate();
     const tagsArray = tagString.split(",").map((tag) => tag.trim());

@@ -1,8 +1,10 @@
 import styles from "./index.module.css";
 import React, { useState } from 'react';
 import { Icon } from "@iconify/react";
+import { useEffect } from "react";
 
 const PricingTable = () => {
+
   const [productType, setProductType] = useState('onetime');
   const [tiers, setTiers] = useState(['Tier 1', 'Tier 2']);
   const [prices, setPrices] = useState({
@@ -22,6 +24,13 @@ const PricingTable = () => {
     'Tier 1': '',
     'Tier 2': ''
   });
+
+//   const [tiersData, setTiersData] = useState("");
+//   const handleChange = (e) => {
+//     const value = e.target.value;
+//     setTiersData({ ...tiersData, [e.target.name]: value});
+// };
+
 
   // Admin-set commission charges (percentage)
   const ADMIN_COMMISSION_CHARGE = 5;
@@ -107,7 +116,7 @@ const PricingTable = () => {
         <label className={ styles.productTypeLabel }>Product Type:</label>
         <select 
           value={productType}
-          onChange={(e) => setProductType(e.target.value)}
+          onChange={(e) => {setProductType(e.target.value)}}
           className={ styles.productTypeSelect }
         >
           <option value="onetime">One-time Purchase</option>
@@ -135,7 +144,7 @@ const PricingTable = () => {
                     <div className={ styles.gapTable }>
                       <select 
                         value={selectedCurrency}
-                        onChange={(e) => setSelectedCurrency(e.target.value)}
+                        onChange={(e) => {setSelectedCurrency(e.target.value)}}
                         className={ styles.currencySelect }
                       >
                         {currencies.map(currency => (
@@ -145,7 +154,7 @@ const PricingTable = () => {
                     <input
                         type="number"
                         value={orignalPrices[tier]}
-                        onChange={(e) => handleOrignalPriceChange(tier, e.target.value)}
+                        onChange={(e) => {handleOrignalPriceChange(tier, e.target.value)}}
                         placeholder="0.00"
                         className={ styles.priceInput }
                     />
@@ -289,7 +298,7 @@ const PricingTable = () => {
                 <input
                 type="number"
                 value={prices['onetime']}
-                onChange={(e) => handlePriceChange('onetime', e.target.value)}
+                onChange={(e) => {handlePriceChange('onetime', e.target.value)}}
                 placeholder="0.00"
                 className={styles.oneTimeInput}
                 />
