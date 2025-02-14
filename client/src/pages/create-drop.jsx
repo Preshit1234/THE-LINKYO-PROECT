@@ -8,7 +8,7 @@ import { useUser } from "../contexts/UserContext";
 // import { useNavigate } from "react-router-dom";
 import styles from "../components/css/DropCard.module.css";
 import { useMember } from "../contexts/MemberContext";
-import PricingTable from "../pages/dropper/offer/register"
+import PricingTable from "../pages/dropper/offer/register";
 
 /**
  * A react component that renders the create drop page.
@@ -18,6 +18,7 @@ const CreateDrop = () => {
     const [subformStage, setSubformStage] = useState(1);
     const [subformFieldsetStage, setSubformFieldsetStage] = useState(1);
     const { member } = useMember();
+    const tiersDataRef = useRef({});
 
     /**
      * Contains all svgs from assets/svgs/ folder
@@ -1276,8 +1277,15 @@ const CreateDrop = () => {
                                                 </button>
                                             </div>
                                         </div> */}
-                                        <div style={{display:"flex", justifyContent:"flex-start"}}>
-                                            <PricingTable />
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "flex-start",
+                                            }}
+                                        >
+                                            <PricingTable
+                                                tiersDataRef={tiersDataRef}
+                                            />
                                         </div>
                                     </fieldset>
 
