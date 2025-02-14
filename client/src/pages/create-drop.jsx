@@ -538,6 +538,7 @@ const CreateDrop = () => {
                 pin: "",
                 value: "",
                 discount: "",
+                org: "",
             });
             setTagString("");
         } catch (error) {
