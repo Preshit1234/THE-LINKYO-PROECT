@@ -1,20 +1,5 @@
 const mongoose = require('mongoose');
 
-    const tierSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    commissionType: {
-        type: String,
-        enum: ['flat', 'percentage']
-    },
-    commissionRate: Number,
-    commissionCharges: {
-        type: Number,
-        default: 5
-    },
-    totalCommission: Number
-    });
-
 const offerSchema = new mongoose.Schema({
     drop: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,7 +16,8 @@ const offerSchema = new mongoose.Schema({
         required: true
     },
     // For one-time products
-    price: Number,
+    orignalPrice : Number,
+    offerPrice: Number,
     commissionType: {
         type: String,
         enum: ['flat', 'percentage']
@@ -43,7 +29,7 @@ const offerSchema = new mongoose.Schema({
     },
     totalCommission: Number,
     // For subscription products
-    tiers: [tierSchema]
+    tiers: [{type: mongoose.Schema.Types.ObjectId, ref: "Tier"}]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Offer', offerSchema);

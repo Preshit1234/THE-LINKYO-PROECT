@@ -18,7 +18,11 @@ const CreateDrop = () => {
     const [subformStage, setSubformStage] = useState(1);
     const [subformFieldsetStage, setSubformFieldsetStage] = useState(1);
     const { member } = useMember();
-    const tiersDataRef = useRef({});
+    const tiersDataRef = useRef({
+        productType: "onetime",
+        selectedCurrency: "USD",
+        commissionType: "flat"
+    });
 
     /**
      * Contains all svgs from assets/svgs/ folder

@@ -37,6 +37,20 @@ const PricingTable = ({ tiersDataRef }) => {
 
     const currencies = ["USD", "INR"];
 
+    const handleCurrencies = (value) => {
+      if (tiersDataRef.current.selectedCurrency === undefined) {
+        tiersDataRef.current.selectedCurrency = "";
+    }
+    tiersDataRef.current.selectedCurrency = value;
+  };
+
+  const handleCommissionType = (value) => {
+    if (tiersDataRef.current.commissionType === undefined) {
+      tiersDataRef.current.commissionType = "";
+  }
+  tiersDataRef.current.commissionType = value;
+};
+
     const addTier = () => {
         const newTier = `Tier ${tiers.length + 1}`;
         setTiers([...tiers, newTier]);
@@ -63,6 +77,10 @@ const PricingTable = ({ tiersDataRef }) => {
             ...prev,
             [tier]: value,
         }));
+        if (tiersDataRef.current[tier] === undefined) {
+          tiersDataRef.current[tier] = {};
+      }
+      tiersDataRef.current[tier].prices = value;
     };
 
     const handleOrignalPriceChange = (tier, value) => {
@@ -73,7 +91,7 @@ const PricingTable = ({ tiersDataRef }) => {
         if (tiersDataRef.current[tier] === undefined) {
             tiersDataRef.current[tier] = {};
         }
-        tiersDataRef.current[tier].originalPrice = value;
+        tiersDataRef.current[tier].originalPrices = value;
     };
 
     const handleCommissionRateChange = (tier, value) => {
@@ -97,9 +115,13 @@ const PricingTable = ({ tiersDataRef }) => {
                 }));
             }
         }
+        if (tiersDataRef.current[tier] === undefined) {
+          tiersDataRef.current[tier] = {};
+      }
+      tiersDataRef.current[tier].commissionRates = value;
     };
 
-    const calculateTotalCommission = (tier) => {
+    const calculateTotalCommission = (tier, key) => {
         const price = parseFloat(prices[tier]) || 0;
         const commissionRate = parseFloat(commissionRates[tier]) || 0;
         let rateAmount;
@@ -111,7 +133,8 @@ const PricingTable = ({ tiersDataRef }) => {
         }
 
         const chargeAmount = (price * ADMIN_COMMISSION_CHARGE) / 100;
-        return (rateAmount + chargeAmount).toFixed(2);
+        const totalCommissionChargesCalculated = (rateAmount + chargeAmount).toFixed(2);
+        return totalCommissionChargesCalculated;
     };
 
     return (
@@ -169,6 +192,8 @@ const PricingTable = ({ tiersDataRef }) => {
                                                     setSelectedCurrency(
                                                         e.target.value
                                                     );
+                                                    console.log("Select Change :")
+                                                    handleCurrencies(e.target.value);
                                                 }}
                                                 className={
                                                     styles.currencySelect
@@ -261,8 +286,9 @@ const PricingTable = ({ tiersDataRef }) => {
                                 >
                                     <select
                                         value={commissionType}
-                                        onChange={(e) =>
-                                            setCommissionType(e.target.value)
+                                        onChange={(e) =>{
+                                            setCommissionType(e.target.value);
+                                            handleCommissionType(e.target.value);}
                                         }
                                         className={styles.commissionSelect}
                                     >
@@ -373,8 +399,9 @@ const PricingTable = ({ tiersDataRef }) => {
                         <div className={styles.oneTimePriceContainer}>
                             <select
                                 value={selectedCurrency}
-                                onChange={(e) =>
-                                    setSelectedCurrency(e.target.value)
+                                onChange={(e) => {
+                                    setSelectedCurrency(e.target.value);
+                                    handleCurrencies(e.target.value);}
                                 }
                                 className={styles.oneTimeSelect}
                             >
@@ -386,8 +413,11 @@ const PricingTable = ({ tiersDataRef }) => {
                             </select>
                             <input
                                 type="number"
-                                // value={orignalPrices['onetime']}
-                                // onChange={(e) => handleOrignalPriceChange(e.target.value)}
+                                value={orignalPrices["onetime"]}
+                                onChange={(e) => handleOrignalPriceChange(
+                                  "onetime", 
+                                  e.target.value
+                                  )}
                                 placeholder="0.00"
                                 className={styles.oneTimeInput}
                             />
@@ -431,7 +461,9 @@ const PricingTable = ({ tiersDataRef }) => {
                         </div>
                         <select
                             value={commissionType}
-                            onChange={(e) => setCommissionType(e.target.value)}
+                            onChange={(e) => {
+                              setCommissionType(e.target.value);
+                              handleCommissionType(e.target.value);}}
                             className={styles.commissionSelectKara}
                         >
                             <option value="flat">Flat Rate</option>
@@ -475,8 +507,10 @@ const PricingTable = ({ tiersDataRef }) => {
                             Total Commission
                         </div>
                         <div className={styles.totalCommision}>
+                          <div>
                             {selectedCurrency}{" "}
                             {calculateTotalCommission("onetime")}
+                          </div>
                         </div>
                     </div>
                 </div>
