@@ -23,6 +23,7 @@ const PricingTable = ({ tiersDataRef }) => {
         "Tier 1": "",
         "Tier 2": "",
     });
+    const [totalCommission, setTotalCommission] = useState({});
 
     //   const [tiersData, setTiersData] = useState("");
     //   const handleChange = (e) => {
@@ -69,7 +70,15 @@ const PricingTable = ({ tiersDataRef }) => {
             setTiers(newTiers);
             setPrices(newPrices);
             setCommissionRates(newCommissionRates);
+            setTotalCommission((prev) => {
+              const updatedCommission = { ...prev };
+              delete updatedCommission[lastTier];
+              return updatedCommission;
+          });
+          if (tiersDataRef.current[lastTier]) {
+            delete tiersDataRef.current[lastTier];
         }
+      }
     };
 
     const handlePriceChange = (tier, value) => {
@@ -121,7 +130,7 @@ const PricingTable = ({ tiersDataRef }) => {
       tiersDataRef.current[tier].commissionRates = value;
     };
 
-    const calculateTotalCommission = (tier, key) => {
+    const calculateTotalCommission = (tier) => {
         const price = parseFloat(prices[tier]) || 0;
         const commissionRate = parseFloat(commissionRates[tier]) || 0;
         let rateAmount;
@@ -134,8 +143,54 @@ const PricingTable = ({ tiersDataRef }) => {
 
         const chargeAmount = (price * ADMIN_COMMISSION_CHARGE) / 100;
         const totalCommissionChargesCalculated = (rateAmount + chargeAmount).toFixed(2);
+
         return totalCommissionChargesCalculated;
     };
+        //////////////////////////////// WORKING /////////////////////////////////////////////
+        // useEffect(() => {
+        //     const newCommissionValues = {};
+        //     Object.keys(prices).forEach((tier) => {
+        //         const commissionValue = calculateTotalCommission(tier);
+        //         newCommissionValues[tier] = commissionValue;
+        
+        //         // Store in tiersDataRef
+        //         if (!tiersDataRef.current[tier]) {
+        //             tiersDataRef.current[tier] = {};
+        //         }
+        //         tiersDataRef.current[tier].totalCommission = commissionValue;
+        //     });
+        
+        //     setTotalCommission(newCommissionValues);
+        // }, [prices, commissionRates, commissionType]); // Re-run when dependencies change
+        ////////////////////////////////// WORKING ///////////////////////////////////////////////
+
+        const updateCommissionForTier = (tier) => {
+          if (!tier || !prices[tier]) return; 
+          const commissionValue = calculateTotalCommission(tier);
+          
+          setTotalCommission((prev) => ({
+              ...prev,
+              [tier]: commissionValue,
+          }));
+          
+          if (!tiersDataRef.current[tier]) {
+              tiersDataRef.current[tier] = {};
+          }
+          tiersDataRef.current[tier].totalCommission = commissionValue;
+      };
+
+      useEffect(() => {
+        if ("onetime") {  // Ensure there's a valid tier
+            updateCommissionForTier("onetime");
+        }
+      }, [prices["onetime"], commissionRates["onetime"], commissionType]); 
+
+      useEffect(() => {
+        tiers.forEach((tier) => updateCommissionForTier(tier));  // Update each active tier
+    }, [tiers, prices, commissionRates, commissionType]); 
+    
+
+
 
     return (
         <div className={styles.offerContainer}>
@@ -358,7 +413,8 @@ const PricingTable = ({ tiersDataRef }) => {
                                 {tiers.map((tier, index) => (
                                     <td key={index} className={styles.thetd}>
                                         {selectedCurrency}{" "}
-                                        {calculateTotalCommission(tier)}
+                                        {/* {calculateTotalCommission(tier)} */}
+                                        <div>{totalCommission[tier] || "0.00"}</div> 
                                     </td>
                                 ))}
                             </tr>
@@ -509,7 +565,13 @@ const PricingTable = ({ tiersDataRef }) => {
                         <div className={styles.totalCommision}>
                           <div>
                             {selectedCurrency}{" "}
-                            {calculateTotalCommission("onetime")}
+                            {/* {calculateTotalCommission("onetime")} */}
+
+                            {/* WORKING */}
+                            {/* {totalCommission["onetime"] || "0.00"} */}
+                            {/* WORKING */}
+                            <div>{totalCommission["onetime"] || "0.00"}</div> 
+
                           </div>
                         </div>
                     </div>
