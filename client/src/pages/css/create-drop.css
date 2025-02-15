@@ -39,6 +39,7 @@ body {
     border-radius: 8px;
     font-size: 14px;
     color: #ffffff;
+    box-shadow: 0px 0px 28px rgba(11, 29, 84, 0.3);
 }
 
 #create-drop-subform-1-input::placeholder {
@@ -104,6 +105,7 @@ body {
     min-width: 570px;
     height: 1258px;
     align-items: stretch;
+    box-shadow: 0px 0px 28px rgba(4, 13, 39, 0.5);
 }
 
 #create-drop-form-main-form-display-header {
@@ -403,6 +405,7 @@ body {
     border-radius: 12px;
     flex-basis: auto;
     height: 100%;
+    box-shadow: 0px 0px 28px rgba(4, 13, 39, 0.5);
 }
 
 #create-drop-form-preview-header {

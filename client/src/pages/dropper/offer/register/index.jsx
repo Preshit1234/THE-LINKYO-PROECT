@@ -25,50 +25,65 @@ const PricingTable = ({ tiersDataRef }) => {
     });
     const [totalCommission, setTotalCommission] = useState({});
 
-    console.log("tiersDataRef", tiersDataRef.current);
-
     useEffect(() => {
-      if (productType === "onetime") {
-          // 🚀 Switching to One-Time → Remove Subscription-specific fields from frontend & backend
-          setTiers((prevTiers) =>
-              prevTiers.map((tier) => {
-                  if (tiersDataRef.current[tier]) {
-                      delete tiersDataRef.current[tier].subscriptionOnlyField; // ❌ Remove specific field
-                  }
-                  return tier;
-              })
-          );
-      } else if (productType === "subscription") {
-          // 🚀 Switching to Subscription → Remove One-Time specific fields
-          if (tiersDataRef.current["onetime"]) {
-              delete tiersDataRef.current["onetime"].oneTimeOnlyField;
-          }
-      }
-  
-      console.log("Updated tiersDataRef:", tiersDataRef.current);
-  }, [productType]);
-  
-  const handlePaymentModelChange = (newModel) => {
-      setProductType(newModel); // ✅ Triggers useEffect to update tiers
-  };
-
-  const cleanEmptyTiers = () => {
-    Object.keys(tiersDataRef.current).forEach((tier) => {
-        const data = tiersDataRef.current[tier];
-
-        if (
-            (!data.commissionRates || data.commissionRates.trim() === "") &&
-            (!data.originalPrices || data.originalPrices.trim() === "") &&
-            (!data.prices || data.prices.trim() === "") &&
-            data.totalCommission === "0.00"
-        ) {
-            delete tiersDataRef.current[tier]; // 🚀 Remove the empty tier from backend
-            console.log(`🗑️ Removed ${tier} from backend.`);
+        if (productType === "onetime") {
+            // Switching to One-Time → Remove Subscription tiers from backend
+            Object.keys(tiersDataRef.current).forEach((tier) => {
+                if (tier !== "onetime") {
+                    delete tiersDataRef.current[tier];
+                }
+            });
+        } else if (productType === "subscription") {
+            // Switching to Subscription → Remove One-Time tier
+            if (tiersDataRef.current["onetime"]) {
+                delete tiersDataRef.current["onetime"];
+            }
         }
-    });
+        
+        // Ensure no empty tiers exist after switching
+        cleanEmptyTiers();
+    }, [productType]);
 
-    console.log("Updated tiersDataRef:", tiersDataRef.current); // Debugging log
-};
+    
+    const cleanEmptyTiers = () => {
+        Object.keys(tiersDataRef.current).forEach((tier) => {
+            if (
+                tier !== "productType" &&  // Ensure default values stay
+                tier !== "selectedCurrency" &&
+                tier !== "commissionType"
+            ) {
+                const data = tiersDataRef.current[tier];
+    
+                if (
+                    (!data.commissionRates || data.commissionRates.trim() === "") &&
+                    (!data.originalPrices || data.originalPrices.trim() === "") &&
+                    (!data.prices || data.prices.trim() === "") &&
+                    data.totalCommission === "0.00"
+                ) {
+                    delete tiersDataRef.current[tier]; // Remove only empty tiers
+                }
+            }
+        });
+    
+        // Always log backend data with default values
+        console.log("Backend Data:", JSON.stringify({
+            productType: tiersDataRef.current.productType || "onetime",
+            selectedCurrency: tiersDataRef.current.selectedCurrency || "USD",
+            commissionType: tiersDataRef.current.commissionType || "flat",
+            ...tiersDataRef.current
+        }, null, 2));
+    };
+    
+
+    // useEffect(() => {
+    //     console.log("Backend Data:", JSON.stringify(tiersDataRef.current, null, 2));
+    // }, []);
+
+
+useEffect(() => {
+    cleanEmptyTiers(); //Always cleanup empty tiers when state updates
+}, [prices, orignalPrices, commissionRates, totalCommission]);
+
 
     // Admin-set commission charges (percentage)
     const ADMIN_COMMISSION_CHARGE = 5;
@@ -76,18 +91,19 @@ const PricingTable = ({ tiersDataRef }) => {
     const currencies = ["USD", "INR"];
 
     const handleCurrencies = (value) => {
-      if (tiersDataRef.current.selectedCurrency === undefined) {
-        tiersDataRef.current.selectedCurrency = "";
-    }
-    tiersDataRef.current.selectedCurrency = value;
-  };
-
-  const handleCommissionType = (value) => {
-    if (tiersDataRef.current.commissionType === undefined) {
-      tiersDataRef.current.commissionType = "";
-  }
-  tiersDataRef.current.commissionType = value;
-};
+        if (!tiersDataRef.current.selectedCurrency) {
+            tiersDataRef.current.selectedCurrency = "USD"; // Ensure default stays
+        }
+        tiersDataRef.current.selectedCurrency = value;
+    };
+    
+    const handleCommissionType = (value) => {
+        if (!tiersDataRef.current.commissionType) {
+            tiersDataRef.current.commissionType = "flat"; // Ensure default stays
+        }
+        tiersDataRef.current.commissionType = value;
+    };
+    
 
     const addTier = () => {
         const newTier = `Tier ${tiers.length + 1}`;
@@ -109,87 +125,68 @@ const PricingTable = ({ tiersDataRef }) => {
             setPrices(newPrices);
             setCommissionRates(newCommissionRates);
             setTotalCommission((prev) => {
-              const updatedCommission = { ...prev };
-              delete updatedCommission[lastTier];
-              return updatedCommission;
-          });
-          if (tiersDataRef.current[lastTier]) {
-            delete tiersDataRef.current[lastTier];
+                const updatedCommission = { ...prev };
+                delete updatedCommission[lastTier];
+                return updatedCommission;
+            });
+            if (tiersDataRef.current[lastTier]) {
+                delete tiersDataRef.current[lastTier];
+            }
         }
-      }
     };
-
 
     const handlePriceChange = (tier, value, field) => {
-        setPrices((prev) => ({
-            ...prev,
-            [tier]: value,
-        }));
-        if (value.trim() === "") return;
-        if (tiersDataRef.current[tier] === undefined) {
-          tiersDataRef.current[tier] = {};
-      }
-      tiersDataRef.current[tier].prices = value;
-      tiersDataRef.current[tier][field] = value.trim();
-
-    cleanEmptyTiers();
+        setPrices((prev) => ({ ...prev, [tier]: value }));
+    
+        if (value.trim() === "") {
+            if (tiersDataRef.current[tier]) delete tiersDataRef.current[tier].prices;
+            cleanEmptyTiers();
+            return;
+        }
+    
+        if (!tiersDataRef.current[tier]) tiersDataRef.current[tier] = {};
+        tiersDataRef.current[tier].prices = value.trim();
     };
-
+    
+    
+    
     const handleOrignalPriceChange = (tier, value, field) => {
-        setOrignalPrices((prev) => ({
-            ...prev,
-            [tier]: value,
-        }));
-        if (value.trim() === "") return;
-        if (tiersDataRef.current[tier] === undefined) {
-            tiersDataRef.current[tier] = {};
+        setOrignalPrices((prev) => ({ ...prev, [tier]: value }));
+    
+        if (value.trim() === "") {
+            if (tiersDataRef.current[tier]) delete tiersDataRef.current[tier].originalPrices;
+            cleanEmptyTiers();
+            return;
         }
-        tiersDataRef.current[tier].originalPrices = value;
-        tiersDataRef.current[tier][field] = value.trim();
-
-        cleanEmptyTiers();
+    
+        if (!tiersDataRef.current[tier]) tiersDataRef.current[tier] = {};
+        tiersDataRef.current[tier].originalPrices = value.trim();
     };
-
+    
+    
+    
     const handleCommissionRateChange = (tier, value, field) => {
-        const numValue = parseFloat(value) || 0;
-        const price = parseFloat(prices[tier]) || 0;
-        const maxCommission = price * 0.5;
-
-        if (commissionType === "percentage") {
-            if (numValue <= 50) {
-                setCommissionRates((prev) => ({
-                    ...prev,
-                    [tier]: value,
-                }));
-            }
-        } else {
-            const percentageEquivalent = (numValue / price) * 100;
-            if (percentageEquivalent <= 50) {
-                setCommissionRates((prev) => ({
-                    ...prev,
-                    [tier]: value,
-                }));
-            }
+        setCommissionRates((prev) => ({ ...prev, [tier]: value }));
+    
+        if (value.trim() === "") {
+            if (tiersDataRef.current[tier]) delete tiersDataRef.current[tier].commissionRates;
+            cleanEmptyTiers();
+            return;
         }
-        if (value.trim() === "") return;
-        if (tiersDataRef.current[tier] === undefined) {
-          tiersDataRef.current[tier] = {};
-      }
-      tiersDataRef.current[tier].commissionRates = value;
-      tiersDataRef.current[tier][field] = value.trim();
-
-      cleanEmptyTiers();
+    
+        if (!tiersDataRef.current[tier]) tiersDataRef.current[tier] = {};
+        tiersDataRef.current[tier].commissionRates = value.trim();
     };
+    
+    
 
     const calculateTotalCommission = (tier) => {
         const price = !!parseFloat(prices[tier]) ? parseFloat(prices[tier]) : 0;
         const commissionRate = parseFloat(commissionRates[tier]) || 0;
         let rateAmount;
-        console.log("Calculating total commission...");
-        console.log("price :", price);
 
         if (price === 0) {
-            return "0.00"; // 🚀 If price is empty, return 0.00 immediately
+            return "0.00"; // If price is empty, return 0.00 immediately
         }
         if (commissionType === "percentage") {
             rateAmount = (price * commissionRate) / 100;
@@ -203,29 +200,35 @@ const PricingTable = ({ tiersDataRef }) => {
         return totalCommissionChargesCalculated;
     };
 
-        const updateCommissionForTier = (tier) => {
-          if (!tier) return; 
-          const commissionValue = calculateTotalCommission(tier);
-          console.log(commissionValue);
-          
-          setTotalCommission((prev) => ({
-            ...prev,
-            [tier]: commissionValue,
-          }));
-          
-          if (!tiersDataRef.current[tier]) {
-            tiersDataRef.current[tier] = {};
-          }
-          tiersDataRef.current[tier].totalCommission = commissionValue;
-      };
+    const updateCommissionForTier = (tier) => {
+        if (!tier || !tiersDataRef.current[tier]) return; 
+    
+        const commissionValue = calculateTotalCommission(tier);
+    
+        // Only set totalCommission if the tier exists in backend & has inputs
+        if (tiersDataRef.current[tier] && Object.keys(tiersDataRef.current[tier]).length > 0) {
+            tiersDataRef.current[tier].totalCommission = commissionValue;
+            setTotalCommission((prev) => ({
+                ...prev,
+                [tier]: commissionValue,
+            }));
+        }
+    
+        cleanEmptyTiers(); // Ensure empty tiers are removed
+    };
 
-      useEffect(() => {
+    const handlePaymentModelChange = (newModel) => {
+        setProductType(newModel);
+    };
+    
+
+    useEffect(() => {
         if ("onetime") {  
             updateCommissionForTier("onetime");
         }
-      }, [prices["onetime"], commissionRates["onetime"], commissionType]); 
+    }, [prices["onetime"], commissionRates["onetime"], commissionType]); 
 
-      useEffect(() => {
+    useEffect(() => {
         tiers.forEach((tier) => updateCommissionForTier(tier));  
     }, [tiers, prices, commissionRates, commissionType]); 
     
@@ -287,7 +290,6 @@ const PricingTable = ({ tiersDataRef }) => {
                                                     setSelectedCurrency(
                                                         e.target.value
                                                     );
-                                                    console.log("Select Change :")
                                                     handleCurrencies(e.target.value);
                                                 }}
                                                 className={
@@ -451,10 +453,11 @@ const PricingTable = ({ tiersDataRef }) => {
                                     Total Commission
                                 </td>
                                 {tiers.map((tier, index) => (
-                                    <td key={index} className={styles.thetd}>
+                                    <td key={index} className={styles.thetd }>
+                                        <div className={ styles.fontColor }>
                                         {selectedCurrency}{" "}
-                                        {/* {calculateTotalCommission(tier)} */}
-                                        <div>{totalCommission[tier] || "0.00"}</div> 
+                                            {totalCommission[tier] || "0.00"}
+                                        </div> 
                                     </td>
                                 ))}
                             </tr>
@@ -603,16 +606,12 @@ const PricingTable = ({ tiersDataRef }) => {
                             Total Commission
                         </div>
                         <div className={styles.totalCommision}>
-                          <div>
+                          <div className={ styles.fontColor }>
                             {selectedCurrency}{" "}
-                            {/* {calculateTotalCommission("onetime")} */}
-
-                            {/* WORKING */}
-                            {/* {totalCommission["onetime"] || "0.00"} */}
-                            {/* WORKING */}
-                            <div>{totalCommission["onetime"] || "0.00"}</div> 
-
                           </div>
+                            <div className={ styles.oneTimeTotalCommissionDiv }>
+                                {totalCommission["onetime"] || "0.00"}
+                            </div> 
                         </div>
                     </div>
                 </div>
