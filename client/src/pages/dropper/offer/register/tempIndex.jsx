@@ -49,26 +49,43 @@ const PricingTable = ({ tiersDataRef }) => {
     
         console.log("✅ Updated tiersDataRef after productType change:", tiersDataRef.current);
     }, [productType]);
+
     
-  const cleanEmptyTiers = () => {
-    Object.keys(tiersDataRef.current).forEach((tier) => {
-        const data = tiersDataRef.current[tier];
+    const cleanEmptyTiers = () => {
+        Object.keys(tiersDataRef.current).forEach((tier) => {
+            if (
+                tier !== "productType" &&  // ✅ Ensure default values stay
+                tier !== "selectedCurrency" &&
+                tier !== "commissionType"
+            ) {
+                const data = tiersDataRef.current[tier];
+    
+                if (
+                    (!data.commissionRates || data.commissionRates.trim() === "") &&
+                    (!data.originalPrices || data.originalPrices.trim() === "") &&
+                    (!data.prices || data.prices.trim() === "") &&
+                    data.totalCommission === "0.00"
+                ) {
+                    delete tiersDataRef.current[tier]; // 🚀 Remove only empty tiers
+                    console.log(`🗑️ Removed ${tier} from backend.`);
+                }
+            }
+        });
+    
+        console.log("✅ Updated tiersDataRef:", tiersDataRef.current);
+        // ✅ Always log backend data with default values
+        console.log("🔥 Backend Data:", JSON.stringify({
+            productType: tiersDataRef.current.productType || "onetime",
+            selectedCurrency: tiersDataRef.current.selectedCurrency || "USD",
+            commissionType: tiersDataRef.current.commissionType || "flat",
+            ...tiersDataRef.current
+        }, null, 2));
+    };
+    
 
-        // ✅ Remove specific fields when empty
-        if (data?.prices?.trim() === "") delete data.prices;
-        if (data?.originalPrices?.trim() === "") delete data.originalPrices;
-        if (data?.commissionRates?.trim() === "") delete data.commissionRates;
-        if (data?.totalCommission === "0.00") delete data.totalCommission;
-
-        // ✅ If the tier is completely empty, remove it
-        if (Object.keys(data).length === 0) {
-            console.log(`🗑️ Removing empty tier: ${tier}`);
-            delete tiersDataRef.current[tier];
-        }
-    });
-
-    console.log("✅ Updated tiersDataRef:", tiersDataRef.current);
-};
+    useEffect(() => {
+        console.log("🔥 Backend Data:", JSON.stringify(tiersDataRef.current, null, 2));
+    }, []);
 
 
 useEffect(() => {
@@ -82,18 +99,19 @@ useEffect(() => {
     const currencies = ["USD", "INR"];
 
     const handleCurrencies = (value) => {
-      if (tiersDataRef.current.selectedCurrency === undefined) {
-        tiersDataRef.current.selectedCurrency = "";
-    }
-    tiersDataRef.current.selectedCurrency = value;
-  };
-
-  const handleCommissionType = (value) => {
-    if (tiersDataRef.current.commissionType === undefined) {
-      tiersDataRef.current.commissionType = "";
-  }
-  tiersDataRef.current.commissionType = value;
-};
+        if (!tiersDataRef.current.selectedCurrency) {
+            tiersDataRef.current.selectedCurrency = "USD"; // ✅ Ensure default stays
+        }
+        tiersDataRef.current.selectedCurrency = value;
+    };
+    
+    const handleCommissionType = (value) => {
+        if (!tiersDataRef.current.commissionType) {
+            tiersDataRef.current.commissionType = "flat"; // ✅ Ensure default stays
+        }
+        tiersDataRef.current.commissionType = value;
+    };
+    
 
     const addTier = () => {
         const newTier = `Tier ${tiers.length + 1}`;
