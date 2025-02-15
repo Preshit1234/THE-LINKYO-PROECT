@@ -8,7 +8,7 @@ import { useUser } from "../contexts/UserContext";
 // import { useNavigate } from "react-router-dom";
 import styles from "../components/css/DropCard.module.css";
 import { useMember } from "../contexts/MemberContext";
-import PricingTable from "../pages/dropper/offer/register";
+import PricingTable from "../pages/dropper/offer/register/tempIndex";
 
 /**
  * A react component that renders the create drop page.
