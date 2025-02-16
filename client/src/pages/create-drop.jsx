@@ -1172,115 +1172,7 @@ const CreateDrop = () => {
                                                 visit, download, install, etc.
                                             </p>
                                         </div>
-
-                                        {/* <div className="create-drop-form-subform-2-inputs-container">
-                                            <div className="create-drop-form-input-fields-container">
-                                                <label
-                                                    htmlFor="productPrice"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
-                                                    Product Price
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="value"
-                                                    id="productPrice"
-                                                    placeholder="Enter Price at which the product will be sold."
-                                                    className="create-drop-form-text-inputs"
-                                                    onChange={handleChange}
-                                                />
-
-                                                <label
-                                                    htmlFor="currency"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
-                                                    Choose currency
-                                                </label>
-                                                <select
-                                                    name="currency"
-                                                    id="currency"
-                                                    className="create-drop-form-select-inputs"
-                                                    onChange={handleChange}
-                                                >
-                                                    <option value="inr">
-                                                        INR
-                                                    </option>
-                                                    <option value="dollar">
-                                                        Dollar
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div className="create-drop-form-input-fields-container">
-                                                <label
-                                                    htmlFor="commissionRate"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
-                                                    Commission Rate
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="commissionRate"
-                                                    id="commissionRate"
-                                                    placeholder="The percentage of each sale that will be given to affiliates as commission."
-                                                    className="create-drop-form-text-inputs"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                            <div className="create-drop-form-input-fields-container">
-                                                <label
-                                                    htmlFor="audienceDescription"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
-                                                    Target Audience
-                                                </label>
-                                                <textarea
-                                                    name="audienceDesctiption"
-                                                    id="audienceDescription"
-                                                    rows="6"
-                                                    placeholder="A brief description of the ideal audience for the product."
-                                                    className="create-drop-form-textarea-inputs"
-                                                    onChange={handleChange}
-                                                ></textarea>
-                                            </div>
-                                            <div className="create-drop-form-input-fields-container">
-                                                <label
-                                                    htmlFor="campaignDate"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
-                                                    Campaign Duration
-                                                </label>
-                                                <input
-                                                    name="campaignDate"
-                                                    id="campaignDate"
-                                                    className="create-drop-form-date-inputs"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                            <div className="create-drop-form-input-fields-container">
-                                                <label
-                                                    htmlFor="paymentInfo"
-                                                    className="create-drop-form-input-field-labels"
-                                                >
-                                                    Payment Info
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="paymentInfo"
-                                                    id="paymentInfo"
-                                                    placeholder=""
-                                                    className="create-drop-form-text-inputs"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                            <div className="create-drop-form-navigation-buttons-container">
-                                                <button
-                                                    className="create-drop-form-navigation-next-subform-buttons next"
-                                                    onClick={proceedToStage5}
-                                                >
-                                                    Next - Drop!
-                                                </button>
-                                            </div>
-                                        </div> */}
+                                        
                                         <div
                                             style={{
                                                 display: "flex",
@@ -1291,6 +1183,12 @@ const CreateDrop = () => {
                                                 tiersDataRef={tiersDataRef}
                                             />
                                         </div>
+                                        <button
+                                            className="create-drop-form-navigation-next-subform-buttons next"
+                                            onClick={proceedToStage5}
+                                        >
+                                            Continue to Publish Drop
+                                        </button>
                                     </fieldset>
 
                                     <fieldset
